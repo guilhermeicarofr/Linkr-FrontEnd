@@ -26,6 +26,9 @@ const PublishForm = styled.form`
     &::placeholder {
       color: #9f9f9f;
     }
+    &:disabled {
+      opacity: 0.7;
+    }
   }
   button {
     height: 31px;
@@ -39,6 +42,10 @@ const PublishForm = styled.form`
     line-height: 17px;
     color: #ffffff;
     cursor: pointer;
+
+    &:disabled {
+      opacity: 0.7;
+    }
   }
 
   @media (max-width: 870px) {
