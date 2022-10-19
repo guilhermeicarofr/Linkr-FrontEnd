@@ -4,4 +4,8 @@ function signUp(body) {
   return axios.post("http://localhost:4000/sign-up", body);
 }
 
-export { signUp };
+function publishPost(body) {
+  return axios.post("http://localhost:4000/post", body);
+}
+
+export { signUp, publishPost };
