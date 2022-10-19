@@ -36,6 +36,7 @@ const InitialPages = styled.div`
       text-decoration: underline;
       margin-top: 14px;
       font-family: "Lato", sans-serif;
+      cursor: pointer;
     }
   }
   @media (max-width: 870px) {

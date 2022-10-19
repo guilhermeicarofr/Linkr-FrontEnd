@@ -68,9 +68,9 @@ export default function SignUp() {
       return;
     }
     signUp(form)
-      .then((answer) => {
+      .then(() => {
         setDisabled(false);
-        console.log(answer);
+        navigate("/");
       })
       .catch((answer) => {
         setDisabled(false);
@@ -93,7 +93,13 @@ export default function SignUp() {
           Sign-up
         </button>
       </FormStyle>
-      <span>Switch back to log in</span>
+      <span
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Switch back to log in
+      </span>
     </FormPage>
   );
 }

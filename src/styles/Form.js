@@ -29,6 +29,7 @@ const FormStyle = styled.form`
     font-size: 27px;
     font-weight: bold;
     color: #ffffff;
+    cursor: pointer;
   }
   @media (max-width: 870px) {
     max-width: 500px;
