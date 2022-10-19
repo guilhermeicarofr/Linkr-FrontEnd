@@ -1,11 +1,11 @@
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import Post from '../Post.js';
+import PublishPost from "../publishPost";
 
-function TL() {
-
+function Timeline() {
 
     const posts = [
         {
@@ -28,8 +28,8 @@ function TL() {
 
 
     return (
-
-        <>
+        <Page>
+            <PublishPost />
             {posts.map((p,index) => 
                 <Post 
                     key={index}
@@ -41,9 +41,13 @@ function TL() {
                     picture={p.picture}
                 />
             )}
-        </>
-
+        </Page>
     );
 }
 
-export default TL;
+export default Timeline;
+
+const Page = styled.div`
+  background-color: #333333;
+  padding-top: 20px;
+`;
