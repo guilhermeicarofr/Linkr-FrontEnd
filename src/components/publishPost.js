@@ -13,16 +13,17 @@ function Inputs({ handleForm, form, disabled }) {
         name="url"
         value={form.url}
         onChange={handleForm}
-        readOnly={disabled}
+        disabled={disabled}
+        type="url"
+        required
       />
       <input
         placeholder="Awesome article about #javascript"
         name="description"
         value={form.description}
         onChange={handleForm}
-        readOnly={disabled}
+        disabled={disabled}
         type="text"
-        maxLength="300"
       />
     </>
   );
@@ -38,8 +39,8 @@ export default function PublishPost() {
   function submitData(e) {
     e.preventDefault();
     setDisabled(true);
-    if (form.url === "" || form.description === "") {
-      alert("A URL é obrigatória");
+    if (form.url === "") {
+      alert("Insira o link que deseja compartilhar");
       setDisabled(false);
       return;
     }
@@ -49,6 +50,7 @@ export default function PublishPost() {
       })
       .catch((answer) => {
         setDisabled(false);
+        alert("Houve um erro ao publicar seu link");
       });
   }
   function handleForm(e) {
@@ -60,18 +62,18 @@ export default function PublishPost() {
 
   return (
     <Wrapper>
-      <ProfilePicture>
-        <img src={venom} alt="profilePicture" />
-      </ProfilePicture>
-      <Content>
+      <div>
+        <img src={venom} alt="div" />
+      </div>
+      <PublishContent>
         <h1>What are you going to share today?</h1>
         <PublishForm onSubmit={submitData}>
           <Inputs handleForm={handleForm} disabled={disabled} form={form} />
           <button type="submit" disabled={disabled}>
-            Publish
+            {disabled ? "Publishing" : "Publish"}
           </button>
         </PublishForm>
-      </Content>
+      </PublishContent>
     </Wrapper>
   );
 }
@@ -85,15 +87,30 @@ const Wrapper = styled.div`
   padding: 0 22px 16px 18px;
   gap: 18px;
 
-  margin: 50px;
-`;
-
-const Content = styled.div`
-  font-family: "Lato";
+  font-family: "Lato", sans-serif;
   font-style: normal;
   font-weight: 300;
-  display: flex;
-  flex-direction: column;
+
+  margin: 50px;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 870px) {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    img {
+      display: none;
+    }
+  }
+`;
+
+const PublishContent = styled.div`
   width: 100%;
 
   h1 {
@@ -101,6 +118,12 @@ const Content = styled.div`
     line-height: 24px;
     color: #707070;
     margin: 21px 0 20px;
+
+    @media (max-width: 870px) {
+      font-size: 17px;
+      text-align: center;
+      margin: 10px 0;
+    }
   }
 `;
 
@@ -108,7 +131,7 @@ const PublishForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-left: 18px;
+
   input {
     width: 100%;
     height: 30px;
@@ -118,7 +141,6 @@ const PublishForm = styled.form`
     border: none;
     background: #efefef;
     color: #949494;
-    font-style: normal;
     font-weight: 300;
     font-size: 15px;
     line-height: 18px;
@@ -126,6 +148,7 @@ const PublishForm = styled.form`
 
     :nth-child(2) {
       height: 66px;
+      padding-bottom: 35px;
     }
     &::placeholder {
       color: #9f9f9f;
@@ -138,18 +161,18 @@ const PublishForm = styled.form`
     border-radius: 6px;
     outline: none;
     border: none;
-    font-family: "Lato";
-    font-style: normal;
     font-weight: 700;
     font-size: 14px;
     line-height: 17px;
     color: #ffffff;
     cursor: pointer;
   }
+
   @media (max-width: 870px) {
     input {
       :nth-child(2) {
         height: 47px;
+        padding-bottom: 15px;
       }
     }
 
@@ -158,15 +181,4 @@ const PublishForm = styled.form`
       height: 22px;
     }
   }
-`;
-
-const ProfilePicture = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: red;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-top: 16px;
 `;

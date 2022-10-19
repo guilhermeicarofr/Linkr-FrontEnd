@@ -31,10 +31,15 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
+* {
+	box-sizing: border-box;
+  }
+  
 body {
 	line-height: 1;
 	font-family: 'Lato', sans-serif;
-	font-size: 400;
+    
 }
 ol, ul {
 	list-style: none;
