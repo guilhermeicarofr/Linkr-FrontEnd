@@ -25,7 +25,7 @@ export default function SignIn() {
         signInApi(body)
             .then((res) => {
             localStorage.setItem("linkr", JSON.stringify(res.data));
-            setUserData(localStorage.JSON.parse("linkr"));
+            setUserData(JSON.parse(localStorage.getItem("linkr")));
             setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
             setEmail("");
             setPassword("");
@@ -33,6 +33,7 @@ export default function SignIn() {
             navigate("/timeline");
         })
         .catch((res) => {
+            console.log(res);
             if(res.response.status === 401) {
             alert("Email and/or password are invalid")
             }
