@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function Post ({ postId, url, description, name, userId, picture }) {
