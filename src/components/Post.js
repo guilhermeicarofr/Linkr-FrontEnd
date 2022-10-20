@@ -10,9 +10,12 @@ function Post ({ postId, url, description, name, userId, picture }) {
                 <h2>{name}</h2>
             </header>
             <p>{description}</p>
-            <div>
-                <a href={url} target='_blank'>{url}</a>
-            </div>
+            <a href={url.path} target='_blank'>
+                <h3>{url.title}</h3>
+                <img src={url.image} alt='' />
+                <p>{url.description}</p>
+                <p>{url.path}</p>
+            </a>
         </PostContainer>
     );
 }
@@ -29,5 +32,11 @@ const PostContainer = styled.div`
     }
     p {
         color: #B7B7B7;
+    }
+    a {
+        img {
+            width: 50px;
+            height: 50px;
+        }
     }
 `;
