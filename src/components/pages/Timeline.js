@@ -1,46 +1,49 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
+import { getTimeline } from "../../services/axios.js";
 
 function Timeline() {
-  const posts = [
-    {
-      userId: 1,
-      name: "andre",
-      picture:
-        "https://i.pinimg.com/736x/c5/a9/68/c5a968eb0a92b427ca26646cf55526bb.jpg",
-      postId: 1,
-      url: "https://www.google.com/",
-      description: "teste teste teste",
-    },
-    {
-      userId: 1,
-      name: "andre",
-      picture:
-        "https://i.pinimg.com/736x/c5/a9/68/c5a968eb0a92b427ca26646cf55526bb.jpg",
-      postId: 4,
-      url: "https://www.google.com/",
-      description: "teste4 teste4 teste4",
-    },
-  ];
-
+  
+  const [posts, setPosts] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const [message, setMessage] = useState('Loading');
+  
+  useEffect(() => {
+    getTimeline().then((res)=>{
+      setPosts(res.data);
+      if(!res.data.length) {
+        setMessage('There are no posts yet');
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+      setMessage('An error occured while trying to fetch the posts, please refresh the page');
+    });
+  },[refresh])
+  
   return (
     <Page>
-      <CreatePost />
-      {posts.map((p, index) => (
-        <Post
-          key={index}
-          postId={p.postId}
-          url={p.url}
-          description={p.description}
-          name={p.name}
-          userId={p.userId}
-          picture={p.picture}
-        />
-      ))}
+      <CreatePost refresh={refresh} setRefresh={setRefresh} />
+
+
+      {(posts.length)?
+        posts.map((p, index) => (
+          <Post
+            key={index}
+            postId={p.postId}
+            url={p.url}
+            description={p.description}
+            name={p.name}
+            userId={p.userId}
+            picture={p.picture}
+          />
+        ))
+    :
+      <p>{message}</p>
+    }
     </Page>
   );
 }

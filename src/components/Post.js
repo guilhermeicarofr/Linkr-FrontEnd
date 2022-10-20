@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 function Post ({ postId, url, description, name, userId, picture }) {
@@ -5,11 +6,16 @@ function Post ({ postId, url, description, name, userId, picture }) {
     return (
         <PostContainer>
             <header>
-                <img href={picture} alt='' />
+                <img src={picture} alt='' />
                 <h2>{name}</h2>
             </header>
             <p>{description}</p>
-            <div>{url}</div>
+            <a href={url.path} target='_blank'>
+                <h3>{url.title}</h3>
+                <img src={url.image} alt='' />
+                <p>{url.description}</p>
+                <p>{url.path}</p>
+            </a>
         </PostContainer>
     );
 }
@@ -26,5 +32,11 @@ const PostContainer = styled.div`
     }
     p {
         color: #B7B7B7;
+    }
+    a {
+        img {
+            width: 50px;
+            height: 50px;
+        }
     }
 `;
