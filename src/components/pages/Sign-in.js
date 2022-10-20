@@ -33,7 +33,6 @@ export default function SignIn() {
             navigate("/timeline");
         })
         .catch((res) => {
-            console.log(res);
             if(res.response.status === 401) {
             alert("Email and/or password are invalid")
             }
