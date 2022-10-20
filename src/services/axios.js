@@ -10,4 +10,8 @@ function publishPost(body) {
   return axios.post(`${API}/post`, body);
 }
 
-export { signUp, publishPost };
+function getTimeline() {
+  return axios.get(`${API}/timeline`);
+}
+
+export { signUp, publishPost, getTimeline };

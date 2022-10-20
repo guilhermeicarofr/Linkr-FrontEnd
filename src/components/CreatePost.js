@@ -18,7 +18,7 @@ const inputs = [
   },
 ];
 
-export default function CreatePost() {
+export default function CreatePost({ refresh, setRefresh }) {
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
@@ -47,6 +47,7 @@ export default function CreatePost() {
           url: "",
           description: "",
         });
+        setRefresh(!refresh);
       })
       .catch((answer) => {
         alert("Houve um erro ao publicar seu link");
