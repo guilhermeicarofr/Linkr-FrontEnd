@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { listTrending } from "../services/axios";
 import TrendingBox from "../styles/Trending/TrendingBox";
 
-export default function Trendings() {	
-    const [hashtags, setHashtags] = useState([]);
+export default function Trendings() {
+	const [hashtags, setHashtags] = useState([]);
 	useEffect(() => {
 		const promise = listTrending();
 		promise.catch((error) => {
@@ -13,8 +14,7 @@ export default function Trendings() {
 			alert(error.response.data);
 		});
 
-		promise.then((res) => {		
-            console.log(res.data);	
+		promise.then((res) => {			
 			setHashtags(res.data);
 		});
 	}, []);
@@ -22,10 +22,14 @@ export default function Trendings() {
 		<TrendingBox>
 			<h1>trending</h1>
 			<div></div>
-			<span>                
-				{hashtags.map((hash, index) => (
-					<h2 key={index}># {hash.name}</h2>
-				))}
+			<span>
+				{hashtags.length > 0 ?  (hashtags.map((hash, index) => (
+					<Link to={`/hashtag/${hash.id}`} key={index}>
+						<h2># {hash.name}</h2>
+					</Link>
+				))) :
+                <h2>No hashtags yet</h2>
+                }
 			</span>
 		</TrendingBox>
 	);

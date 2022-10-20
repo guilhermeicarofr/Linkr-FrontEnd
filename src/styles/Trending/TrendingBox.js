@@ -10,9 +10,8 @@ const TrendingBox = styled.div`
 	display: flex;
     flex-direction: column;
 	position: relative;
-	position: fixed;
-	top: 100px;
-	right: 10px;
+	position: sticky;
+	top: 283px;	
 	div {
 		height: 1px;
 		background-color: #484848;
@@ -33,6 +32,7 @@ const TrendingBox = styled.div`
 		margin-bottom: 16px;
         font-weight: 700;
 		font-size: 19px;
+		color: #ffffff;
     }
 	@media (max-width: 937px) {
     display: none;

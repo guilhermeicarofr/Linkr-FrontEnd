@@ -28,25 +28,31 @@ function Timeline() {
 	}, [refresh]);
 
 	return (
-		<Page>
-			<CreatePost refresh={refresh} setRefresh={setRefresh} />
-			{posts.length ? (
-				posts.map((p, index) => (
-					<Post
-						key={index}
-						postId={p.postId}
-						url={p.url}
-						description={p.description}
-						name={p.name}
-						userId={p.userId}
-						picture={p.picture}
-					/>
-				))
-			) : (
-				<p>{message}</p>
-			)}
-			<Trending />
-		</Page>
+		<>
+			<Page>
+				<Wrapper>
+					<Feed>
+						<CreatePost refresh={refresh} setRefresh={setRefresh} />
+						{posts.length ? (
+							posts.map((p, index) => (
+								<Post
+									key={index}
+									postId={p.postId}
+									url={p.url}
+									description={p.description}
+									name={p.name}
+									userId={p.userId}
+									picture={p.picture}
+								/>
+							))
+						) : (
+							<p>{message}</p>
+						)}
+					</Feed>
+					<Trending />
+				</Wrapper>
+			</Page>
+		</>
 	);
 }
 
@@ -55,4 +61,16 @@ export default Timeline;
 const Page = styled.div`
 	background-color: #333333;
 	padding-top: 20px;
+	height: 100vh;
+`;
+const Wrapper = styled.div`
+	display: flex;
+	width: 1000px;
+	margin: 0 auto;
+`;
+
+const Feed = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-right: 25px;
 `;
