@@ -15,6 +15,7 @@ function Inputs({ handleForm, form, disabled }) {
         value={form.email}
         onChange={handleForm}
         readOnly={disabled}
+        type="email"
         maxLength="100"
       />
       <input
@@ -32,6 +33,7 @@ function Inputs({ handleForm, form, disabled }) {
         value={form.name}
         onChange={handleForm}
         readOnly={disabled}
+        type="text"
         maxLength="50"
       />
       <input
@@ -39,6 +41,7 @@ function Inputs({ handleForm, form, disabled }) {
         name="picture"
         value={form.picture}
         onChange={handleForm}
+        type="url"
         readOnly={disabled}
       />
     </>

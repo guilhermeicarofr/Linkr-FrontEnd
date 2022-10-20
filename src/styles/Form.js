@@ -10,12 +10,13 @@ const FormStyle = styled.form`
     outline: none;
     font-size: 27px;
     margin-bottom: 13px;
+    padding-left: 17px;
     font-family: "Oswald", sans-serif;
     border: none;
     &::placeholder {
       color: #9f9f9f;
       font-weight: bold;
-      padding-left: 17px;
+      
     }
   }
   button {
@@ -30,6 +31,9 @@ const FormStyle = styled.form`
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   @media (max-width: 870px) {
     max-width: 500px;
