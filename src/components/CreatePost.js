@@ -18,7 +18,7 @@ const inputs = [
   },
 ];
 
-export default function PublishPost() {
+export default function CreatePost() {
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
@@ -42,8 +42,6 @@ export default function PublishPost() {
     }
     publishPost(form)
       .then(() => {
-        // TODO:Incluir a função para mostrar todos os posts
-        // showPosts();
         setDisabled(false);
         setForm({
           url: "",
@@ -59,9 +57,7 @@ export default function PublishPost() {
   return (
     <PublishBox>
       <div>
-        {/*TODO: Linkar a imagem do perfil */}
-        Foto
-        {/* <img src={login.image} alt="div" /> */}
+        <img src="../assets/imagem" alt="pic" />
       </div>
       <PublishContent>
         <h1>What are you going to share today?</h1>
