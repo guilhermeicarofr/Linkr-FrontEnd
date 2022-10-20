@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
+import Trending from "../Trending.js";
 
 function Timeline() {
   const posts = [
@@ -39,8 +40,9 @@ function Timeline() {
           name={p.name}
           userId={p.userId}
           picture={p.picture}
-        />
+        />        
       ))}
+      <Trending/>
     </Page>
   );
 }
