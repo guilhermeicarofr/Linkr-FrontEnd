@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = `${process.env.REACT_APP_API_URL}`;
+const API = process.env.REACT_APP_API_URL;
 
 function signUp(body) {
   return axios.post(`${API}/sign-up`, body);
