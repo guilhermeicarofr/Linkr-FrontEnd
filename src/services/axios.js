@@ -11,4 +11,8 @@ function publishPost(body) {
   return axios.post(`${API}/post`, body);
 };
 
-export { signUp, publishPost };
+function signInApi(body) {
+  return axios.post(`${API}/sign-in`, body)
+  };
+
+export { signUp, publishPost, signInApi };

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import FormStyle from "../../styles/Form";
 import FormPage from "../Form-page";
 import { ThreeDots } from "react-loader-spinner";
+import { signInApi } from "../../services/axios";
 
 export default function SignIn() {
     const [disabledSignIn, setDisabledSignIn] = useState(false);
@@ -12,6 +13,28 @@ export default function SignIn() {
 
     function signInForm(e) {
         e.preventDefault();
+        setDisabledSignIn(true);
+
+        const body = {
+        email,
+        password
+        };
+
+        signInApi(body)
+            .then((res) => {
+            localStorage.setItem("linkr", JSON.stringify({token: res.data}));
+            setEmail("");
+            setPassword("");
+            setDisabledSignIn(false);
+            navigate("/timeline");
+        })
+        .catch((res) => {
+            if(res.response.status === 401) {
+            alert("Email and/or password are invalid")
+            }
+            setDisabledSignIn(false);
+        })
+
         
     };
 
