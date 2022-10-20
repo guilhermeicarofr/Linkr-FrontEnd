@@ -19,8 +19,6 @@ const inputs = [
 ];
 
 export default function PublishPost() {
-  console.log(process.env.REACT_APP_API_URL);
-
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
@@ -47,6 +45,10 @@ export default function PublishPost() {
         // TODO:Incluir a função para mostrar todos os posts
         // showPosts();
         setDisabled(false);
+        setForm({
+          url: "",
+          description: "",
+        });
       })
       .catch((answer) => {
         alert("Houve um erro ao publicar seu link");
