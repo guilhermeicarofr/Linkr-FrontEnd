@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormStyle from "../../styles/Form";
 import FormPage from "../Form-page";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function SignIn() {
     const [disabledSignIn, setDisabledSignIn] = useState(false);
@@ -9,11 +10,15 @@ export default function SignIn() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    function signInForm(e) {
+        e.preventDefault();
+        
+    };
 
     return (
         <>
             <FormPage>
-                <FormStyle>
+                <FormStyle onSubmit={signInForm}>
                     <input
                         placeholder="e-mail"
                         name="email"
@@ -34,9 +39,13 @@ export default function SignIn() {
                         maxLength="50"
                         required
                     />
-                    <button>Log In</button>
+                    {disabledSignIn ? (
+                        <button disabled={disabledSignIn}><ThreeDots color="white" height="13px" /></button> 
+                    ) : (
+                        <button disabled={disabledSignIn}>Log In</button>
+                    )}
                 </FormStyle>
-                <span
+                    <span
                         onClick={() => {
                         navigate("/sign-up");
                         }}
