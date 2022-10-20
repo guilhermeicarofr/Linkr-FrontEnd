@@ -15,4 +15,8 @@ function signInApi(body) {
   return axios.post(`${API}/sign-in`, body)
   };
 
-export { signUp, publishPost, signInApi };
+function getTimeline() {
+  return axios.get(`${API}/timeline`);
+}
+
+export { signUp, publishPost, signInApi, getTimeline };
