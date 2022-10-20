@@ -13,7 +13,7 @@ const PublishForm = styled.form`
     outline: none;
     border: none;
     background: #efefef;
-    color: #949494;
+    color: #333333;
     font-weight: 300;
     font-size: 15px;
     line-height: 18px;
