@@ -6,11 +6,13 @@ function Post ({ postId, url, description, name, userId, picture }) {
     return (
         <PostContainer>
             <header>
-                <img href={picture} alt='' />
+                <img src={picture} alt='' />
                 <h2>{name}</h2>
             </header>
             <p>{description}</p>
-            <div>{url}</div>
+            <div>
+                <a href={url} target='_blank'>{url}</a>
+            </div>
         </PostContainer>
     );
 }
