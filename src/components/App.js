@@ -4,16 +4,37 @@ import SignUp from "./pages/Sign-up";
 import GlobalStyle from "../styles/reset";
 import Timeline from './pages/Timeline.js'
 import SignIn from "./pages/Sign-in";
+import LoginContext from "../contexts/LoginContext";
+import { useState } from "react";
 
 export default function App() {
+  const [userData, setUserData] = useState(
+    localStorage.getItem("linkr")
+      ? JSON.parse(localStorage.getItem("linkr"))
+      : null
+  );
+  const [config, setConfig] = useState(
+    localStorage.getItem("linkr")
+      ? { headers: { Authorization: `Bearer ${userData.token}`}}
+      : null
+  );
+
+
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <Routes>
-        <Route path="/" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/timeline" element={<Timeline />} />
-      </Routes>
+      <LoginContext.Provider value={{
+        userData,
+        setUserData,
+        config,
+        setConfig
+      }}>
+        <Routes>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/timeline" element={<Timeline />} />
+        </Routes>
+      </LoginContext.Provider>
     </BrowserRouter>
   );
 }
