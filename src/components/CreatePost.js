@@ -1,4 +1,3 @@
-
 import { useContext, useState } from "react";
 import LoginContext from "../contexts/LoginContext";
 
@@ -7,7 +6,6 @@ import { publishPost } from "../services/axios";
 import PublishBox from "../styles/Publish/PublishBox";
 import PublishContent from "../styles/Publish/PublishContent";
 import PublishForm from "../styles/Publish/PublishForm";
-import LoginContext from "../contexts/LoginContext.js";
 
 const inputs = [
   {
@@ -23,9 +21,6 @@ const inputs = [
 ];
 
 export default function CreatePost({ refresh, setRefresh }) {
-
-  const { config } = useContext(LoginContext);
-
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
