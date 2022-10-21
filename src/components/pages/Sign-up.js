@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import FormPage from "../Form-page";
 import FormStyle from "../../styles/Form";
 import { signUp } from "../../services/axios";
+import { ThreeDots } from "react-loader-spinner";
 
 function Inputs({ handleForm, form, disabled }) {
   return (
@@ -17,6 +18,7 @@ function Inputs({ handleForm, form, disabled }) {
         readOnly={disabled}
         type="email"
         maxLength="100"
+        required
       />
       <input
         placeholder="password"
@@ -26,6 +28,7 @@ function Inputs({ handleForm, form, disabled }) {
         readOnly={disabled}
         type="password"
         maxLength="50"
+        required
       />
       <input
         placeholder="username"
@@ -35,6 +38,7 @@ function Inputs({ handleForm, form, disabled }) {
         readOnly={disabled}
         type="text"
         maxLength="50"
+        required
       />
       <input
         placeholder="picture url"
@@ -43,6 +47,7 @@ function Inputs({ handleForm, form, disabled }) {
         onChange={handleForm}
         type="url"
         readOnly={disabled}
+        required
       />
     </>
   );
@@ -60,16 +65,6 @@ export default function SignUp() {
   function submitData(e) {
     e.preventDefault();
     setDisabled(true);
-    if (
-      form.email === "" ||
-      form.password === "" ||
-      form.name === "" ||
-      form.picture === ""
-    ) {
-      alert("Preencha todos os campos");
-      setDisabled(false);
-      return;
-    }
     signUp(form)
       .then(() => {
         setDisabled(false);
@@ -92,9 +87,13 @@ export default function SignUp() {
     <FormPage>
       <FormStyle onSubmit={submitData}>
         <Inputs handleForm={handleForm} disabled={disabled} form={form} />
-        <button type="submit" disabled={disabled}>
-          Sign-up
-        </button>
+        {disabled ? (
+          <button disabled={disabled} type="submit">
+            <ThreeDots color="white" height="13px" />
+          </button>
+        ) : (
+          <button disabled={disabled}>Log In</button>
+        )}
       </FormStyle>
       <span
         onClick={() => {

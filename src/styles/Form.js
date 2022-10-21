@@ -16,7 +16,6 @@ const FormStyle = styled.form`
     &::placeholder {
       color: #9f9f9f;
       font-weight: bold;
-      
     }
   }
   button {
@@ -35,7 +34,7 @@ const FormStyle = styled.form`
     justify-content: center;
     align-items: center;
   }
-  @media (max-width: 870px) {
+  @media (max-width: 937px) {
     max-width: 500px;
     input {
       height: 55px;
