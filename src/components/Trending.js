@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { listTrending } from "../services/axios";
 import TrendingBox from "../styles/Trending/TrendingBox";
 
-export default function Trending({refresh}) {
+export default function Trending({refresh,setRefresh}) {
   const { config } = useContext(LoginContext);
   const [hashtags, setHashtags] = useState([]);
+  console.log(refresh);
   useEffect(() => {
     const promise = listTrending(config);
     promise.catch((error) => {
@@ -18,8 +19,9 @@ export default function Trending({refresh}) {
 
     promise.then((res) => {
       setHashtags(res.data);
+      setRefresh(!refresh);
     });
-  }, [refresh, config]);
+  }, [refresh, setRefresh, config]);
   return (
     <TrendingBox>
       <h1>trending</h1>

@@ -57,7 +57,7 @@ function Timeline() {
               <p>{message}</p>
             )}
           </Feed>
-          <Trending refresh={refresh}/>
+          <Trending refresh={refresh} setRefresh={setRefresh}/>
         </Wrapper>
       </Page>
     </>
