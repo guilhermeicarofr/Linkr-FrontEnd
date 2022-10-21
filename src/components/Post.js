@@ -32,7 +32,7 @@ function Post({ postId, url, description, name, userId, picture, id }) {
 export default Post;
 
 const PostContainer = styled.div`
-  max-width: 611px;
+  width: 611px;
   height: 276px;
   background-color: #171717;
   border-radius: 16px;
@@ -71,6 +71,7 @@ const PostContainer = styled.div`
     }
   }
   @media (max-width: 937px) {
+    width: 100%;
     min-height: 232px;
     > div:first-child {
       img {

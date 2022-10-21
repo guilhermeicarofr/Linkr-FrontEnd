@@ -68,12 +68,20 @@ export default Timeline;
 
 const Wrapper = styled.div`
   display: flex;
-  width: 1000px;
+  width: 937px;
   margin: 0 auto;
+
+  @media (max-width: 937px) {
+    width: 100%;
+  }
 `;
 
 const Feed = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 25px;
+
+  @media (max-width: 937px) {
+    width: 100%;
+  }
 `;
