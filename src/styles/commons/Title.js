@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 41px;
+  margin-bottom: 43px;
   height: 64px;
   gap: 18px;
 
@@ -20,5 +20,10 @@ export const Title = styled.div`
     width: 50px;
     height: 50px;
     border-radius: 50%;
+  }
+
+  @media (max-width: 937px) {
+    margin-left: 18px;
+    margin-bottom: 19px;
   }
 `;

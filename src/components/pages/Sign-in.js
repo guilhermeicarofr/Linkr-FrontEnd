@@ -17,29 +17,31 @@ export default function SignIn() {
     e.preventDefault();
     setDisabledSignIn(true);
 
-    const body = {
-      email,
-      password,
-    };
+        const body = {
+        email,
+        password
+        };
 
-    signInApi(body)
-      .then((res) => {
-        localStorage.setItem("linkr", JSON.stringify(res.data));
-        setUserData(JSON.parse(localStorage.getItem("linkr")));
-        setUserData(res.data);
-        setConfig({ headers: { Authorization: `Bearer ${res.data.token}` } });
-        setEmail("");
-        setPassword("");
-        setDisabledSignIn(false);
-        navigate("/timeline");
-      })
-      .catch((res) => {
-        if (res.response.status === 401) {
-          alert("Email and/or password are invalid");
-        }
-        setDisabledSignIn(false);
-      });
-  }
+        signInApi(body)
+            .then((res) => {
+            localStorage.setItem("linkr", JSON.stringify(res.data));
+            setUserData(JSON.parse(localStorage.getItem("linkr")));
+            setUserData(res.data);
+            setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
+            setEmail("");
+            setPassword("");
+            setDisabledSignIn(false);
+            navigate("/timeline");
+        })
+        .catch((res) => {
+            setDisabledSignIn(false);
+            if(res.response.status === 401) {
+            alert("Email and/or password are invalid")
+            }
+        })
+
+        
+    };
 
   return (
     <>

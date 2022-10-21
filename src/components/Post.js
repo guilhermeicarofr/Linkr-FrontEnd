@@ -33,7 +33,7 @@ export default Post;
 
 const PostContainer = styled.div`
   width: 611px;
-  height: 276px;
+  min-height: 276px;
   background-color: #171717;
   border-radius: 16px;
   margin-bottom: 16px;
@@ -72,6 +72,7 @@ const PostContainer = styled.div`
   }
   @media (max-width: 937px) {
     width: 100%;
+    border-radius: 0;
     min-height: 232px;
     > div:first-child {
       img {

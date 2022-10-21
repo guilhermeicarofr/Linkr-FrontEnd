@@ -22,8 +22,8 @@ const PublishBox = styled.div`
     margin-top: 16px;
   }
 
-  @media (max-width: 870px) {
-    margin: 0;
+  @media (max-width: 937px) {
+    margin-bottom: 16px;
     border-radius: 0;
     width: 100%;
     img {
