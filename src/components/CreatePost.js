@@ -37,8 +37,8 @@ export default function CreatePost({ refresh, setRefresh }) {
   function submitData(e) {
     e.preventDefault();
     setDisabled(true);
-    if (form.url === "Please enter a valid URL") {
-      alert("");
+    if (form.url === "") {
+      alert("Please enter a valid URL");
       setDisabled(false);
       return;
     }
@@ -55,6 +55,7 @@ export default function CreatePost({ refresh, setRefresh }) {
         if (answer.response.status === 401) {
           alert("Please login to continue");
         } else {
+          console.log(answer);
           alert("Unable to publish your post");
         }
 

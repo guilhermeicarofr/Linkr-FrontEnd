@@ -15,9 +15,11 @@ function UserTimeline() {
     getUserPosts(id)
       .then((res) => {
         setPosts(res.data.posts);
+        console.log(res.data.posts);
       })
       .catch((error) => {
         console.log(error);
+
         if (error.response.status === 404) {
           setMessage("Nenhum post");
         }

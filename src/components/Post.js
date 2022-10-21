@@ -6,7 +6,7 @@ import IconLike from "./Post/Icon-like";
 import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
 
-function Post({ postId, url, description, name, userId, picture }) {
+function Post({ postId, url, description, name, userId, picture, id }) {
   return (
     <PostContainer>
       <div>
@@ -15,9 +15,9 @@ function Post({ postId, url, description, name, userId, picture }) {
       </div>
       <div>
         <span>
-        <Link to={`/user/${userId}`}>
-          <h2>{name}</h2>
-        </Link>
+          <Link to={`/user/${userId}`}>
+            <h2>{name}</h2>
+          </Link>
           <div>
             <IconUpdate />
             <IconDelete />
