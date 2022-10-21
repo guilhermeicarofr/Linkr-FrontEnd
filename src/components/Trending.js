@@ -27,7 +27,7 @@ export default function Trending() {
       <span>
         {hashtags.length > 0 ? (
           hashtags.map((hash, index) => (
-            <Link to={`/hashtag/${hash.id}`} key={index}>
+            <Link to={`/hashtag/${hash.name}`} key={index}>
               <h2># {hash.name}</h2>
             </Link>
           ))
