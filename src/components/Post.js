@@ -31,7 +31,7 @@ export default Post;
 
 const PostContainer = styled.div`
   max-width: 611px;
-  width: 90%;
+  width: 100%;
   height: 276px;
   background-color: #171717;
   border-radius: 16px;
