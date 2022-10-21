@@ -13,7 +13,7 @@ const PublishBox = styled.div`
   font-style: normal;
   font-weight: 300;
 
-  margin: 50px;
+  margin-bottom: 29px;
 
   img {
     width: 50px;
