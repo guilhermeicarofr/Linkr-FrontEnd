@@ -30,11 +30,11 @@ const UrlStyle = styled.a`
   div:first-child {
     padding: 24px 10px 23px 19px;
     width: 80%;
-    word-break: break-all;
     p:nth-child(2) {
       font-size: 11px;
       color: #9b9595;
       margin: 10px 0;
+      word-break: break-all;
     }
     p:last-child {
       font-size: 11px;

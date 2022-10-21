@@ -1,23 +1,26 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import LoginContext from "../contexts/LoginContext";
 import { Link } from "react-router-dom";
 import { listTrending } from "../services/axios";
 import TrendingBox from "../styles/Trending/TrendingBox";
 
 export default function Trendings() {
+
+	const { config } = useContext(LoginContext);
 	const [hashtags, setHashtags] = useState([]);
 	useEffect(() => {
-		const promise = listTrending();
+		const promise = listTrending(config);
 		promise.catch((error) => {
-			if (error.code === "ERR_NETWORK") {
-				return alert("Failed to connect to the server");
-			}
+			 if (error.response.status === 500) {
+        return alert("Failed to connect to the server");
+      }
 			alert(error.response.data);
 		});
 
 		promise.then((res) => {			
 			setHashtags(res.data);
 		});
-	}, []);
+	}, [config]);
 	return (
 		<TrendingBox>
 			<h1>trending</h1>
