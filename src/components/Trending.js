@@ -6,8 +6,7 @@ import TrendingBox from "../styles/Trending/TrendingBox";
 
 export default function Trending({refresh,setRefresh}) {
   const { config } = useContext(LoginContext);
-  const [hashtags, setHashtags] = useState([]);
-  console.log(refresh);
+  const [hashtags, setHashtags] = useState([]);  
   useEffect(() => {
     const promise = listTrending(config);
     promise.catch((error) => {
