@@ -2,7 +2,7 @@ import { RiBallPenLine } from "react-icons/ri";
 import styled from "styled-components";
 
 export default function IconUpdate() {
-  return <UpdateStyle></UpdateStyle>;
+  return <UpdateStyle />;
 }
 
 const UpdateStyle = styled(RiBallPenLine)`
