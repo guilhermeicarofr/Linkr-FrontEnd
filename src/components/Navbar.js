@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs"
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Navbar() {
+    const [hidden, setHidden] = useState(true);
     const [search, setSearch] = useState();
+    const navigate = useNavigate();
+
+    function logOut() {
+        localStorage.clear("linkr");
+        navigate("/");
+    };
 
     return (
         <>
             <WrapperNavbar>
-                <h1>linkr</h1>
+                <h1 onClick={() => navigate("/timeline")}>linkr</h1>
                 <WrapperSearch>
                     <input
                         placeholder="Search for people"
@@ -26,18 +34,31 @@ export default function Navbar() {
                         size={20}
                     />
                 </WrapperSearch>
-                <WrapperMenuLogOut>
-                    <AiOutlineDown 
-                        style={{
-                            color:  "#ffffff",
-                            cursor: 'pointer',
-                            
-                        }}
-                        size={30}
-                    />
+                <WrapperMenuLogOut onClick={() => setHidden(!hidden)}>
+                    {hidden ? (
+                        <AiOutlineDown 
+                            style={{
+                                color:  "#ffffff",
+                                cursor: 'pointer',
+                                
+                            }}
+                            size={30}
+                        />
+                    ) : (
+                        <AiOutlineUp 
+                            style={{
+                                color:  "#ffffff",
+                                cursor: 'pointer',
+                                
+                            }}
+                            size={30}
+                        />
+                    )}
+                    
                     <img src="https://i.pinimg.com/736x/c5/a9/68/c5a968eb0a92b427ca26646cf55526bb.jpg" alt="img"></img>
                 </WrapperMenuLogOut>
             </WrapperNavbar>
+            <ButtonLogOut onClick={() => logOut()} disabled={hidden}>Logout</ButtonLogOut>
         </>
     )
 };
@@ -86,6 +107,7 @@ const WrapperNavbar = styled.div`
         height: 53px;
         width: 53px;
         border-radius: 26.5px;
+        cursor: pointer;
     }
 `;
 
@@ -103,4 +125,21 @@ const WrapperMenuLogOut = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+`;
+
+const ButtonLogOut = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: 47px;
+    width: 150px;
+    right: 0px;
+    top: 72px;
+    border-radius: 0px 0px 0px 15px;
+    background-color: #171717;
+    color: #ffffff;
+    cursor: pointer;
+    display: ${props => props.disabled ? "none" : "normal"};
+   
 `;
