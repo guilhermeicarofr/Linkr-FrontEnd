@@ -5,6 +5,7 @@ import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import Navbar from "../Navbar.js";
 
 function Timeline() {
 	const [posts, setPosts] = useState([]);
@@ -30,6 +31,7 @@ function Timeline() {
 	return (
 		<>
 			<Page>
+        <Navbar />
 				<Wrapper>
 					<Feed>
 						<CreatePost refresh={refresh} setRefresh={setRefresh} />

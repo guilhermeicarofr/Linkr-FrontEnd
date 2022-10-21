@@ -37,9 +37,7 @@ export default function SignIn() {
             alert("Email and/or password are invalid")
             }
             setDisabledSignIn(false);
-        })
-
-        
+        })      
     };
 
     return (
