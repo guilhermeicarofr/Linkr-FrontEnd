@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 const InitialPages = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   > div:first-child {
-    height: 100%;
     width: 65%;
     background-color: #151515;
     color: #ffffff;
@@ -23,7 +22,6 @@ const InitialPages = styled.div`
     }
   }
   > div:last-child {
-    height: 100%;
     width: 35%;
     background-color: #333333;
     display: flex;
@@ -39,10 +37,11 @@ const InitialPages = styled.div`
       cursor: pointer;
     }
   }
-  @media (max-width: 870px) {
+  @media (max-width: 937px) {
     display: initial;
     > div:first-child {
       height: 20%;
+      min-height: 150px;
       width: 100%;
       padding: 15px 0;
       display: flex;
@@ -59,9 +58,11 @@ const InitialPages = styled.div`
       }
     }
     > div:last-child {
-      height: 80%;
+      height: calc(100vh - 150px);
+      min-height: 405px;
       width: 100%;
       padding: 20px 0;
+      justify-content: flex-start;
     }
   }
 `;

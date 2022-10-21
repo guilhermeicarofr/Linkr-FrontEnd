@@ -19,9 +19,9 @@ function Post({ postId, url, description, name, userId, picture, id }) {
       </div>
       <div>
         <span>
-        <Link to={`/user/${userId}`}>
-          <h2>{name}</h2>
-        </Link>
+          <Link to={`/user/${userId}`}>
+            <h2>{name}</h2>
+          </Link>
           <div>
             <IconUpdate />
             <IconDelete />
@@ -46,8 +46,7 @@ const tagStyle = {
 }
 
 const PostContainer = styled.div`
-  max-width: 611px;
-  width: 100%;
+  width: 611px;
   min-height: 276px;
   background-color: #171717;
   border-radius: 16px;
@@ -86,6 +85,8 @@ const PostContainer = styled.div`
     }
   }
   @media (max-width: 937px) {
+    width: 100%;
+    border-radius: 0;
     min-height: 232px;
     > div:first-child {
       img {

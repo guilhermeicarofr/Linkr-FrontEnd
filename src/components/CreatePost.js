@@ -1,12 +1,11 @@
-
 import { useContext, useState } from "react";
+import LoginContext from "../contexts/LoginContext";
 
 import { publishPost } from "../services/axios";
 
 import PublishBox from "../styles/Publish/PublishBox";
 import PublishContent from "../styles/Publish/PublishContent";
 import PublishForm from "../styles/Publish/PublishForm";
-import LoginContext from "../contexts/LoginContext.js";
 
 const inputs = [
   {
@@ -22,7 +21,6 @@ const inputs = [
 ];
 
 export default function CreatePost({ refresh, setRefresh }) {
-
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
@@ -58,6 +56,7 @@ export default function CreatePost({ refresh, setRefresh }) {
         if (answer.response.status === 401) {
           alert("Please login to continue");
         } else {
+          console.log(answer);
           alert("Unable to publish your post");
         }
 

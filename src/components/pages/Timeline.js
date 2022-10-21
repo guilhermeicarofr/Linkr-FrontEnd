@@ -6,6 +6,8 @@ import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import { Page } from "../../styles/commons/Page";
+import { Title } from "../../styles/commons/Title";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
@@ -35,6 +37,9 @@ function Timeline() {
       <Page>
         <Wrapper>
           <Feed>
+            <Title>
+              <h2>timeline</h2>
+            </Title>
             <CreatePost refresh={refresh} setRefresh={setRefresh} />
             {posts.length ? (
               posts.map((p, index) => (
@@ -61,20 +66,22 @@ function Timeline() {
 
 export default Timeline;
 
-const Page = styled.div`
-  background-color: #333333;
-  padding-top: 20px;
-  min-height: 100vh;
-`;
-
 const Wrapper = styled.div`
   display: flex;
-  max-width: 1000px;
+  width: 937px;
   margin: 0 auto;
   justify-content: center;
+
+  @media (max-width: 937px) {
+    width: 100%;
+  }
 `;
 
 const Feed = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 937px) {
+    width: 100%;
+  }
 `;

@@ -7,23 +7,23 @@ function signUp(body) {
 }
 
 function publishPost(body, config) {
-	return axios.post(`${API}/post`, body, config);
-};
+  return axios.post(`${API}/post`, body, config);
+}
 
 function signInApi(body) {
-	return axios.post(`${API}/sign-in`, body)
-};
-  
+  return axios.post(`${API}/sign-in`, body);
+}
+
 function getTimeline(config) {
-	return axios.get(`${API}/timeline`, config);
+  return axios.get(`${API}/timeline`, config);
 }
 
 function listTrending(config) {
-	return axios.get(`${API}/hashtag`, config);
+  return axios.get(`${API}/hashtag`, config);
 }
 
-function getUserPosts(id) {
-  return axios.get(`${API}/user/${id}`);
+function getUserPosts(id, config) {
+  return axios.get(`${API}/user/${id}`, config);
 }
 
 export {
