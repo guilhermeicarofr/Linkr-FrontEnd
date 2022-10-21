@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import IconDelete from "./Post/Icon-delete";
@@ -15,7 +15,9 @@ function Post({ postId, url, description, name, userId, picture }) {
       </div>
       <div>
         <span>
+        <Link to={`/user/${userId}`}>
           <h2>{name}</h2>
+        </Link>
           <div>
             <IconUpdate />
             <IconDelete />

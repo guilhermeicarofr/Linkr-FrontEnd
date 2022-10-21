@@ -26,6 +26,7 @@ export default function SignIn() {
             .then((res) => {
             localStorage.setItem("linkr", JSON.stringify(res.data));
             setUserData(JSON.parse(localStorage.getItem("linkr")));
+            setUserData(res.data);
             setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
             setEmail("");
             setPassword("");
