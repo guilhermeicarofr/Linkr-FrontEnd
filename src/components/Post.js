@@ -32,7 +32,7 @@ export default Post;
 const PostContainer = styled.div`
   max-width: 611px;
   width: 100%;
-  height: 276px;
+  min-height: 276px;
   background-color: #171717;
   border-radius: 16px;
   margin-bottom: 16px;

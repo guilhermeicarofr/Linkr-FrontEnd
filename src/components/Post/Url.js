@@ -48,13 +48,14 @@ const UrlStyle = styled.a`
     img {
       width: 100%;
       height: 100%;
+      border-radius: 0 16px 16px 0;
       object-fit: cover;
     }
   }
   @media (max-width: 937px) {
     min-height: 140px;
     div:first-child {
-      padding: 10px 0 2px 10px;
+      padding: 10px 0 10px 10px;
     }
   }
 `;
