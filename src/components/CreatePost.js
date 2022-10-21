@@ -26,7 +26,6 @@ export default function CreatePost({ refresh, setRefresh }) {
     description: "",
   });
   const { userData, config } = useContext(LoginContext);
-  console.log(userData, config);
 
   function handleForm({ name, value }) {
     setForm({
@@ -38,12 +37,12 @@ export default function CreatePost({ refresh, setRefresh }) {
   function submitData(e) {
     e.preventDefault();
     setDisabled(true);
-    if (form.url === "") {
-      alert("Insira o link que deseja compartilhar");
+    if (form.url === "Please enter a valid URL") {
+      alert("");
       setDisabled(false);
       return;
     }
-    publishPost(form)
+    publishPost(form, config)
       .then(() => {
         setDisabled(false);
         setForm({
@@ -53,7 +52,12 @@ export default function CreatePost({ refresh, setRefresh }) {
         setRefresh(!refresh);
       })
       .catch((answer) => {
-        alert("Houve um erro ao publicar seu link");
+        if (answer.response.status === 401) {
+          alert("Please login to continue");
+        } else {
+          alert("Unable to publish your post");
+        }
+
         setDisabled(false);
       });
   }
