@@ -1,42 +1,81 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-function Post ({ postId, url, description, name, userId, picture }) {
+import IconDelete from "./Post/Icon-delete";
+import IconLike from "./Post/Icon-like";
+import IconUpdate from "./Post/icon-update";
+import Url from "./Post/Url";
 
-    return (
-        <PostContainer>
-            <header>
-                <img src={picture} alt='' />
-                <h2>{name}</h2>
-            </header>
-            <p>{description}</p>
-            <a href={url.path} target='_blank'>
-                <h3>{url.title}</h3>
-                <img src={url.image} alt='' />
-                <p>{url.description}</p>
-                <p>{url.path}</p>
-            </a>
-        </PostContainer>
-    );
+function Post({ postId, url, description, name, userId, picture }) {
+  return (
+    <PostContainer>
+      <div>
+        <img src={picture} alt="user" />
+        <IconLike />
+      </div>
+      <div>
+        <span>
+          <h2>{name}</h2>
+          <div>
+            <IconUpdate />
+            <IconDelete />
+          </div>
+        </span>
+        <p>{description}</p>
+        <Url url={url} />
+      </div>
+    </PostContainer>
+  );
 }
 export default Post;
 
-const PostContainer = styled.div`   
-    width: 611px;
-    height: 276px;
-    background-color: #171717;
-    border-radius: 16px;
-    margin-bottom: 16px;
+const PostContainer = styled.div`
+  max-width: 611px;
+  width: 90%;
+  height: 276px;
+  background-color: #171717;
+  border-radius: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  padding: 18px;
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 19px;
+      object-fit: cover;
+    }
+  }
+  > div:last-child {
+    margin-left: 18px;
+    width: 90%;
+    span {
+      display: flex;
+      justify-content: space-between;
+    }
     h2 {
-        color: #FFFFFF;
+      color: #ffffff;
+      font-size: 19px;
+      font-family: "Lato", sans-serif;
     }
-    p {
-        color: #B7B7B7;
+    > p {
+      color: #b7b7b7;
+      font-size: 17px;
+      font-family: "Lato", sans-serif;
+      margin: 10px 0;
     }
-    a {
-        img {
-            width: 50px;
-            height: 50px;
-        }
+  }
+  @media (max-width: 937px) {
+    min-height: 232px;
+    > div:first-child {
+      img {
+        width: 40px;
+        height: 40px;
+      }
     }
+  }
 `;
