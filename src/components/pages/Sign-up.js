@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import FormPage from "../Form-page";
-import FormStyle from "../../styles/Form";
+import FormStyle from "../../styles/commons/Form";
 import { signUp } from "../../services/axios";
 
 function Inputs({ handleForm, form, disabled }) {
