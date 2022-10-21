@@ -48,7 +48,7 @@ const PublishForm = styled.form`
     }
   }
 
-  @media (max-width: 870px) {
+  @media (max-width: 937px) {
     input {
       :nth-child(2) {
         height: 47px;
