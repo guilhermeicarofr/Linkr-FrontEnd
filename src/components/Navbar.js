@@ -75,7 +75,7 @@ const WrapperNavbar = styled.div`
     background-color: #151515;
     padding: 0px 20px 0px 20px;
 
-    & h1 {
+     h1 {
         height: 54px;
         width: 108px;
         color: #ffffff;
@@ -87,21 +87,20 @@ const WrapperNavbar = styled.div`
     }
 
     input {
-        height: 45px;
+        height: 100%;
         width: 543px;
+        border-radius: 8px;
         border: none;
         outline: none;
-        border-radius: 8px;
     }
 
     input::placeholder {
         font-family: "Lato", sans-serif;
-        font-family: Lato;
         font-size: 19px;
         font-weight: 400;
         line-height: 23px;
         color: #C6C6C6;
-    }
+    } 
 
     img {
         height: 53px;
@@ -112,11 +111,20 @@ const WrapperNavbar = styled.div`
 `;
 
 const WrapperSearch = styled.div`
+    height: 46px;
+    width: 543px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: #ffffff;
     border-radius: 8px;
     padding: 0px 17px;
+
+    @media (max-width: 973px)  {
+        position: fixed;
+        width: 95%;
+        top: 87px;
+    }
 `;
 
 const WrapperMenuLogOut = styled.div`

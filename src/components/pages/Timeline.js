@@ -31,7 +31,7 @@ function Timeline() {
 	return (
 		<>
 			<Page>
-        <Navbar />
+        	<Navbar />
 				<Wrapper>
 					<Feed>
 						<CreatePost refresh={refresh} setRefresh={setRefresh} />
