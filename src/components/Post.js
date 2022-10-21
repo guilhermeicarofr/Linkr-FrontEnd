@@ -1,12 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { ReactTagify } from "react-tagify";
 
 import IconDelete from "./Post/Icon-delete";
 import IconLike from "./Post/Icon-like";
 import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
 
-function Post({ postId, url, description, name, userId, picture }) {
+function Post({ postId, url, description, name, userId, picture, id }) {
+
+  const navigate = useNavigate();
+
   return (
     <PostContainer>
       <div>
@@ -23,13 +27,23 @@ function Post({ postId, url, description, name, userId, picture }) {
             <IconDelete />
           </div>
         </span>
-        <p>{description}</p>
+        <p>
+          <ReactTagify tagStyle={tagStyle} tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}>
+            {description}
+          </ReactTagify>
+        </p>
         <Url url={url} />
       </div>
     </PostContainer>
   );
 }
 export default Post;
+
+const tagStyle = {
+  color: '#FFFFFF',
+  margin: '0px 2px',
+  cursor: 'pointer'
+}
 
 const PostContainer = styled.div`
   max-width: 611px;
@@ -64,7 +78,7 @@ const PostContainer = styled.div`
       font-size: 19px;
       font-family: "Lato", sans-serif;
     }
-    > p {
+    > p > span {
       color: #b7b7b7;
       font-size: 17px;
       font-family: "Lato", sans-serif;
