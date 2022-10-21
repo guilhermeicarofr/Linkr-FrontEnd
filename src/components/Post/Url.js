@@ -15,7 +15,6 @@ export default function Url({ url }) {
   );
 }
 const UrlStyle = styled.a`
-  /* max-width: 503px; */
   width: 100%;
   height: 155px;
   display: flex;
