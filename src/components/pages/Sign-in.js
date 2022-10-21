@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormStyle from "../../styles/Form";
 import FormPage from "../Form-page";
 import { ThreeDots } from "react-loader-spinner";
 import { signInApi } from "../../services/axios";
+import LoginContext from "../../contexts/LoginContext";
 
 export default function SignIn() {
+    const {setUserData, setConfig} = useContext(LoginContext);
     const [disabledSignIn, setDisabledSignIn] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +24,9 @@ export default function SignIn() {
 
         signInApi(body)
             .then((res) => {
-            localStorage.setItem("linkr", JSON.stringify({token: res.data}));
+            localStorage.setItem("linkr", JSON.stringify(res.data));
+            setUserData(JSON.parse(localStorage.getItem("linkr")));
+            setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
             setEmail("");
             setPassword("");
             setDisabledSignIn(false);

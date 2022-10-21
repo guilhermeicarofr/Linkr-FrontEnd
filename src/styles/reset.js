@@ -41,6 +41,10 @@ body {
 	font-family: 'Lato', sans-serif;
     
 }
+a{
+	text-decoration: none;
+	color: black;
+}
 ol, ul {
 	list-style: none;
 }
