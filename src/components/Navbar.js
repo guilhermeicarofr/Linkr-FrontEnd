@@ -6,7 +6,7 @@ import styled from "styled-components";
 import LoginContext from "../contexts/LoginContext";
 
 export default function Navbar() {
-    const {setUserData, setConfig} = useContext(LoginContext);
+    const {setUserData, setConfig, userData} = useContext(LoginContext);
     const [hidden, setHidden] = useState(true);
     const [search, setSearch] = useState();
     const navigate = useNavigate();
@@ -42,7 +42,7 @@ export default function Navbar() {
                             size={30}
                         />
                     )}
-                    <img src="https://i.pinimg.com/736x/c5/a9/68/c5a968eb0a92b427ca26646cf55526bb.jpg" alt="img"></img>
+                    <img src={userData.picture} alt="img"></img>
                 </WrapperMenuLogOut>
             </WrapperNavbar>
             <ButtonLogOut onClick={() => logOut()} disabled={hidden}>Logout</ButtonLogOut>
