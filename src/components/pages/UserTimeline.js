@@ -34,7 +34,6 @@ export default function UserTimeline() {
       <Wrapper>
         <Feed>
           <Title>
-            {/* <Image picture={userPosts.picture} /> */}
             <img
               src={userPosts.picture}
               alt="pic"
