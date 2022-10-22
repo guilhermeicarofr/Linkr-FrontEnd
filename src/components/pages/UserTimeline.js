@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-
 import Post from "../Post.js";
 import { getUserPosts } from "../../services/axios.js";
 import { useParams } from "react-router-dom";
@@ -7,22 +6,22 @@ import LoginContext from "../../contexts/LoginContext.js";
 import { Page } from "../../styles/commons/Page.js";
 import { Title } from "../../styles/commons/Title.js";
 import Trending from "../Trending.js";
+import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
+import Navbar from "../Navbar.js";
 
-function UserTimeline() {
-  const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState("Loading");
+export default function UserTimeline() {
+  const [userPosts, setUserPosts] = useState({});
+  const [message, setMessage] = useState("Loading...");
   const { id } = useParams();
-  const { userData, config } = useContext(LoginContext);
+  const { config } = useContext(LoginContext);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getUserPosts(id, config)
       .then((res) => {
-        setPosts(res.data.posts);
-        console.log(res.data.posts);
+        setUserPosts(res.data);
       })
       .catch((error) => {
-        console.log(error);
-
         if (error.response.status === 404) {
           setMessage("Nenhum post");
         }
@@ -31,28 +30,40 @@ function UserTimeline() {
 
   return (
     <Page>
-      <Title>
-        <img src={userData.picture} alt="pic" />
-        <h2>{userData.name}'s Posts</h2>
-      </Title>
-      {posts.length ? (
-        posts.map((p, index) => (
-          <Post
-            key={index}
-            postId={p.id}
-            url={p.url}
-            description={p.description}
-            name={p.name}
-            userId={p.userId}
-            picture={p.picture}
-          />
-        ))
-      ) : (
-        <p>{message}</p>
-      )}
-      <Trending />
+      <Navbar />
+      <Wrapper>
+        <Feed>
+          <Title>
+            <img
+              src={userPosts.picture}
+              alt="pic"
+              onError={({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src =
+                  "https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png";
+              }}
+            />
+            <h2>{userPosts.name}'s Posts</h2>
+          </Title>
+
+          {userPosts.posts ? (
+            userPosts.posts.map((p, index) => (
+              <Post
+                key={index}
+                postId={p.postId}
+                url={p.url}
+                description={p.description}
+                name={p.name}
+                userId={p.userId}
+                picture={p.picture}
+              />
+            ))
+          ) : (
+            <p>{message}</p>
+          )}
+        </Feed>
+        <Trending refresh={refresh} setRefresh={setRefresh} />
+      </Wrapper>
     </Page>
   );
 }
-
-export default UserTimeline;
