@@ -14,12 +14,13 @@ function Timeline() {
   const { config } = useContext(LoginContext);
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  const [message, setMessage] = useState("Loading");
+  const [message, setMessage] = useState("Loading ...");
 
   useEffect(() => {
     getTimeline(config)
       .then((res) => {
         setPosts(res.data);
+
         if (!res.data.length) {
           setMessage("There are no posts yet");
         }
@@ -57,7 +58,7 @@ function Timeline() {
               <p>{message}</p>
             )}
           </Feed>
-          <Trending refresh={refresh} setRefresh={setRefresh} />
+          <Trending refresh={refresh} />
         </Wrapper>
       </Page>
     </>

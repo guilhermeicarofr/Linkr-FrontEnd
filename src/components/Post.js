@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { ReactTagify } from "react-tagify";
 
 import IconDelete from "./Post/Icon-delete";
