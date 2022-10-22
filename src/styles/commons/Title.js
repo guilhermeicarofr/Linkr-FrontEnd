@@ -6,6 +6,7 @@ export const Title = styled.div`
   margin-bottom: 43px;
   height: 64px;
   gap: 18px;
+  margin-top: 87px;
 
   h2 {
     color: #ffffff;
@@ -25,5 +26,6 @@ export const Title = styled.div`
   @media (max-width: 937px) {
     margin-left: 18px;
     margin-bottom: 19px;
+    margin-top: 0px;
   }
 `;

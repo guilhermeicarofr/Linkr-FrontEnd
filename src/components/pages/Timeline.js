@@ -1,20 +1,21 @@
 import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-
 import LoginContext from "../../contexts/LoginContext";
 import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import Navbar from "../Navbar.js";
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
+import { useNavigate } from "react-router-dom";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
-
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [message, setMessage] = useState("Loading");
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTimeline(config)
@@ -25,16 +26,18 @@ function Timeline() {
         }
       })
       .catch((error) => {
-        console.log(error);
         setMessage(
           "An error occured while trying to fetch the posts, please refresh the page"
         );
       });
-  }, [refresh, config]);
+  }, [refresh, config, navigate]);
+
+  
 
   return (
     <>
       <Page>
+	  	<Navbar />
         <Wrapper>
           <Feed>
             <Title>
@@ -57,7 +60,7 @@ function Timeline() {
               <p>{message}</p>
             )}
           </Feed>
-          <Trending />
+          <Trending refresh={refresh} setRefresh={setRefresh}/>
         </Wrapper>
       </Page>
     </>

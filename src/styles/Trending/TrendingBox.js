@@ -9,10 +9,11 @@ const TrendingBox = styled.div`
   padding: 16px;
   display: flex;
   margin-left: 25px;
+  margin-top: 107px;
   flex-direction: column;
   position: relative;
   position: sticky;
-  top: 283px;
+  top: 20px;
   div {
     height: 1px;
     background-color: #484848;

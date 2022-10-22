@@ -1,5 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
 
 import Post from "../Post.js";
 import { getUserPosts } from "../../services/axios.js";
