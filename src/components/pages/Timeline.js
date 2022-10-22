@@ -15,7 +15,7 @@ function Timeline() {
 
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  const [message, setMessage] = useState("Loading");
+  const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
     getTimeline(config)
@@ -57,7 +57,7 @@ function Timeline() {
               <p>{message}</p>
             )}
           </Feed>
-          <Trending refresh={refresh} setRefresh={setRefresh}/>
+          <Trending refresh={refresh} setRefresh={setRefresh} />
         </Wrapper>
       </Page>
     </>

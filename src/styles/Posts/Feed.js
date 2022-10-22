@@ -15,6 +15,10 @@ export const Feed = styled.div`
   display: flex;
   flex-direction: column;
 
+  p {
+    color: #b7b7b7;
+  }
+
   @media (max-width: 937px) {
     width: 100%;
   }

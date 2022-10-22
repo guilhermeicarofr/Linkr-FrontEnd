@@ -10,7 +10,7 @@ import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
 
 function UserTimeline() {
   const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState("Loading");
+  const [message, setMessage] = useState("Loading...");
   const { id } = useParams();
   const { userData, config } = useContext(LoginContext);
   const [refresh, setRefresh] = useState(false);
