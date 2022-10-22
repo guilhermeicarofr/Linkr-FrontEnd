@@ -5,6 +5,7 @@ import FormPage from "../Form-page";
 import { ThreeDots } from "react-loader-spinner";
 import { signInApi } from "../../services/axios";
 import LoginContext from "../../contexts/LoginContext";
+import { setUser } from "../../services/localstorage";
 
 export default function SignIn() {
   const { setUserData, setConfig } = useContext(LoginContext);
@@ -24,8 +25,7 @@ export default function SignIn() {
 
         signInApi(body)
             .then((res) => {
-            localStorage.setItem("linkr", JSON.stringify(res.data));
-            setUserData(JSON.parse(localStorage.getItem("linkr")));
+            setUser(res.data)
             setUserData(res.data);
             setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
             setEmail("");

@@ -8,18 +8,12 @@ import UserTimeline from "./pages/UserTimeline";
 import Hashtag from "./pages/Hashtag";
 import LoginContext from "../contexts/LoginContext";
 import { useState } from "react";
+import PrivatePage from "./commons/PrivatePage";
+import { getUser } from "../services/localstorage";
 
 export default function App() {
-  const [userData, setUserData] = useState(
-    localStorage.getItem("linkr")
-      ? JSON.parse(localStorage.getItem("linkr"))
-      : null
-  );
-  const [config, setConfig] = useState(
-    localStorage.getItem("linkr")
-      ? { headers: { Authorization: `Bearer ${userData.token}` } }
-      : null
-  );
+  const [userData, setUserData] = useState(getUser());
+  const [config, setConfig] = useState(null);
 
   return (
     <BrowserRouter>
@@ -35,9 +29,21 @@ export default function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/timeline" element={<Timeline />} />
-          <Route path="/hashtag/:hashtag" element={<Hashtag />} />
-          <Route path="/user/:id" element={<UserTimeline />} />
+          <Route path="/timeline" element={
+            <PrivatePage>
+                <Timeline />
+            </PrivatePage>
+          } />
+          <Route path="/hashtag/:hashtag" element={
+            <PrivatePage>
+               <Hashtag />
+          </PrivatePage>
+          } />
+          <Route path="/user/:id" element={
+            <PrivatePage>
+               <UserTimeline />
+            </PrivatePage>
+          } />
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>
