@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const TrendingBox = styled.div`
   width: 301px;
-  height: 406px;
+  height: 420px;
   background-color: #171717;
   color: #ffffff;
   border-radius: 16px;

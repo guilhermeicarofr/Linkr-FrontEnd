@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { listTrending } from "../services/axios";
 import TrendingBox from "../styles/Trending/TrendingBox";
 
-export default function Trending({ refresh, setRefresh }) {
+export default function Trending({ refresh }) {
   const { config } = useContext(LoginContext);
   const [hashtags, setHashtags] = useState([]);
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function Trending({ refresh, setRefresh }) {
     promise.then((res) => {
       setHashtags(res.data);
     });
-  }, [refresh, config]);
+  }, [refresh, hashtags.length]);
 
   return (
     <TrendingBox>
