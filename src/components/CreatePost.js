@@ -72,7 +72,7 @@ export default function CreatePost({ refresh, setRefresh }) {
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
             currentTarget.src =
-              "https://upload.wikimedia.org/wikipedia/commons/5/50/Smile_Image.png";
+              "https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png";
           }}
         />
       </div>

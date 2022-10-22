@@ -7,18 +7,19 @@ import { Page } from "../../styles/commons/Page.js";
 import { Title } from "../../styles/commons/Title.js";
 import Trending from "../Trending.js";
 import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
+import Navbar from "../Navbar.js";
 
-function UserTimeline() {
-  const [posts, setPosts] = useState([]);
+export default function UserTimeline() {
+  const [userPosts, setUserPosts] = useState({});
   const [message, setMessage] = useState("Loading...");
   const { id } = useParams();
-  const { userData, config } = useContext(LoginContext);
+  const { config } = useContext(LoginContext);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     getUserPosts(id, config)
       .then((res) => {
-        setPosts(res.data.posts);
+        setUserPosts(res.data);
       })
       .catch((error) => {
         if (error.response.status === 404) {
@@ -29,22 +30,25 @@ function UserTimeline() {
 
   return (
     <Page>
+      <Navbar />
       <Wrapper>
         <Feed>
           <Title>
+            {/* <Image picture={userPosts.picture} /> */}
             <img
-              src={userData.picture}
+              src={userPosts.picture}
               alt="pic"
               onError={({ currentTarget }) => {
                 currentTarget.onerror = null;
                 currentTarget.src =
-                  "https://upload.wikimedia.org/wikipedia/commons/5/50/Smile_Image.png";
+                  "https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png";
               }}
             />
-            <h2>{userData.name}'s Posts</h2>
+            <h2>{userPosts.name}'s Posts</h2>
           </Title>
-          {posts.length ? (
-            posts.map((p, index) => (
+
+          {userPosts.posts ? (
+            userPosts.posts.map((p, index) => (
               <Post
                 key={index}
                 postId={p.postId}
@@ -64,5 +68,3 @@ function UserTimeline() {
     </Page>
   );
 }
-
-export default UserTimeline;

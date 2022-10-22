@@ -47,7 +47,7 @@ const UrlStyle = styled.a`
     }
   }
   div:last-child {
-    width: 100px;
+    width: 40%;
     min-height: 155px;
     img {
       width: 100%;
