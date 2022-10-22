@@ -1,17 +1,16 @@
 import { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-
 import LoginContext from "../../contexts/LoginContext";
 import Post from "../Post.js";
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import Navbar from "../Navbar.js";
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
-
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [message, setMessage] = useState("Loading");
@@ -35,6 +34,7 @@ function Timeline() {
   return (
     <>
       <Page>
+	  	<Navbar />
         <Wrapper>
           <Feed>
             <Title>
