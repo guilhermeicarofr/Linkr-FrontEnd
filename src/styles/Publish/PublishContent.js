@@ -9,7 +9,7 @@ const PublishContent = styled.div`
     color: #707070;
     margin: 21px 0 20px;
 
-    @media (max-width: 870px) {
+    @media (max-width: 937px) {
       font-size: 17px;
       text-align: center;
       margin: 10px 0;

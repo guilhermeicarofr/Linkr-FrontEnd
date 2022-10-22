@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SignUp from "./pages/Sign-up";
 import GlobalStyle from "../styles/reset";
-import Timeline from './pages/Timeline.js'
+import Timeline from "./pages/Timeline.js";
 import SignIn from "./pages/Sign-in";
-import Hashtag from "./pages/Hashtag"
+import UserTimeline from "./pages/UserTimeline";
+import Hashtag from "./pages/Hashtag";
 import LoginContext from "../contexts/LoginContext";
 import { useState } from "react";
 
@@ -16,25 +17,27 @@ export default function App() {
   );
   const [config, setConfig] = useState(
     localStorage.getItem("linkr")
-      ? { headers: { Authorization: `Bearer ${userData.token}`}}
+      ? { headers: { Authorization: `Bearer ${userData.token}` } }
       : null
   );
-
 
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <LoginContext.Provider value={{
-        userData,
-        setUserData,
-        config,
-        setConfig
-      }}>
+      <LoginContext.Provider
+        value={{
+          userData,
+          setUserData,
+          config,
+          setConfig,
+        }}
+      >
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/timeline" element={<Timeline />} />
           <Route path="/hashtag/:hashtagId" element={<Hashtag />} />
+          <Route path="/user/:id" element={<UserTimeline />} />
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import LoginContext from "../contexts/LoginContext";
+
 import { publishPost } from "../services/axios";
 
 import PublishBox from "../styles/Publish/PublishBox";
@@ -24,6 +26,7 @@ export default function CreatePost({ refresh, setRefresh }) {
     url: "",
     description: "",
   });
+  const { userData, config } = useContext(LoginContext);
 
   function handleForm({ name, value }) {
     setForm({
@@ -36,11 +39,11 @@ export default function CreatePost({ refresh, setRefresh }) {
     e.preventDefault();
     setDisabled(true);
     if (form.url === "") {
-      alert("Insira o link que deseja compartilhar");
+      alert("Please enter a valid URL");
       setDisabled(false);
       return;
     }
-    publishPost(form)
+    publishPost(form, config)
       .then(() => {
         setDisabled(false);
         setForm({
@@ -50,7 +53,13 @@ export default function CreatePost({ refresh, setRefresh }) {
         setRefresh(!refresh);
       })
       .catch((answer) => {
-        alert("Houve um erro ao publicar seu link");
+        if (answer.response.status === 401) {
+          alert("Please login to continue");
+        } else {
+          console.log(answer);
+          alert("Unable to publish your post");
+        }
+
         setDisabled(false);
       });
   }
@@ -58,7 +67,7 @@ export default function CreatePost({ refresh, setRefresh }) {
   return (
     <PublishBox>
       <div>
-        <img src="../assets/imagem" alt="pic" />
+        <img src={userData.picture} alt="pic" />
       </div>
       <PublishContent>
         <h1>What are you going to share today?</h1>

@@ -1,4 +1,4 @@
-import InitialPages from "../styles/InitialPages";
+import InitialPages from "../styles/commons/InitialPages";
 
 export default function FormPage({ children }) {
   return (

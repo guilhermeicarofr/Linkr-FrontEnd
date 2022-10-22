@@ -1,16 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import LoginContext from "../contexts/LoginContext";
 
 export default function Navbar() {
+    const {setUserData, setConfig} = useContext(LoginContext);
     const [hidden, setHidden] = useState(true);
     const [search, setSearch] = useState();
     const navigate = useNavigate();
 
     function logOut() {
         localStorage.clear("linkr");
+        setUserData(null);
+        setConfig(null);
         navigate("/");
     };
 
@@ -18,22 +22,6 @@ export default function Navbar() {
         <>
             <WrapperNavbar>
                 <h1 onClick={() => navigate("/timeline")}>linkr</h1>
-                <WrapperSearch>
-                    <input
-                        placeholder="Search for people"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        type="text"
-                    />
-                    <BsSearch 
-                        style={{
-                            color:  "#C6C6C6",
-                            cursor: 'pointer',
-                            backgroundColor: '#ffffff'
-                        }}
-                        size={20}
-                    />
-                </WrapperSearch>
                 <WrapperMenuLogOut onClick={() => setHidden(!hidden)}>
                     {hidden ? (
                         <AiOutlineDown 
@@ -54,11 +42,28 @@ export default function Navbar() {
                             size={30}
                         />
                     )}
-                    
                     <img src="https://i.pinimg.com/736x/c5/a9/68/c5a968eb0a92b427ca26646cf55526bb.jpg" alt="img"></img>
                 </WrapperMenuLogOut>
             </WrapperNavbar>
             <ButtonLogOut onClick={() => logOut()} disabled={hidden}>Logout</ButtonLogOut>
+            <Container>
+                <WrapperSearch>
+                        <input
+                            placeholder="Search for people"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            type="text"
+                        />
+                        <BsSearch 
+                            style={{
+                                color:  "#C6C6C6",
+                                cursor: 'pointer',
+                                backgroundColor: '#ffffff'
+                            }}
+                            size={20}
+                        />
+                </WrapperSearch>
+            </Container>
         </>
     )
 };
@@ -88,12 +93,12 @@ const WrapperNavbar = styled.div`
 
     input {
         height: 100%;
-        width: 543px;
+        max-width: 543px;
         border-radius: 8px;
         border: none;
         outline: none;
+        background-color: red;
     }
-
     input::placeholder {
         font-family: "Lato", sans-serif;
         font-size: 19px;
@@ -101,7 +106,6 @@ const WrapperNavbar = styled.div`
         line-height: 23px;
         color: #C6C6C6;
     } 
-
     img {
         height: 53px;
         width: 53px;
@@ -110,9 +114,12 @@ const WrapperNavbar = styled.div`
     }
 `;
 
-const WrapperSearch = styled.div`
+const WrapperSearch = styled.span`
+    position: fixed;
+    top: 13px;
+    left: 30%;
     height: 46px;
-    width: 543px;
+    width: 40%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -120,10 +127,10 @@ const WrapperSearch = styled.div`
     border-radius: 8px;
     padding: 0px 17px;
 
-    @media (max-width: 973px)  {
-        position: fixed;
-        width: 95%;
-        top: 87px;
+    @media (max-width: 937px)  {
+       position: initial;
+       width: 95%;
+       margin-top: 72px;
     }
 `;
 
@@ -149,5 +156,10 @@ const ButtonLogOut = styled.div`
     color: #ffffff;
     cursor: pointer;
     display: ${props => props.disabled ? "none" : "normal"};
-   
 `;
+
+const Container = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`
