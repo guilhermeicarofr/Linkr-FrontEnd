@@ -27,6 +27,10 @@ export const Title = styled.div`
     margin-left: 18px;
     margin-bottom: 19px;
     margin-top: 0px;
-    font-size: 10px;
+
+    h2 {
+      font-size: 33px;
+      line-height: 49px;
+    }
   }
 `;

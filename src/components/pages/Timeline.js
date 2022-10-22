@@ -14,7 +14,7 @@ function Timeline() {
   const { config } = useContext(LoginContext);
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
-  const [message, setMessage] = useState("Loading...");
+  const [message, setMessage] = useState("Loading");
 
   useEffect(() => {
     getTimeline(config)
