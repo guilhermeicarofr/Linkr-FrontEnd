@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
-
 import Post from "../Post.js";
 import { getUserPosts } from "../../services/axios.js";
 import { useParams } from "react-router-dom";
@@ -19,11 +17,8 @@ function UserTimeline() {
     getUserPosts(id, config)
       .then((res) => {
         setPosts(res.data.posts);
-        console.log(res.data.posts);
       })
       .catch((error) => {
-        console.log(error);
-
         if (error.response.status === 404) {
           setMessage("Nenhum post");
         }
@@ -33,7 +28,15 @@ function UserTimeline() {
   return (
     <Page>
       <Title>
-        <img src={userData.picture} alt="pic" />
+        <img
+          src={userData.picture}
+          alt="pic"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src =
+              "https://upload.wikimedia.org/wikipedia/commons/5/50/Smile_Image.png";
+          }}
+        />
         <h2>{userData.name}'s Posts</h2>
       </Title>
       {posts.length ? (

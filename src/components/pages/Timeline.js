@@ -1,13 +1,14 @@
 import { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
 
 import LoginContext from "../../contexts/LoginContext";
-import Post from "../Post.js";
+
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import Post from "../Post.js";
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
+import { Feed, Wrapper } from "../../styles/Posts/Feed";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
@@ -25,7 +26,6 @@ function Timeline() {
         }
       })
       .catch((error) => {
-        console.log(error);
         setMessage(
           "An error occured while trying to fetch the posts, please refresh the page"
         );
@@ -65,23 +65,3 @@ function Timeline() {
 }
 
 export default Timeline;
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 937px;
-  margin: 0 auto;
-  justify-content: center;
-
-  @media (max-width: 937px) {
-    width: 100%;
-  }
-`;
-
-const Feed = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 937px) {
-    width: 100%;
-  }
-`;

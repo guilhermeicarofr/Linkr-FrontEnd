@@ -56,7 +56,6 @@ export default function CreatePost({ refresh, setRefresh }) {
         if (answer.response.status === 401) {
           alert("Please login to continue");
         } else {
-          console.log(answer);
           alert("Unable to publish your post");
         }
 
@@ -67,7 +66,15 @@ export default function CreatePost({ refresh, setRefresh }) {
   return (
     <PublishBox>
       <div>
-        <img src={userData.picture} alt="pic" />
+        <img
+          src={userData.picture}
+          alt="pic"
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src =
+              "https://upload.wikimedia.org/wikipedia/commons/5/50/Smile_Image.png";
+          }}
+        />
       </div>
       <PublishContent>
         <h1>What are you going to share today?</h1>
