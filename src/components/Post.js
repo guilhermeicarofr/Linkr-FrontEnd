@@ -8,6 +8,7 @@ import IconDelete from "./Post/Icon-delete";
 import IconLike from "./Post/Icon-like";
 import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
+import { PostContainer } from "../styles/Posts/PostContainer";
 
 function Post({ postId, url, description, name, userId, picture, id }) {
   const navigate = useNavigate();

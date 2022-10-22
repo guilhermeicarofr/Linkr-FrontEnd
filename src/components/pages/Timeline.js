@@ -1,21 +1,20 @@
 import { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
 import LoginContext from "../../contexts/LoginContext";
-import Post from "../Post.js";
+
 import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
+import Post from "../Post.js";
 import Navbar from "../Navbar.js";
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
-import { useNavigate } from "react-router-dom";
+import { Feed, Wrapper } from "../../styles/Posts/Feed";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
   const [posts, setPosts] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [message, setMessage] = useState("Loading");
-  const navigate = useNavigate();
 
   useEffect(() => {
     getTimeline(config)
@@ -30,14 +29,12 @@ function Timeline() {
           "An error occured while trying to fetch the posts, please refresh the page"
         );
       });
-  }, [refresh, config, navigate]);
-
-  
+  }, [refresh, config]);
 
   return (
     <>
       <Page>
-	  	<Navbar />
+        <Navbar />
         <Wrapper>
           <Feed>
             <Title>
@@ -60,7 +57,7 @@ function Timeline() {
               <p>{message}</p>
             )}
           </Feed>
-          <Trending refresh={refresh} setRefresh={setRefresh}/>
+          <Trending refresh={refresh} setRefresh={setRefresh} />
         </Wrapper>
       </Page>
     </>
@@ -68,23 +65,3 @@ function Timeline() {
 }
 
 export default Timeline;
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 937px;
-  margin: 0 auto;
-  justify-content: center;
-
-  @media (max-width: 937px) {
-    width: 100%;
-  }
-`;
-
-const Feed = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 937px) {
-    width: 100%;
-  }
-`;

@@ -19,6 +19,7 @@ const UrlStyle = styled.a`
   height: 155px;
   display: flex;
   border-radius: 16px;
+  overflow: hidden;
   border: 1px solid #4c4c4c;
   font-family: "Lato", sans-serif;
   text-decoration: none;
@@ -28,18 +29,21 @@ const UrlStyle = styled.a`
     margin-right: 30px;
   }
   div:first-child {
-    padding: 18px 10px 23px 19px;
-    width: 80%;
+    padding: 20px 10px 10px 19px;
+    width: 100%;
+    word-break: normal;
+    margin-right: 10px;
     p:nth-child(2) {
       font-size: 11px;
       color: #9b9595;
       margin: 10px 0;
-      word-break: break-all;
     }
     p:last-child {
+      max-height: 23px;
       font-size: 11px;
       color: #cecece;
       word-break: break-all;
+      overflow: hidden;
     }
   }
   div:last-child {
@@ -52,34 +56,53 @@ const UrlStyle = styled.a`
       object-fit: cover;
     }
   }
+
   @media (max-width: 937px) {
-    width: 100%;
+    height: 115px;
+    border-radius: 13px;
 
-    min-height: 140px;
+    h3 {
+      font-size: 16px;
+      margin-right: 20px;
+    }
     div:first-child {
-      padding: 10px 0 10px 10px;
-      h3 {
-        font-size: 2.9vw;
+      padding: 10px 10px 10px 19px;
+      margin-right: 0px;
+      p:nth-child(2) {
+        font-size: 11px;
+        margin: 10px 0;
+        max-height: 25px;
+        overflow: hidden;
       }
-
-      p:nth-child(2),
       p:last-child {
-        font-size: 90.4%;
-        margin-right: 10px;
+        max-height: 25px;
+        font-size: 9px;
+        line-height: 12px;
       }
     }
+  }
 
-    div:last-child {
-      width: 20%;
-      min-width: 95px;
+  @media (max-width: 580px) {
+    height: 115px;
+    border-radius: 13px;
+
+    h3 {
+      font-size: 11px;
+      margin-right: 0px;
     }
-  }
-
-  @media (max-width: 560px) {
-    font-size: 70%;
-  }
-
-  @media (max-width: 380px) {
-    font-size: 50%;
+    div:first-child {
+      padding: 10px 10px 10px 19px;
+      margin-right: 0px;
+      p:nth-child(2) {
+        font-size: 9px;
+        margin: 10px 0;
+        max-height: 19px;
+        line-height: 10px;
+      }
+      p:last-child {
+        max-height: 23px;
+        font-size: 9px;
+      }
+    }
   }
 `;
