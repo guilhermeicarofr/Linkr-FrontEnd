@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { ReactTagify } from "react-tagify";
+import { useContext } from "react";
+import LoginContext from "../contexts/LoginContext";
 
 import IconDelete from "./Post/Icon-delete";
 import IconLike from "./Post/Icon-like";
@@ -8,9 +10,8 @@ import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
 
 function Post({ postId, url, description, name, userId, picture, id }) {
-
   const navigate = useNavigate();
-
+  const { userData } = useContext(LoginContext);
   return (
     <PostContainer>
       <div>
@@ -23,12 +24,21 @@ function Post({ postId, url, description, name, userId, picture, id }) {
             <h2>{name}</h2>
           </Link>
           <div>
-            <IconUpdate />
-            <IconDelete />
+            {userId === userData.userId ? (
+              <>
+                <IconUpdate />
+                <IconDelete />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </span>
         <p>
-          <ReactTagify tagStyle={tagStyle} tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}>
+          <ReactTagify
+            tagStyle={tagStyle}
+            tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}
+          >
             {description}
           </ReactTagify>
         </p>
@@ -40,10 +50,10 @@ function Post({ postId, url, description, name, userId, picture, id }) {
 export default Post;
 
 const tagStyle = {
-  color: '#FFFFFF',
-  margin: '0px 2px',
-  cursor: 'pointer'
-}
+  color: "#FFFFFF",
+  margin: "0px 2px",
+  cursor: "pointer",
+};
 
 const PostContainer = styled.div`
   width: 611px;
