@@ -11,10 +11,10 @@ import Navbar from "../Navbar.js";
 
 export default function UserTimeline() {
   const [userPosts, setUserPosts] = useState({});
-  const [message, setMessage] = useState("Loading...");
+  const [message, setMessage] = useState("Loading ...");
   const { id } = useParams();
   const { config } = useContext(LoginContext);
-  const [refresh, setRefresh] = useState(false);
+  const [refresh] = useState(false);
 
   useEffect(() => {
     getUserPosts(id, config)
@@ -62,7 +62,7 @@ export default function UserTimeline() {
             <p>{message}</p>
           )}
         </Feed>
-        <Trending refresh={refresh} setRefresh={setRefresh} />
+        <Trending refresh={refresh} />
       </Wrapper>
     </Page>
   );
