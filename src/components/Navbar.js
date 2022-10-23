@@ -4,12 +4,15 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LoginContext from "../contexts/LoginContext";
+import { DebounceInput } from "react-debounce-input";
 
 export default function Navbar() {
   const { setUserData, setConfig, userData } = useContext(LoginContext);
   const [hidden, setHidden] = useState(true);
   const [search, setSearch] = useState();
   const navigate = useNavigate();
+
+  console.log(search);
 
   function logOut() {
     localStorage.clear("linkr");
@@ -56,7 +59,9 @@ export default function Navbar() {
       </ButtonLogOut>
       <Container>
         <WrapperSearch>
-          <input
+          <DebounceInput
+            minLength={3}
+            debounceTimeout={300}
             placeholder="Search for people"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -99,7 +104,7 @@ const WrapperNavbar = styled.div`
     letter-spacing: 0.05em;
   }
 
-  input {
+  /* input {
     height: 100%;
     max-width: 543px;
     border-radius: 8px;
@@ -113,7 +118,7 @@ const WrapperNavbar = styled.div`
     font-weight: 400;
     line-height: 23px;
     color: #c6c6c6;
-  }
+  } */
   img {
     height: 53px;
     width: 53px;
