@@ -105,8 +105,8 @@ const WrapperNavbar = styled.div`
     border-radius: 8px;
     border: none;
     outline: none;
-    background-color: red;
   }
+  
   input::placeholder {
     font-family: "Lato", sans-serif;
     font-size: 19px;

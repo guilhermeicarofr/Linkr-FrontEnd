@@ -16,6 +16,7 @@ const FormStyle = styled.form`
     &::placeholder {
       color: #9f9f9f;
       font-weight: bold;
+      font-family: "Oswald", sans-serif;
     }
   }
   button {
