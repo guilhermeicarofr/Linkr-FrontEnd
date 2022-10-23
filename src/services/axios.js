@@ -26,6 +26,10 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
+function updatePost(id, config) {
+  return axios.put(`${API}/post/edit/${id}`, config);
+}
+
 export {
   signUp,
   publishPost,
@@ -33,4 +37,5 @@ export {
   getTimeline,
   getUserPosts,
   listTrending,
+  updatePost,
 };
