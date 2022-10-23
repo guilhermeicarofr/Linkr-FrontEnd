@@ -19,7 +19,7 @@ export default function Trending({ refresh }) {
     promise.then((res) => {
       setHashtags(res.data);
     });
-  }, [refresh, hashtags.length]);
+  }, [refresh, config ,hashtags.length]);
 
   return (
     <TrendingBox>
