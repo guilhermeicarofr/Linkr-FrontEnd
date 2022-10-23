@@ -26,6 +26,14 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
+function getLikes ({id, config}) {
+  return axios.get(`${API}/likes/${id}`, config);
+}
+
+function toggleLike ({id, config}) {  
+  return axios.post(`${API}/likes/${id}`, config);
+}
+
 export {
   signUp,
   publishPost,
@@ -33,4 +41,6 @@ export {
   getTimeline,
   getUserPosts,
   listTrending,
+  getLikes,
+  toggleLike
 };
