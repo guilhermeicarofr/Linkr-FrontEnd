@@ -62,7 +62,6 @@ table {
 }
 input {
     height: 100%;
-    max-width: 543px;
     border-radius: 8px;
     border: none;
     outline: none;
