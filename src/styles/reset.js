@@ -60,6 +60,21 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+input {
+    height: 100%;
+    max-width: 543px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+  
+input::placeholder {
+    font-family: "Lato", sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    color: #c6c6c6;
+}
 `;
 
 export default GlobalStyle;

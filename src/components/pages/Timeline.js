@@ -20,7 +20,6 @@ function Timeline() {
     getTimeline(config)
       .then((res) => {
         setPosts(res.data);
-
         if (!res.data.length) {
           setMessage("There are no posts yet");
         }
