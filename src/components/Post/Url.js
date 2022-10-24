@@ -23,6 +23,7 @@ const UrlStyle = styled.a`
   border: 1px solid #4c4c4c;
   font-family: "Lato", sans-serif;
   text-decoration: none;
+  margin-top: 10px;
   h3 {
     font-size: 16px;
     color: #cecece;
