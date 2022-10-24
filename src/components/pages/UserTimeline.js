@@ -14,7 +14,7 @@ export default function UserTimeline() {
   const [message, setMessage] = useState("Loading ...");
   const { id } = useParams();
   const { config } = useContext(LoginContext);
-  const [refresh] = useState(false);
+  const [refresh,setRefresh] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,6 +70,8 @@ export default function UserTimeline() {
                 name={p.name}
                 userId={p.userId}
                 picture={p.picture}
+                refresh={refresh}
+                setRefresh={setRefresh}
               />
             ))
           ) : (

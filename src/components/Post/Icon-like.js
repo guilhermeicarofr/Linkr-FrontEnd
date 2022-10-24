@@ -21,10 +21,12 @@ export default function IconLike(postId) {
 				const usersLikes = res.data.filter(
 					(user) => user.name !== userData.name
 				);
-
-				if (isUserLiked.length !== 0) {
+					if (isUserLiked.length > 0) {					
 					setIsLiked(true);
 					usersLikes.unshift({ name: "You" });
+				}
+				if (isUserLiked.length === 0) {					
+					setIsLiked(false);					
 				}
 				setLikesNumber(usersLikes.length);
 				switch (usersLikes.length) {
@@ -60,7 +62,7 @@ export default function IconLike(postId) {
 				}
 			})
 			.catch((error) => {
-				console.log(error);
+				alert(error);
 			});
 	}, [postId, config, userData, isLiked]);
 
@@ -70,7 +72,7 @@ export default function IconLike(postId) {
 				setIsLiked(!isLiked);
 			})
 			.catch((error) => {
-				console.log(error);
+				alert(error);
 			});
 	}
 
