@@ -7,7 +7,7 @@ import { Page } from "../../styles/commons/Page.js";
 import { Title } from "../../styles/commons/Title.js";
 import Trending from "../Trending.js";
 import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
-import Navbar from "../Navbar.js";
+import Navbar from "../commons/Navbar.js";
 
 export default function Hashtag() {
   const [hashtagPosts, setHashtagPosts] = useState([]);
