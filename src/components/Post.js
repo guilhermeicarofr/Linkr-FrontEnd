@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import LoginContext from "../contexts/LoginContext";
 import { ReactTagify } from "react-tagify";
 import IconDelete from "./Post/Icon-delete";
@@ -35,7 +35,7 @@ function Post({
           }}
           alt="user"
         />
-        <IconLike postId = {postId}/>
+        <IconLike postId={postId} />
       </div>
       <div>
         <span>
