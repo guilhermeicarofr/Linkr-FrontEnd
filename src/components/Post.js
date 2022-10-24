@@ -9,7 +9,7 @@ import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
 import { PostContainer } from "../styles/Posts/PostContainer";
 
-function Post({ postId, url, description, name, userId, picture, id }) {
+function Post({ postId, url, description, name, userId, picture, refresh, setRefresh}) {
   const navigate = useNavigate();
   const { userData } = useContext(LoginContext);
   return (
@@ -35,7 +35,7 @@ function Post({ postId, url, description, name, userId, picture, id }) {
             {userId === userData.userId ? (
               <>
                 <IconUpdate />
-                <IconDelete />
+                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
               </>
             ) : (
               ""

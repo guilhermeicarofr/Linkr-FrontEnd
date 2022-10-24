@@ -38,6 +38,10 @@ function getUserByName({ config, search }) {
   return axios.get(`${API}/user?name=${search}`, config);
 }
 
+function deletePost(postId, config) {
+	return axios.delete(`${API}/post/${postId}`, config);
+}
+
 export {
 	signUp,
 	publishPost,
@@ -47,5 +51,6 @@ export {
 	listTrending,
 	getLikes,
 	toggleLike,
-  getUserByName,
+	getUserByName,
+	deletePost
 };

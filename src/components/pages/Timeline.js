@@ -53,6 +53,8 @@ function Timeline() {
 									name={p.name}
 									userId={p.userId}
 									picture={p.picture}
+									refresh={refresh}
+									setRefresh={setRefresh}
 								/>
 							))
 						) : (
