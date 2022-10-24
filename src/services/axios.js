@@ -26,6 +26,11 @@ function getUserPosts(id, config) {
 	return axios.get(`${API}/user/${id}`, config);
 }
 
+function getHashtagsPosts(hashtag, config) {
+	console.log(hashtag)
+	return axios.get(`${API}/hashtag/${hashtag}`, config);
+}
+
 function getLikes(postId, config) {
 	return axios.get(`${API}/likes/${postId}`, config);
 }
@@ -43,4 +48,5 @@ export {
 	listTrending,
 	getLikes,
 	toggleLike,
+	getHashtagsPosts,
 };
