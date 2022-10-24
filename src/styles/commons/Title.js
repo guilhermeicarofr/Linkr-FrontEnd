@@ -26,7 +26,7 @@ export const Title = styled.div`
   @media (max-width: 937px) {
     margin-left: 18px;
     margin-bottom: 19px;
-    margin-top: 0px;
+    margin-top: 20px;
 
     h2 {
       font-size: 33px;

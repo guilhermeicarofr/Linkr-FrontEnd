@@ -8,4 +8,5 @@ export default function IconUpdate({ isEditing, setIsEditing }) {
 const UpdateStyle = styled(RiBallPenLine)`
   color: white;
   font-size: 19px;
+  cursor: pointer;
 `;
