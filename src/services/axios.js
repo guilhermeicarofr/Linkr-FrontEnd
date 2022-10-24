@@ -26,12 +26,12 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
-function getLikes ({id, config}) {
-  return axios.get(`${API}/likes/${id}`, config);
+function getLikes (postId, config) {
+  return axios.get(`${API}/likes/${postId}`, config);
 }
 
-function toggleLike ({id, config}) {  
-  return axios.post(`${API}/likes/${id}`, config);
+function toggleLike (postId, config) {  
+  return axios.post(`${API}/likes/${postId}`,{}, config);
 }
 
 export {
