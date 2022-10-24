@@ -34,6 +34,10 @@ function toggleLike(postId, config) {
 	return axios.post(`${API}/likes/${postId}`, {}, config);
 }
 
+function getUserByName({ config, search }) {
+  return axios.get(`${API}/user?name=${search}`, config);
+}
+
 export {
 	signUp,
 	publishPost,
@@ -43,4 +47,5 @@ export {
 	listTrending,
 	getLikes,
 	toggleLike,
+  getUserByName,
 };
