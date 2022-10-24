@@ -16,6 +16,7 @@ const IconDeleteStyle = styled(IoTrash)`
   color: white;
   font-size: 19px;
   margin-left: 9px;
+  cursor: pointer;
 `;
 
 export default function IconDelete({ postId, refresh, setRefresh }) {

@@ -18,18 +18,16 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
-
-    getUserByName({config, search})
+    getUserByName({ config, search })
       .then((res) => {
-        setHiddenSearch(false);
         setUsersSearch(res.data);
       })
       .catch((res) => {
-        if(res.response.status === 422) {
+        if (res.response.status === 422) {
           setHiddenSearch(true);
-        };
-      })
-  }, [search, config])
+        }
+      });
+  }, [search, config]);
 
   function logOut() {
     localStorage.clear("linkr");
@@ -94,17 +92,20 @@ export default function Navbar() {
           />
         </WrapperSearch>
       </Container>
-      <ContainerSearch onClick={() => setHiddenSearch(true)} disabled={hiddenSearch}/>
+      <ContainerSearch
+        onClick={() => setHiddenSearch(true)}
+        disabled={hiddenSearch}
+      />
       <ResultSearch disabled={hiddenSearch}>
-          {usersSearch.map((value, index) => (               
-            <SearchResult
-              key={index}
-              setHiddenSearch={setHiddenSearch}
-              picture={value.picture}
-              name={value.name}
-              userId={value.id}
-            />                  
-          ))}
+        {usersSearch.map((value, index) => (
+          <SearchResult
+            key={index}
+            setHiddenSearch={setHiddenSearch}
+            picture={value.picture}
+            name={value.name}
+            userId={value.id}
+          />
+        ))}
       </ResultSearch>
     </>
   );
@@ -122,6 +123,7 @@ const WrapperNavbar = styled.div`
   background-color: #151515;
   padding: 0px 20px 0px 20px;
   z-index: 1;
+  cursor: pointer;
 
   @media (max-width: 937px) {
     z-index: 10;
@@ -208,7 +210,7 @@ const ContainerSearch = styled.div`
   top: 0px;
   left: 0px;
   display: ${(props) => (props.disabled ? "none" : "normal")};
-`
+`;
 
 const ResultSearch = styled.div`
   position: fixed;
@@ -219,7 +221,7 @@ const ResultSearch = styled.div`
   max-height: 200px;
   padding-top: 25px;
   margin-top: 45px;
-  background-color: #E7E7E7;
+  background-color: #e7e7e7;
   z-index: 3;
   border-radius: 8px;
   display: ${(props) => (props.disabled ? "none" : "normal")};
@@ -230,4 +232,4 @@ const ResultSearch = styled.div`
     top: 82px;
     left: 2.5%;
   }
-`
+`;

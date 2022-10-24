@@ -27,7 +27,7 @@ function Post({ postId, url, description, name, userId, picture, refresh, setRef
           }}
           alt="user"
         />
-        <IconLike postId = {postId}/>
+        <IconLike postId={postId} />
       </div>
       <div>
         <span>
