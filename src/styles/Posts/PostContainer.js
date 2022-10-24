@@ -23,7 +23,7 @@ export const PostContainer = styled.div`
   > div:last-child {
     margin-left: 18px;
     width: 90%;
-    span {
+    > span {
       display: flex;
       justify-content: space-between;
     }
@@ -31,12 +31,19 @@ export const PostContainer = styled.div`
       color: #ffffff;
       font-size: 19px;
       font-family: "Lato", sans-serif;
+      margin-bottom: 10px;
     }
     > p {
       color: #b7b7b7;
       font-size: 17px;
       font-family: "Lato", sans-serif;
       margin: 10px 0;
+    }
+
+    input {
+      width: 100%;
+      height: 44px;
+      color: #4c4c4c;
     }
   }
   @media (max-width: 937px) {
