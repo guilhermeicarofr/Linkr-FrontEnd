@@ -9,7 +9,8 @@ import Post from "../Post.js";
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
 import { Feed, Wrapper } from "../../styles/Posts/Feed";
-import Navbar from "../../styles/commons/Navbar";
+import Navbar from "../commons/Navbar";
+
 
 function Timeline() {
   const { config } = useContext(LoginContext);

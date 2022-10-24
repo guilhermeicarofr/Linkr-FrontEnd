@@ -26,6 +26,11 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
+function getUserByName({ config, search }) {
+  console.log(search);
+  return axios.get(`${API}/user?name=${search}`, config);
+}
+
 export {
   signUp,
   publishPost,
@@ -33,4 +38,5 @@ export {
   getTimeline,
   getUserPosts,
   listTrending,
+  getUserByName
 };

@@ -13,6 +13,7 @@ const InitialPages = styled.div`
       font-size: 106px;
       margin-top: 135px;
       margin-left: 100px;
+      margin-top: 301px;
     }
     p:last-child {
       font-family: "Oswald", sans-serif;

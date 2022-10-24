@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-export default function SearchResult({image, name, userId}) {
+export default function SearchResult({picture, name, userId, setHiddenSearch}) {
     return (
         <Link to={`/user/${userId}`}>
-            <Container>
-                <img src={image} alt="img"></img>
+            <Container onClick={() => setHiddenSearch(true)}>
+                <img src={picture} alt="img"></img>
                 <h4>{name}</h4>
             </Container>
         </Link>

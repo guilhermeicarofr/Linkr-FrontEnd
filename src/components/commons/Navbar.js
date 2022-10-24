@@ -1,35 +1,33 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import LoginContext from "../../contexts/LoginContext";
 import { DebounceInput } from "react-debounce-input";
+
+import { getUserByName } from "../../services/axios";
 import SearchResult from "./SearchResult";
 
 export default function Navbar() {
-  const { setUserData, setConfig, userData } = useContext(LoginContext);
+  const { setUserData, setConfig, userData, config } = useContext(LoginContext);
   const [hidden, setHidden] = useState(true);
   const [search, setSearch] = useState();
-  const [usersSeacrh, setUsersSeacrh] = useState([
-    {
-      id: 5,
-      name: "andre",
-      image: "https://i1.sndcdn.com/artworks-000240098219-nlours-t500x500.jpg"
-    },
-    {
-      id: 5,
-      name: "anderson",
-      image: "https://i1.sndcdn.com/artworks-000240098219-nlours-t500x500.jpg"
-    },
-    {
-      id: 5,
-      name: "anderpio",
-      image: "https://i1.sndcdn.com/artworks-000240098219-nlours-t500x500.jpg"
-    }
-  ]);
+  const [usersSearch, setUsersSearch] = useState([]);
   const [hiddenSearch, setHiddenSearch] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+    getUserByName({config, search})
+      .then((res) => {
+        console.log(res.data);
+        setUsersSearch(res.data);
+      })
+      .catch((res) => {
+        console.log(res);
+      })
+  }, [search, config])
 
   function logOut() {
     localStorage.clear("linkr");
@@ -96,10 +94,11 @@ export default function Navbar() {
       </Container>
       <ContainerSearch onClick={() => setHiddenSearch(true)} disabled={hiddenSearch}/>
       <ResultSearch disabled={hiddenSearch}>
-          {usersSeacrh.map((value, index) => (               
+          {usersSearch.map((value, index) => (               
             <SearchResult
               key={index}
-              image={value.image}
+              setHiddenSearch={setHiddenSearch}
+              picture={value.picture}
               name={value.name}
               userId={value.id}
             />                  
@@ -120,6 +119,11 @@ const WrapperNavbar = styled.div`
   left: 0px;
   background-color: #151515;
   padding: 0px 20px 0px 20px;
+  z-index: 1;
+
+  @media (max-width: 937px) {
+    z-index: 10;
+  }
 
   h1 {
     height: 54px;
@@ -209,7 +213,7 @@ const ResultSearch = styled.div`
   left: 30%;
   top: 0px;
   width: 40%;
-  height: auto;
+  overflow-y: scroll;
   max-height: 200px;
   padding-top: 25px;
   margin-top: 45px;
