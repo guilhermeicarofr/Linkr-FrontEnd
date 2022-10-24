@@ -26,6 +26,18 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
+function getLikes(postId, config) {
+  return axios.get(`${API}/likes/${postId}`, config);
+}
+
+function toggleLike(postId, config) {
+  return axios.post(`${API}/likes/${postId}`, {}, config);
+}
+
+function getUserByName({ config, search }) {
+  return axios.get(`${API}/user?name=${search}`, config);
+}
+
 function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
@@ -37,5 +49,8 @@ export {
   getTimeline,
   getUserPosts,
   listTrending,
+  getLikes,
+  toggleLike,
+  getUserByName,
   updatePost,
 };
