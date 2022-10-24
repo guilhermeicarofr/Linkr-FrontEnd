@@ -92,7 +92,7 @@ export default function SignUp() {
             <ThreeDots color="white" height="13px" />
           </button>
         ) : (
-          <button disabled={disabled}>Log In</button>
+          <button disabled={disabled}>Sign Up</button>
         )}
       </FormStyle>
       <span

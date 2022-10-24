@@ -14,7 +14,7 @@ export default function Hashtag() {
   const [message, setMessage] = useState("Loading ...");
   const { hashtag } = useParams();
   const { config } = useContext(LoginContext);
-  const [refresh] = useState(false);
+  const [refresh,setRefresh] = useState(false);
 
   useEffect(() => {
     getHashtagsPosts(hashtag, config)
@@ -46,8 +46,9 @@ export default function Hashtag() {
                 description={p.description}
                 name={p.name}
                 userId={p.userId}
-                picture={p.picture}   
-                refresh={refresh}             
+                picture={p.picture} 
+                refresh={refresh}
+                setRefresh={setRefresh}                          
               />
             ))
           ) : (

@@ -1,15 +1,35 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import LoginContext from "../contexts/LoginContext";
+import LoginContext from "../../contexts/LoginContext";
+import { DebounceInput } from "react-debounce-input";
+
+import { getUserByName } from "../../services/axios";
+import SearchResult from "./SearchResult";
 
 export default function Navbar() {
-  const { setUserData, setConfig, userData } = useContext(LoginContext);
+  const { setUserData, setConfig, userData, config } = useContext(LoginContext);
   const [hidden, setHidden] = useState(true);
   const [search, setSearch] = useState();
+  const [usersSearch, setUsersSearch] = useState([]);
+  const [hiddenSearch, setHiddenSearch] = useState(true);
   const navigate = useNavigate();
+
+  useEffect(() => {
+
+    getUserByName({config, search})
+      .then((res) => {
+        setHiddenSearch(false);
+        setUsersSearch(res.data);
+      })
+      .catch((res) => {
+        if(res.response.status === 422) {
+          setHiddenSearch(true);
+        };
+      })
+  }, [search, config])
 
   function logOut() {
     localStorage.clear("linkr");
@@ -55,8 +75,10 @@ export default function Navbar() {
         Logout
       </ButtonLogOut>
       <Container>
-        <WrapperSearch>
-          <input
+        <WrapperSearch onClick={() => setHiddenSearch(false)}>
+          <DebounceInput
+            minLength={3}
+            debounceTimeout={300}
             placeholder="Search for people"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -72,6 +94,18 @@ export default function Navbar() {
           />
         </WrapperSearch>
       </Container>
+      <ContainerSearch onClick={() => setHiddenSearch(true)} disabled={hiddenSearch}/>
+      <ResultSearch disabled={hiddenSearch}>
+          {usersSearch.map((value, index) => (               
+            <SearchResult
+              key={index}
+              setHiddenSearch={setHiddenSearch}
+              picture={value.picture}
+              name={value.name}
+              userId={value.id}
+            />                  
+          ))}
+      </ResultSearch>
     </>
   );
 }
@@ -87,6 +121,11 @@ const WrapperNavbar = styled.div`
   left: 0px;
   background-color: #151515;
   padding: 0px 20px 0px 20px;
+  z-index: 1;
+
+  @media (max-width: 937px) {
+    z-index: 10;
+  }
 
   h1 {
     height: 54px;
@@ -99,21 +138,6 @@ const WrapperNavbar = styled.div`
     letter-spacing: 0.05em;
   }
 
-  input {
-    height: 100%;
-    max-width: 543px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-  }
-  
-  input::placeholder {
-    font-family: "Lato", sans-serif;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 23px;
-    color: #c6c6c6;
-  }
   img {
     height: 53px;
     width: 53px;
@@ -134,6 +158,7 @@ const WrapperSearch = styled.span`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 0px 17px;
+  z-index: 4;
 
   @media (max-width: 937px) {
     position: initial;
@@ -171,3 +196,38 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+const ContainerSearch = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 2;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: ${(props) => (props.disabled ? "none" : "normal")};
+`
+
+const ResultSearch = styled.div`
+  position: fixed;
+  left: 30%;
+  top: 0px;
+  width: 40%;
+  overflow-y: scroll;
+  max-height: 200px;
+  padding-top: 25px;
+  margin-top: 45px;
+  background-color: #E7E7E7;
+  z-index: 3;
+  border-radius: 8px;
+  display: ${(props) => (props.disabled ? "none" : "normal")};
+
+  @media (max-width: 937px) {
+    position: absolute;
+    width: 95%;
+    top: 82px;
+    left: 2.5%;
+  }
+`
