@@ -1,17 +1,28 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ReactTagify } from "react-tagify";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import LoginContext from "../contexts/LoginContext";
-
+import { ReactTagify } from "react-tagify";
 import IconDelete from "./Post/Icon-delete";
 import IconLike from "./Post/Icon-like";
 import IconUpdate from "./Post/icon-update";
 import Url from "./Post/Url";
 import { PostContainer } from "../styles/Posts/PostContainer";
+import EditableInput from "./Post/EditableInput";
 
-function Post({ postId, url, description, name, userId, picture, id }) {
-  const navigate = useNavigate();
+function Post({
+  postId,
+  url,
+  description,
+  name,
+  userId,
+  picture,
+  refresh,
+  setRefresh,
+}) {
   const { userData } = useContext(LoginContext);
+  const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <PostContainer>
       <div>
@@ -34,7 +45,7 @@ function Post({ postId, url, description, name, userId, picture, id }) {
           <div>
             {userId === userData.userId ? (
               <>
-                <IconUpdate />
+                <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
                 <IconDelete />
               </>
             ) : (
@@ -42,14 +53,25 @@ function Post({ postId, url, description, name, userId, picture, id }) {
             )}
           </div>
         </span>
-        <p>
-          <ReactTagify
-            tagStyle={tagStyle}
-            tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}
-          >
-            {description}
-          </ReactTagify>
-        </p>
+        {!isEditing ? (
+          <p>
+            <ReactTagify
+              tagStyle={tagStyle}
+              tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}
+            >
+              {description}
+            </ReactTagify>
+          </p>
+        ) : (
+          <EditableInput
+            postId={postId}
+            description={description}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        )}
         <Url url={url} />
       </div>
     </PostContainer>

@@ -1,8 +1,8 @@
 import { RiBallPenLine } from "react-icons/ri";
 import styled from "styled-components";
 
-export default function IconUpdate() {
-  return <UpdateStyle />;
+export default function IconUpdate({ isEditing, setIsEditing }) {
+  return <UpdateStyle onClick={() => setIsEditing(!isEditing)} />;
 }
 
 const UpdateStyle = styled(RiBallPenLine)`
