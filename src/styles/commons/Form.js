@@ -15,6 +15,7 @@ const FormStyle = styled.form`
     border: none;
     &::placeholder {
       color: #9f9f9f;
+      font-size: 27px;
       font-weight: bold;
       font-family: "Oswald", sans-serif;
     }
