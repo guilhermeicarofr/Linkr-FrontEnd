@@ -29,21 +29,30 @@ export default function App() {
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/timeline" element={
-            <PrivatePage>
+          <Route
+            path="/timeline"
+            element={
+              <PrivatePage>
                 <Timeline />
-            </PrivatePage>
-          } />
-          <Route path="/hashtag/:hashtag" element={
-            <PrivatePage>
-               <Hashtag />
-          </PrivatePage>
-          } />
-          <Route path="/user/:id" element={
-            <PrivatePage>
-               <UserTimeline />
-            </PrivatePage>
-          } />
+              </PrivatePage>
+            }
+          />
+          <Route
+            path="/hashtag/:hashtag"
+            element={
+              <PrivatePage>
+                <Hashtag />
+              </PrivatePage>
+            }
+          />
+          <Route
+            path="/user/:id"
+            element={
+              <PrivatePage>
+                <UserTimeline />
+              </PrivatePage>
+            }
+          />
         </Routes>
       </LoginContext.Provider>
     </BrowserRouter>
