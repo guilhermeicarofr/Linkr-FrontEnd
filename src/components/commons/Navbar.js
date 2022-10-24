@@ -64,7 +64,7 @@ export default function Navbar() {
             onError={({ currentTarget }) => {
               currentTarget.onerror = null;
               currentTarget.src =
-                "https://www.pinpng.com/pngs/m/53-531868_person-icon-png-transparent-png.png";
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCoS1h0huK1B606Qb4j_hHmwGH8wPmvKLSKQ&usqp=CAU";
             }}
           ></img>
         </WrapperMenuLogOut>
