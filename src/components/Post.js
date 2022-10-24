@@ -9,16 +9,8 @@ import Url from "./Post/Url";
 import { PostContainer } from "../styles/Posts/PostContainer";
 import EditableInput from "./Post/EditableInput";
 
-function Post({
-  postId,
-  url,
-  description,
-  name,
-  userId,
-  picture,
-  refresh,
-  setRefresh,
-}) {
+function Post({ postId, url, description, name, userId, picture, refresh, setRefresh}) {
+  
   const { userData } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
@@ -45,8 +37,8 @@ function Post({
           <div>
             {userId === userData.userId ? (
               <>
+                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
                 <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
-                <IconDelete />
               </>
             ) : (
               ""

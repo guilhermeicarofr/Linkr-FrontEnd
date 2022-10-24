@@ -43,6 +43,10 @@ function getUserByName({ config, search }) {
   return axios.get(`${API}/user?name=${search}`, config);
 }
 
+function deletePost(postId, config) {
+	return axios.delete(`${API}/post/${postId}`, config);
+}
+
 function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
@@ -59,4 +63,5 @@ export {
   getUserByName,
   getHashtagsPosts,
   updatePost,
+	deletePost
 };
