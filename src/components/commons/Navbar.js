@@ -21,11 +21,13 @@ export default function Navbar() {
 
     getUserByName({config, search})
       .then((res) => {
-        console.log(res.data);
+        setHiddenSearch(false);
         setUsersSearch(res.data);
       })
       .catch((res) => {
-        console.log(res);
+        if(res.response.status === 422) {
+          setHiddenSearch(true);
+        };
       })
   }, [search, config])
 
