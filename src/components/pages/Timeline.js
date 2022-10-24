@@ -61,7 +61,7 @@ function Timeline() {
 				</Wrapper>
 			</Page>
 		</>
-	);
+	)
 }
 
 export default Timeline;
