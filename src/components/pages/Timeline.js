@@ -5,10 +5,11 @@ import CreatePost from "../CreatePost.js";
 import Trending from "../Trending.js";
 import { getTimeline } from "../../services/axios.js";
 import Post from "../Post.js";
-import Navbar from "../Navbar.js";
+
 import { Page } from "../../styles/commons/Page";
 import { Title } from "../../styles/commons/Title";
 import { Feed, Wrapper } from "../../styles/Posts/Feed";
+import Navbar from "../../styles/commons/Navbar";
 
 function Timeline() {
   const { config } = useContext(LoginContext);
