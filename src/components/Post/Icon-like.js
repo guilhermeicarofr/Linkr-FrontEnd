@@ -28,13 +28,13 @@ export default function IconLike(postId) {
 				}
 				setLikesNumber(usersLikes.length);
 				switch (usersLikes.length) {
-					case 0:						
+					case 0:
 						setLikes("Nobody liked");
 						break;
-					case 1:						
+					case 1:
 						setLikes(usersLikes[0].name + " liked");
 						break;
-					case 2:						
+					case 2:
 						setLikes(
 							usersLikes[0].name + " and " + usersLikes[1].name + " liked"
 						);
@@ -81,9 +81,7 @@ export default function IconLike(postId) {
 			) : (
 				<TbHeart onClick={() => likeClick()} />
 			)}
-			<p data-tip={likes}>
-				{likesNumber} likes
-			</p>
+			<p data-tip={likes}>{likesNumber} likes</p>
 
 			<ReactTooltip place="bottom" effect="solid" />
 		</LikesStyle>
