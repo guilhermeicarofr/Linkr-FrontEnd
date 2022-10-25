@@ -14,7 +14,7 @@ export default function UserTimeline() {
   const [message, setMessage] = useState("Loading ...");
   const { id } = useParams();
   const { config } = useContext(LoginContext);
-  const [refresh,setRefresh] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {

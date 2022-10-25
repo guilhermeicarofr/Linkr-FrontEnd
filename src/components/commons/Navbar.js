@@ -22,8 +22,8 @@ export default function Navbar() {
       .then((res) => {
         setUsersSearch(res.data);
       })
-      .catch((res) => {
-        if (res.response.status === 422) {
+      .catch((error) => {
+        if (error.response.status === 422) {
           setHiddenSearch(true);
         }
       });

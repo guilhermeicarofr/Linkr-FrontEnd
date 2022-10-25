@@ -15,37 +15,37 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(userData) {
-      navigate("/timeline")
+    if (userData) {
+      navigate("/timeline");
     }
-}, [userData, navigate]);
+  }, [userData, navigate]);
 
   function signInForm(e) {
     e.preventDefault();
     setDisabledSignIn(true);
 
-        const body = {
-        email,
-        password
-        };
-
-        signInApi(body)
-            .then((res) => {
-            setUser(res.data);
-            setUserData(res.data);
-            setConfig({ headers: { Authorization: `Bearer ${res.data.token}`}});
-            setEmail("");
-            setPassword("");
-            setDisabledSignIn(false);
-            navigate("/timeline");
-        })
-        .catch((res) => {
-            setDisabledSignIn(false);
-            if(res.response.status === 401) {
-            alert("Email and/or password are invalid")
-            }
-        })
+    const body = {
+      email,
+      password,
     };
+
+    signInApi(body)
+      .then((res) => {
+        setUser(res.data);
+        setUserData(res.data);
+        setConfig({ headers: { Authorization: `Bearer ${res.data.token}` } });
+        setEmail("");
+        setPassword("");
+        setDisabledSignIn(false);
+        navigate("/timeline");
+      })
+      .catch((error) => {
+        setDisabledSignIn(false);
+        if (error.response.status === 401) {
+          alert("Email and/or password are invalid");
+        }
+      });
+  }
 
   return (
     <>

@@ -54,6 +54,9 @@ const PublishForm = styled.form`
         height: 47px;
         padding-bottom: 15px;
       }
+      &::placeholder {
+        font-size: 13px;
+      }
     }
 
     button {
