@@ -21,5 +21,9 @@ export const Feed = styled.div`
 
   @media (max-width: 937px) {
     width: 100%;
+
+    p {
+      margin: 0 18px;
+    }
   }
 `;

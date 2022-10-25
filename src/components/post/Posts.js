@@ -1,17 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import LoginContext from "../../contexts/LoginContext";
-
+import EditableInput from "./EditableInput"
 import IconDelete from "./Icon-delete";
 import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
 import { PostContainer } from "../../styles/posts/PostContainer";
 
-function Post({ postId, url, description, name, userId, picture, id }) {
-  const navigate = useNavigate();
+function Post({ postId, url, description, name, userId, picture, refresh, setRefresh}) {
+  
   const { userData } = useContext(LoginContext);
+  const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
+
   return (
     <PostContainer>
       <div>
@@ -24,7 +27,7 @@ function Post({ postId, url, description, name, userId, picture, id }) {
           }}
           alt="user"
         />
-        <IconLike postId = {postId}/>
+        <IconLike postId={postId} />
       </div>
       <div>
         <span>
@@ -34,22 +37,33 @@ function Post({ postId, url, description, name, userId, picture, id }) {
           <div>
             {userId === userData.userId ? (
               <>
-                <IconUpdate />
-                <IconDelete />
+                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
+                <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
               </>
             ) : (
               ""
             )}
           </div>
         </span>
-        <p>
-          <ReactTagify
-            tagStyle={tagStyle}
-            tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}
-          >
-            {description}
-          </ReactTagify>
-        </p>
+        {!isEditing ? (
+          <p>
+            <ReactTagify
+              tagStyle={tagStyle}
+              tagClicked={(tag) => navigate(`/hashtag/${tag.slice(1)}`)}
+            >
+              {description}
+            </ReactTagify>
+          </p>
+        ) : (
+          <EditableInput
+            postId={postId}
+            description={description}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        )}
         <Url url={url} />
       </div>
     </PostContainer>
