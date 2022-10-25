@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormStyle from "../../styles/commons/Form";
-import FormPage from "../Form-page";
+import FormPage from "../components/initialPages/Form-page";
+import { signInApi } from "../services/axios";
+import FormStyle from "../styles/commons/Form";
 import { ThreeDots } from "react-loader-spinner";
-import { signInApi } from "../../services/axios";
-import LoginContext from "../../contexts/LoginContext";
-import { setUser } from "../../services/localstorage";
+import LoginContext from "../contexts/LoginContext";
+import { setUser } from "../utils/localstorage";
 
 export default function SignIn() {
   const { setUserData, userData, setConfig } = useContext(LoginContext);

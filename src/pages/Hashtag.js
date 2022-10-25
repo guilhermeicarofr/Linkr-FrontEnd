@@ -1,13 +1,16 @@
 import { useState, useEffect, useContext } from "react";
-import Post from "../Post.js";
-import { getHashtagsPosts } from "../../services/axios.js";
+
 import { useParams } from "react-router-dom";
-import LoginContext from "../../contexts/LoginContext.js";
-import { Page } from "../../styles/commons/Page.js";
-import { Title } from "../../styles/commons/Title.js";
-import Trending from "../Trending.js";
-import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
-import Navbar from "../commons/Navbar.js";
+
+import Navbar from "../components/commons/Navbar.js";
+import { Feed, Wrapper } from "../styles/posts/Feed.js";
+import Trending from "../components/trending/Trending.js";
+import { Page } from "../styles/commons/Page.js";
+import { Title } from "../styles/commons/Title.js";
+import LoginContext from "../contexts/LoginContext.js";
+import { getHashtagsPosts } from "../services/axios.js";
+import Post from "../components/post/Posts.js";
+
 
 export default function Hashtag() {
   const [hashtagPosts, setHashtagPosts] = useState([]);

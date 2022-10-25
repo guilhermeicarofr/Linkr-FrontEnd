@@ -9,8 +9,9 @@ import { deletePost } from "../../services/axios";
 import {
   ButtonDeleteStyle,
   DeleteScreenStyle,
-} from "../../styles/Posts/DeletePost";
+} from "../../styles/posts/DeletePost";
 import LoginContext from "../../contexts/LoginContext";
+
 
 const IconDeleteStyle = styled(IoTrash)`
   color: white;

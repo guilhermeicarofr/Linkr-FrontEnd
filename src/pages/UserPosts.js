@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
-import Post from "../Post.js";
-import { getUserPosts } from "../../services/axios.js";
+import Post from "../components/post/Posts";
+import { getUserPosts } from "../services/axios.js";
 import { useNavigate, useParams } from "react-router-dom";
-import LoginContext from "../../contexts/LoginContext.js";
-import { Page } from "../../styles/commons/Page.js";
-import { Title } from "../../styles/commons/Title.js";
-import Trending from "../Trending.js";
-import { Feed, Wrapper } from "../../styles/Posts/Feed.js";
-import Navbar from "../commons/Navbar.js";
+import LoginContext from "../contexts/LoginContext.js";
+import { Page } from "../styles/commons/Page.js";
+import { Title } from "../styles/commons/Title.js";
+import Trending from "../components/trending/Trending.js";
+import { Feed, Wrapper } from "../styles/posts/Feed.js";
+import Navbar from "../components/commons/Navbar.js";
 
 export default function UserTimeline() {
   const [userPosts, setUserPosts] = useState({ posts: [] });

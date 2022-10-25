@@ -78,7 +78,7 @@ export default function IconLike(postId) {
 
 	return (
 		<LikesStyle>
-			{isLiked ? (
+			{isLiked === true ? (
 				<AiFillHeart color="red" onClick={() => likeClick()} />
 			) : (
 				<TbHeart onClick={() => likeClick()} />

@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import LoginContext from "../contexts/LoginContext";
 import { ReactTagify } from "react-tagify";
-import IconDelete from "./Post/Icon-delete";
-import IconLike from "./Post/Icon-like";
-import IconUpdate from "./Post/icon-update";
-import Url from "./Post/Url";
-import { PostContainer } from "../styles/Posts/PostContainer";
-import EditableInput from "./Post/EditableInput";
+import { useContext, useState } from "react";
+import LoginContext from "../../contexts/LoginContext";
+import EditableInput from "./EditableInput"
+import IconDelete from "./Icon-delete";
+import IconLike from "./Icon-like";
+import IconUpdate from "./Icon-update";
+import Url from "./Url";
+import { PostContainer } from "../../styles/posts/PostContainer";
 
 function Post({ postId, url, description, name, userId, picture, refresh, setRefresh}) {
   

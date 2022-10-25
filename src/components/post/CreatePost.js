@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
-import LoginContext from "../contexts/LoginContext";
+import LoginContext from "../../contexts/LoginContext";
 
-import { publishPost } from "../services/axios";
+import { publishPost } from "../../services/axios";
 
-import PublishBox from "../styles/Publish/PublishBox";
-import PublishContent from "../styles/Publish/PublishContent";
-import PublishForm from "../styles/Publish/PublishForm";
+import PublishBox from "../../styles/publishbox/PublishBox";
+import PublishContent from "../../styles/publishbox/PublishContent";
+import PublishForm from "../../styles/publishbox/PublishForm";
 
 const inputs = [
   {
