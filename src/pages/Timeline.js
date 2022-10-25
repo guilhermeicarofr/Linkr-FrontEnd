@@ -1,15 +1,16 @@
 import { useState, useEffect, useContext } from "react";
-import LoginContext from "../../contexts/LoginContext";
 
-import CreatePost from "../CreatePost.js";
-import Trending from "../Trending.js";
-import { getTimeline } from "../../services/axios.js";
-import Post from "../Post.js";
+import Navbar from "../components/commons/Navbar";
 
-import { Page } from "../../styles/commons/Page";
-import { Title } from "../../styles/commons/Title";
-import { Feed, Wrapper } from "../../styles/Posts/Feed";
-import Navbar from "../commons/Navbar";
+import LoginContext from "../contexts/LoginContext";
+import { getTimeline } from "../services/axios";
+import { Page } from "../styles/commons/Page";
+import { Title } from "../styles/commons/Title";
+import { Feed, Wrapper } from "../styles/posts/Feed";
+import CreatePost from "../components/post/CreatePost";
+import Trending from "../components/trending/Trending";
+import Post from "../components/post/Posts";
+
 
 
 function Timeline() {

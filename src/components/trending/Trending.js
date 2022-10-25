@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
-import LoginContext from "../contexts/LoginContext";
+import LoginContext from "../../contexts/LoginContext";
 import { Link } from "react-router-dom";
-import { listTrending } from "../services/axios";
-import TrendingBox from "../styles/Trending/TrendingBox";
+import { listTrending } from "../../services/axios";
+import TrendingBox from "../../styles/trending/TrendingBox";
 
 export default function Trending({ refresh }) {
   const { config } = useContext(LoginContext);
@@ -13,7 +13,6 @@ export default function Trending({ refresh }) {
       if (error.response.status === 500) {
         return alert("Failed to connect to the server");
       }
-      alert(error.response.data);
     });
 
     promise.then((res) => {

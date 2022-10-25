@@ -7,7 +7,7 @@ import { IoTrash } from "react-icons/io5";
 import {
   ButtonDeleteStyle,
   DeleteScreenStyle,
-} from "../../styles/Posts/DeletePost";
+} from "../../styles/posts/DeletePost";
 
 const IconDeleteStyle = styled(IoTrash)`
   color: white;

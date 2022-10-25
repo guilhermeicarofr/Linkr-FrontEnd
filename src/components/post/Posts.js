@@ -1,13 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { useContext } from "react";
-import LoginContext from "../contexts/LoginContext";
+import LoginContext from "../../contexts/LoginContext";
 
-import IconDelete from "./Post/Icon-delete";
-import IconLike from "./Post/Icon-like";
-import IconUpdate from "./Post/icon-update";
-import Url from "./Post/Url";
-import { PostContainer } from "../styles/Posts/PostContainer";
+import IconDelete from "./Icon-delete";
+import IconLike from "./Icon-like";
+import IconUpdate from "./Icon-update";
+import Url from "./Url";
+import { PostContainer } from "../../styles/posts/PostContainer";
 
 function Post({ postId, url, description, name, userId, picture, id }) {
   const navigate = useNavigate();

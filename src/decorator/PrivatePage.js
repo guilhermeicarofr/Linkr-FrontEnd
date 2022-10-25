@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../../contexts/LoginContext";
-import { setUser } from "../../services/localstorage";
+import LoginContext from "../contexts/LoginContext";
+import { setUser } from "../utils/localstorage";
 
 export default function PrivatePage({children}) {
     const {config, setConfig, userData, setUserData} = useContext(LoginContext);
@@ -30,7 +30,7 @@ export default function PrivatePage({children}) {
  
     return (
         <>
-            {children};
+            {children}
         </>
     );
 };

@@ -35,7 +35,6 @@ function toggleLike(postId, config) {
 }
 
 function getUserByName({ config, search }) {
-  console.log(search);
   return axios.get(`${API}/user?name=${search}`, config);
 }
 
