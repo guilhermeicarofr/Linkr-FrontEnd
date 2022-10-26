@@ -50,6 +50,10 @@ function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
 
+function followUser({config, userId }) {
+  return axios.post(`/follow/${userId}`, config);
+};
+
 export {
   signUp,
   publishPost,
@@ -62,5 +66,6 @@ export {
   getUserByName,
   getHashtagsPosts,
   updatePost,
-	deletePost
+	deletePost,
+  followUser
 };
