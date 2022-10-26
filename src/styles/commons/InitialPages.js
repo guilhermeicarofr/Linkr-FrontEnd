@@ -33,8 +33,7 @@ const InitialPages = styled.div`
       font-size: 20px;
       color: #ffffff;
       text-decoration: underline;
-      margin-top: 14px;
-      font-family: "Lato", sans-serif;
+      margin-top: 14px;      
       cursor: pointer;
     }
   }

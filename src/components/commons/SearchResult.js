@@ -43,8 +43,7 @@ const Container = styled.div`
   }
 
   h4 {
-    color: #515151;
-    font-family: Lato;
+    color: #515151;   
     font-size: 19px;
     font-weight: 400;
     line-height: 23px;

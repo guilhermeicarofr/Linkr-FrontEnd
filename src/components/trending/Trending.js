@@ -4,22 +4,21 @@ import { Link } from "react-router-dom";
 import { listTrending } from "../../services/axios";
 import TrendingBox from "../../styles/trending/TrendingBox";
 
-export default function Trending({ refresh }) {
-  const { config } = useContext(LoginContext);
+export default function Trending() {
+  const { config, refresh } = useContext(LoginContext);
   const [hashtags, setHashtags] = useState([]);
 
   useEffect(() => {
-    const promise = listTrending(config);
-    promise.catch((error) => {
+    listTrending(config)
+    .then((res) => {
+      setHashtags(res.data);
+    })
+    .catch((error) => {
       if (error.response.status === 500) {
         return alert("Failed to connect to the server");
       }
-    });
-
-    promise.then((res) => {
-      setHashtags(res.data);
-    });
-  }, [refresh, config, hashtags.length]);
+    });    
+  }, [refresh, config]);
 
   return (
     <TrendingBox>

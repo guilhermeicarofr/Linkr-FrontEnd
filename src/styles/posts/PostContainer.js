@@ -29,14 +29,12 @@ export const PostContainer = styled.div`
     }
     h2 {
       color: #ffffff;
-      font-size: 19px;
-      font-family: "Lato", sans-serif;
+      font-size: 19px;      
       margin-bottom: 10px;
     }
     > p {
       color: #b7b7b7;
-      font-size: 17px;
-      font-family: "Lato", sans-serif;
+      font-size: 17px;      
       margin: 10px 0;
     }
 

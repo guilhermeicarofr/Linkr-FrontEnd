@@ -12,9 +12,8 @@ import Trending from "../components/trending/Trending";
 import Post from "../components/post/Posts";
 
 function Timeline() {
-  const { config } = useContext(LoginContext);
-  const [posts, setPosts] = useState([]);
-  const [refresh, setRefresh] = useState(false);
+  const { config,refresh} = useContext(LoginContext);
+  const [posts, setPosts] = useState([]);  
   const [message, setMessage] = useState("Loading ...");
 
   useEffect(() => {
@@ -41,7 +40,7 @@ function Timeline() {
             <Title>
               <h2>timeline</h2>
             </Title>
-            <CreatePost refresh={refresh} setRefresh={setRefresh} />
+            <CreatePost/>
             {posts.length ? (
               posts.map((p, index) => (
                 <Post
@@ -51,16 +50,14 @@ function Timeline() {
                   description={p.description}
                   name={p.name}
                   userId={p.userId}
-                  picture={p.picture}
-                  refresh={refresh}
-                  setRefresh={setRefresh}
+                  picture={p.picture}                  
                 />
               ))
             ) : (
               <p>{message}</p>
             )}
           </Feed>
-          <Trending refresh={refresh} />
+          <Trending />
         </Wrapper>
       </Page>
     </>

@@ -9,9 +9,9 @@ import IconUpdate from "./Icon-update";
 import Url from "./Url";
 import { PostContainer } from "../../styles/posts/PostContainer";
 
-function Post({ postId, url, description, name, userId, picture, refresh, setRefresh}) {
+function Post({ postId, url, description, name, userId, picture}) {
   
-  const { userData } = useContext(LoginContext);
+  const { userData} = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ function Post({ postId, url, description, name, userId, picture, refresh, setRef
             {userId === userData.userId ? (
               <>
                 <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
-                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
+                <IconDelete postId = {postId}/>
               </>
             ) : (
               ""
@@ -59,9 +59,7 @@ function Post({ postId, url, description, name, userId, picture, refresh, setRef
             postId={postId}
             description={description}
             isEditing={isEditing}
-            setIsEditing={setIsEditing}
-            refresh={refresh}
-            setRefresh={setRefresh}
+            setIsEditing={setIsEditing}            
           />
         )}
         <Url url={url} />
