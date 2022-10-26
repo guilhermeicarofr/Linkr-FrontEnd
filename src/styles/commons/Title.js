@@ -8,6 +8,7 @@ export const Title = styled.div`
   height: 64px;
   width:937px;
   padding-right: 18px;
+  gap:10px;
 
   .userInfo {
     display: flex;

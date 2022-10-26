@@ -8,19 +8,22 @@ import { Title } from "../styles/commons/Title.js";
 import Trending from "../components/trending/Trending.js";
 import { Feed, Wrapper } from "../styles/posts/Feed.js";
 import Navbar from "../components/commons/Navbar.js";
-import { SmallButton } from "../styles/commons/SmallButton";
+import FollowButton from "../components/follows/followButton";
 
 export default function UserTimeline() {
   const [userPosts, setUserPosts] = useState({ posts: [] });
   const [message, setMessage] = useState("Loading ...");
-  const [following, setFollowing] = useState(false)
+  
   const { id } = useParams();
-  const { config, refresh} = useContext(LoginContext);
+  const { config, refresh, userData} = useContext(LoginContext);
   const navigate = useNavigate();
+ 
 
   useEffect(() => {
     getUserPosts(id, config)
       .then((res) => {
+        console.log(id)
+        console.log(userData.userId)
         setUserPosts(res.data);
         if (!res.data.posts.length) {
           setMessage("This user has no posts yet");
@@ -32,7 +35,7 @@ export default function UserTimeline() {
           navigate("/timeline");
         }
       });
-  }, [id, config, navigate, refresh]);
+  }, [id, config, navigate, refresh, userData.userId]);
 
   return (
     <Page>
@@ -62,9 +65,12 @@ export default function UserTimeline() {
             )}
             </div>
            <div>
-           <SmallButton following={following}>
-            {following ? "Following" : "Follow"}
-          </SmallButton>
+           {Number(id) !== userData.userId ? (
+              <FollowButton/>
+            ) : (
+              ""
+            )}
+           
            </div>
             
           </Title>
