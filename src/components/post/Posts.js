@@ -2,16 +2,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { useContext, useState } from "react";
 import LoginContext from "../../contexts/LoginContext";
-import EditableInput from "./EditableInput"
+import EditableInput from "./EditableInput";
 import IconDelete from "./Icon-delete";
 import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
 import { PostContainer } from "../../styles/posts/PostContainer";
 
-function Post({ postId, url, description, name, userId, picture}) {
-  
-  const { userData} = useContext(LoginContext);
+function Post({ postId, url, description, name, userId, picture }) {
+  const { userData } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
@@ -38,7 +37,7 @@ function Post({ postId, url, description, name, userId, picture}) {
             {userId === userData.userId ? (
               <>
                 <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
-                <IconDelete postId = {postId}/>
+                <IconDelete postId={postId} />
               </>
             ) : (
               ""
@@ -59,7 +58,7 @@ function Post({ postId, url, description, name, userId, picture}) {
             postId={postId}
             description={description}
             isEditing={isEditing}
-            setIsEditing={setIsEditing}            
+            setIsEditing={setIsEditing}
           />
         )}
         <Url url={url} />

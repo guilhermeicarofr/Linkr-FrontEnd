@@ -8,10 +8,12 @@ import { Title } from "../styles/commons/Title.js";
 import Trending from "../components/trending/Trending.js";
 import { Feed, Wrapper } from "../styles/posts/Feed.js";
 import Navbar from "../components/commons/Navbar.js";
+import { SmallButton } from "../styles/commons/SmallButton";
 
 export default function UserTimeline() {
   const [userPosts, setUserPosts] = useState({ posts: [] });
   const [message, setMessage] = useState("Loading ...");
+  const [following, setFollowing] = useState(false)
   const { id } = useParams();
   const { config, refresh} = useContext(LoginContext);
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ export default function UserTimeline() {
       <Wrapper>
         <Feed>
           <Title>
+            <div className="userInfo">
             {userPosts ? (
               <>
                 <img
@@ -57,6 +60,13 @@ export default function UserTimeline() {
                 alt="pic"
               />
             )}
+            </div>
+           <div>
+           <SmallButton following={following}>
+            {following ? "Following" : "Follow"}
+          </SmallButton>
+           </div>
+            
           </Title>
 
           {userPosts.posts.length ? (
