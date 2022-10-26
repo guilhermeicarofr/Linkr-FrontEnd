@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import LoginContext from "../../contexts/LoginContext";
 
 import { publishPost } from "../../services/axios";
+import { PublishInput } from "../../styles/commons/PublishInput";
+import { SmallButton } from "../../styles/commons/SmallButton";
 
 import PublishBox from "../../styles/publishbox/PublishBox";
 import PublishContent from "../../styles/publishbox/PublishContent";
@@ -80,7 +82,7 @@ export default function CreatePost() {
         <h1>What are you going to share today?</h1>
         <PublishForm onSubmit={submitData}>
           {inputs.map((input, index) => (
-            <input
+            <PublishInput
               key={index}
               name={input.name}
               type={input.type}
@@ -97,9 +99,9 @@ export default function CreatePost() {
             />
           ))}
 
-          <button type="submit" disabled={disabled}>
+          <SmallButton type="submit" disabled={disabled}>
             {disabled ? "Publishing" : "Publish"}
-          </button>
+          </SmallButton>
         </PublishForm>
       </PublishContent>
     </PublishBox>

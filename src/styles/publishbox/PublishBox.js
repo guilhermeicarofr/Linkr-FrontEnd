@@ -26,6 +26,7 @@ const PublishBox = styled.div`
     border-radius: 0;
     width: 100%;
     gap: 0;
+    padding-bottom: 12px;
     img {
       display: none;
     }

@@ -4,12 +4,14 @@ import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import FormPage from "../components/initialPages/Form-page";
 import { signUp } from "../services/axios";
+import { Button } from "../styles/commons/Button";
 import FormStyle from "../styles/commons/Form";
+import { Input } from "../styles/commons/Input";
 
 function Inputs({ handleForm, form, disabled }) {
   return (
     <>
-      <input
+      <Input
         placeholder="e-mail"
         name="email"
         value={form.email}
@@ -19,7 +21,7 @@ function Inputs({ handleForm, form, disabled }) {
         maxLength="100"
         required
       />
-      <input
+      <Input
         placeholder="password"
         name="password"
         value={form.password}
@@ -29,7 +31,7 @@ function Inputs({ handleForm, form, disabled }) {
         maxLength="50"
         required
       />
-      <input
+      <Input
         placeholder="username"
         name="name"
         value={form.name}
@@ -39,7 +41,7 @@ function Inputs({ handleForm, form, disabled }) {
         maxLength="50"
         required
       />
-      <input
+      <Input
         placeholder="picture url"
         name="picture"
         value={form.picture}
@@ -90,11 +92,11 @@ export default function SignUp() {
       <FormStyle onSubmit={submitData}>
         <Inputs handleForm={handleForm} disabled={disabled} form={form} />
         {disabled ? (
-          <button disabled={disabled} type="submit">
+          <Button disabled={disabled} type="submit">
             <ThreeDots color="white" height="13px" />
-          </button>
+          </Button>
         ) : (
-          <button disabled={disabled}>Sign Up</button>
+          <Button disabled={disabled}>Sign Up</Button>
         )}
       </FormStyle>
       <span
