@@ -6,9 +6,6 @@ import FormPage from "../components/initialPages/Form-page";
 import { signUp } from "../services/axios";
 import FormStyle from "../styles/commons/Form";
 
-
-
-
 function Inputs({ handleForm, form, disabled }) {
   return (
     <>
@@ -72,15 +69,14 @@ export default function SignUp() {
         setDisabled(false);
         navigate("/");
       })
-      .catch((answer) => {
+      .catch((error) => {
         setDisabled(false);
-        if (answer.response.status === 409) {
+        if (error.response.status === 409) {
           alert("E-mail already in use");
         }
-        if (answer.response.status === 422) {
+        if (error.response.status === 422) {
           alert("Invalid Format");
         }
-
       });
   }
   function handleForm(e) {
@@ -90,7 +86,6 @@ export default function SignUp() {
     });
   }
   return (
-  
     <FormPage>
       <FormStyle onSubmit={submitData}>
         <Inputs handleForm={handleForm} disabled={disabled} form={form} />

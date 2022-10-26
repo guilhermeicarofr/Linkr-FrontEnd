@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 export const Feed = styled.div`
   display: flex;
   flex-direction: column;
-
+  width: 611px;
   p {
     color: #b7b7b7;
   }

@@ -52,8 +52,8 @@ export default function CreatePost({ refresh, setRefresh }) {
         });
         setRefresh(!refresh);
       })
-      .catch((answer) => {
-        if (answer.response.status === 401) {
+      .catch((error) => {
+        if (error.response.status === 401) {
           alert("Please login to continue");
         } else {
           alert("Unable to publish your post");

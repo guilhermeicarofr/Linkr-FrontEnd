@@ -11,7 +11,6 @@ import CreatePost from "../components/post/CreatePost";
 import Trending from "../components/trending/Trending";
 import Post from "../components/post/Posts";
 
-
 function Timeline() {
   const { config } = useContext(LoginContext);
   const [posts, setPosts] = useState([]);
