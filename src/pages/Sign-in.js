@@ -6,6 +6,8 @@ import FormStyle from "../styles/commons/Form";
 import { ThreeDots } from "react-loader-spinner";
 import LoginContext from "../contexts/LoginContext";
 import { setUser } from "../utils/localstorage";
+import { Input } from "../styles/commons/Input";
+import { Button } from "../styles/commons/Button";
 
 export default function SignIn() {
   const { setUserData, userData, setConfig } = useContext(LoginContext);
@@ -51,7 +53,7 @@ export default function SignIn() {
     <>
       <FormPage>
         <FormStyle onSubmit={signInForm}>
-          <input
+          <Input
             placeholder="e-mail"
             name="email"
             value={email}
@@ -61,7 +63,7 @@ export default function SignIn() {
             maxLength="100"
             required
           />
-          <input
+          <Input
             placeholder="password"
             name="password"
             value={password}
@@ -72,11 +74,11 @@ export default function SignIn() {
             required
           />
           {disabledSignIn ? (
-            <button disabled={disabledSignIn}>
+            <Button disabled={disabledSignIn}>
               <ThreeDots color="white" height="13px" />
-            </button>
+            </Button>
           ) : (
-            <button disabled={disabledSignIn}>Log In</button>
+            <Button disabled={disabledSignIn}>Log In</Button>
           )}
         </FormStyle>
         <span
