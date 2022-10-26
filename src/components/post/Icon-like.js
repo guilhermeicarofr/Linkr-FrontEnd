@@ -96,6 +96,7 @@ const LikesStyle = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	cursor: pointer;
 	p {
 		font-size: 11px;
 		margin-top: 4px;
