@@ -18,7 +18,7 @@ import { Container } from "../../styles/searchbar/Container";
 export default function Navbar() {
   const { setUserData, setConfig, userData, config } = useContext(LoginContext);
   const [hidden, setHidden] = useState(true);
-  const [search, setSearch] = useState();
+  const [search, setSearch] = useState("");
   const [usersSearch, setUsersSearch] = useState([]);
   const [hiddenSearch, setHiddenSearch] = useState(true);
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function Navbar() {
     getUserByName({ config, search })
       .then((res) => {
         setUsersSearch(res.data);
+        setHiddenSearch(false);
       })
       .catch((error) => {
         if (error.response.status === 422) {
