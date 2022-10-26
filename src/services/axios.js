@@ -50,8 +50,8 @@ function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
 
-function followUser({config, userId }) {
-  return axios.post(`/follow/${userId}`, config);
+function followUser({config, followedId }) {
+  return axios.post(`${API}/follow/${followedId}`, {}, config);
 };
 
 export {
