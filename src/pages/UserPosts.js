@@ -22,8 +22,6 @@ export default function UserTimeline() {
   useEffect(() => {
     getUserPosts(id, config)
       .then((res) => {
-        console.log(id)
-        console.log(userData.userId)
         setUserPosts(res.data);
         if (!res.data.posts.length) {
           setMessage("This user has no posts yet");
