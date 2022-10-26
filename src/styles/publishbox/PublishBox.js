@@ -8,8 +8,7 @@ const PublishBox = styled.div`
   border-radius: 16px;
   padding: 0 22px 16px 18px;
   gap: 18px;
-
-  font-family: "Lato", sans-serif;
+ 
   font-style: normal;
   font-weight: 300;
 

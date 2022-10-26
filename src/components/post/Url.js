@@ -20,8 +20,7 @@ const UrlStyle = styled.a`
   display: flex;
   border-radius: 16px;
   overflow: hidden;
-  border: 1px solid #4c4c4c;
-  font-family: "Lato", sans-serif;
+  border: 1px solid #4c4c4c;  
   text-decoration: none;
   margin-top: 10px;
   h3 {
