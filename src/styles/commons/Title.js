@@ -3,10 +3,18 @@ import styled from "styled-components";
 export const Title = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 43px;
+  justify-content: space-between;
+  margin: 87px 18px 43px 18px;
   height: 64px;
-  gap: 18px;
-  margin-top: 87px;
+  width:937px;
+  padding-right: 18px;
+  gap:10px;
+
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
 
   h2 {
     color: #ffffff;
@@ -14,7 +22,7 @@ export const Title = styled.div`
     font-style: normal;
     font-weight: 700;
     font-size: 43px;
-    line-height: 64px;
+    padding-bottom: 7px;
   }
 
   img {
@@ -24,13 +32,25 @@ export const Title = styled.div`
   }
 
   @media (max-width: 937px) {
-    margin-left: 18px;
     margin-bottom: 19px;
     margin-top: 20px;
+    width: 95vw;
 
+   
     h2 {
       font-size: 33px;
-      line-height: 49px;
+      padding-bottom: 4px;
+     
     }
+    button{
+      width: 70px;
+    }
+
+    img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    
+  }
   }
 `;

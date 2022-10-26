@@ -8,6 +8,7 @@ export const SmallButton = styled(Button)`
 
   font-size: 14px;
   line-height: 17px;
+  
 
   @media (max-width: 937px) {
     font-size: 13px;
