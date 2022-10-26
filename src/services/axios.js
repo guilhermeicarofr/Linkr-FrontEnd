@@ -26,8 +26,7 @@ function getUserPosts(id, config) {
   return axios.get(`${API}/user/${id}`, config);
 }
 
-function getHashtagsPosts(hashtag, config) {
-	console.log(hashtag)
+function getHashtagsPosts(hashtag, config) {	
 	return axios.get(`${API}/hashtag/${hashtag}`, config);
 }
 

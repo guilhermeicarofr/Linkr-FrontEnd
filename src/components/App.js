@@ -14,6 +14,7 @@ import PrivatePage from "../decorator/PrivatePage";
 export default function App() {
   const [userData, setUserData] = useState(getUser());
   const [config, setConfig] = useState(null);
+  const [refresh, setRefresh] = useState(false);
   const PrivateTimeLine = <PrivatePage> <Timeline/> </PrivatePage>
   const PrivateHashtag =  <PrivatePage> <Hashtag /> </PrivatePage>
   const PrivateUserPosts = <PrivatePage>  <UserTimeline /> </PrivatePage>
@@ -27,6 +28,8 @@ export default function App() {
           setUserData,
           config,
           setConfig,
+          refresh,
+          setRefresh
         }}
       >
         <Routes>

@@ -20,13 +20,13 @@ const inputs = [
   },
 ];
 
-export default function CreatePost({ refresh, setRefresh }) {
+export default function CreatePost() {
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
     url: "",
     description: "",
   });
-  const { userData, config } = useContext(LoginContext);
+  const { userData, config,refresh, setRefresh } = useContext(LoginContext);
 
   function handleForm({ name, value }) {
     setForm({

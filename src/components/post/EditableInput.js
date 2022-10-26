@@ -6,11 +6,9 @@ export default function EditableInput({
   description,
   postId,
   isEditing,
-  setIsEditing,
-  refresh,
-  setRefresh,
+  setIsEditing 
 }) {
-  const { config } = useContext(LoginContext);
+  const { config,refresh, setRefresh} = useContext(LoginContext);
   const [inputDescription, setInputDescription] = useState(description);
   const inputRef = useRef(null);
 
@@ -29,15 +27,15 @@ export default function EditableInput({
       updatePost({ body, config, postId })
         .then(() => {
           setIsEditing(!isEditing);
+          setRefresh(!refresh);
         })
-
         .catch((error) => {
           alert(
             "An error occured while trying to update your post, please try again"
           );
           setIsEditing(true);
         });
-      setRefresh(!refresh);
+      
     }
 
     if (e.key === "Escape") {

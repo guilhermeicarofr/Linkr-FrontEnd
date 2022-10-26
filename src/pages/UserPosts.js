@@ -13,8 +13,7 @@ export default function UserTimeline() {
   const [userPosts, setUserPosts] = useState({ posts: [] });
   const [message, setMessage] = useState("Loading ...");
   const { id } = useParams();
-  const { config } = useContext(LoginContext);
-  const [refresh, setRefresh] = useState(false);
+  const { config, refresh} = useContext(LoginContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function UserTimeline() {
           navigate("/timeline");
         }
       });
-  }, [id, config, navigate]);
+  }, [id, config, navigate, refresh]);
 
   return (
     <Page>
@@ -69,16 +68,14 @@ export default function UserTimeline() {
                 description={p.description}
                 name={p.name}
                 userId={p.userId}
-                picture={p.picture}
-                refresh={refresh}
-                setRefresh={setRefresh}
+                picture={p.picture}                
               />
             ))
           ) : (
             <p>{message}</p>
           )}
         </Feed>
-        <Trending refresh={refresh} />
+        <Trending />
       </Wrapper>
     </Page>
   );

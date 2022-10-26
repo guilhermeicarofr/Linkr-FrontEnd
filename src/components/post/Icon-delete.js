@@ -20,11 +20,11 @@ const IconDeleteStyle = styled(IoTrash)`
   cursor: pointer;
 `;
 
-export default function IconDelete({ postId, refresh, setRefresh }) {
+export default function IconDelete( {postId} ) {
   const [showDeleteScreen, setShowDeleteScreen] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
 
-  const { config } = useContext(LoginContext);
+  const { config,refresh, setRefresh } = useContext(LoginContext);
 
   function handleDelete() {
     setShowLoading(true);

@@ -16,8 +16,8 @@ export default function Hashtag() {
   const [hashtagPosts, setHashtagPosts] = useState([]);
   const [message, setMessage] = useState("Loading ...");
   const { hashtag } = useParams();
-  const { config } = useContext(LoginContext);
-  const [refresh,setRefresh] = useState(false);
+  const { config,refresh } = useContext(LoginContext);
+ 
 
   useEffect(() => {
     getHashtagsPosts(hashtag, config)
@@ -29,7 +29,7 @@ export default function Hashtag() {
           setMessage("No posts");
         }
       });
-  }, [hashtag, config]);
+  }, [hashtag, config, refresh]);
 
   return (
     <Page>
@@ -49,16 +49,14 @@ export default function Hashtag() {
                 description={p.description}
                 name={p.name}
                 userId={p.userId}
-                picture={p.picture} 
-                refresh={refresh}
-                setRefresh={setRefresh}                          
+                picture={p.picture}                                         
               />
             ))
           ) : (
             <p>{message}</p>
           )}
         </Feed>
-        <Trending refresh={refresh} />
+        <Trending />
       </Wrapper>
     </Page>
   );
