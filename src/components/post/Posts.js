@@ -37,8 +37,8 @@ function Post({ postId, url, description, name, userId, picture, refresh, setRef
           <div>
             {userId === userData.userId ? (
               <>
-                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
                 <IconUpdate isEditing={isEditing} setIsEditing={setIsEditing} />
+                <IconDelete postId = {postId} refresh={refresh} setRefresh={setRefresh}/>
               </>
             ) : (
               ""

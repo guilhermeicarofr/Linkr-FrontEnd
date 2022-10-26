@@ -6,7 +6,7 @@ const PublishBox = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 16px;
-  padding: 0 22px 16px 18px;
+  padding: 0 18px 16px 18px;
   gap: 18px;
  
   font-style: normal;
@@ -25,6 +25,7 @@ const PublishBox = styled.div`
     margin-bottom: 16px;
     border-radius: 0;
     width: 100%;
+    gap: 0;
     img {
       display: none;
     }

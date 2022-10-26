@@ -9,7 +9,15 @@ export default function Url({ url }) {
         <p>{url.path}</p>
       </div>
       <div>
-        <img src={url.image} alt="url" />
+        <img
+          src={url.image}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src =
+              "https://neilpatel.com/wp-content/uploads/2019/05/imagem-de-tela-de-uma-url.jpeg";
+          }}
+          alt="url"
+        />
       </div>
     </UrlStyle>
   );

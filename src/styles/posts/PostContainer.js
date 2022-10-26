@@ -49,6 +49,7 @@ export const PostContainer = styled.div`
     border-radius: 0;
     min-height: 232px;
     > div:first-child {
+      text-align: center;
       img {
         width: 40px;
         height: 40px;
