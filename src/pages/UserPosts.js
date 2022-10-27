@@ -64,7 +64,9 @@ export default function UserTimeline() {
             </div>
            <div>
            {Number(id) !== userData.userId ? (
-              <FollowButton/>
+              <FollowButton 
+                followedId={id}
+              />
             ) : (
               ""
             )}

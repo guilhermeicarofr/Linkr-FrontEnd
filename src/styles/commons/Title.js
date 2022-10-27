@@ -14,6 +14,7 @@ export const Title = styled.div`
     display: flex;
     align-items: center;
     gap: 18px;
+    word-break: break-all;
   }
 
   h2 {
