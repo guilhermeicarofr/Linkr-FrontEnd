@@ -10,11 +10,6 @@ export const SmallButton = styled(Button)`
   background-color: ${(props) => props.following ? "#ffffff" : "#1877f2"};
   color: ${(props) => props.following ? "#1877f2" : "ffffff"};
 
-  &:disabled {
-    opacity: 0.7;
-  }
-  
-
   @media (max-width: 937px) {
     font-size: 13px;
     height: 22px;

@@ -8,6 +8,8 @@ import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
 import { PostContainer } from "../../styles/posts/PostContainer";
+import IconComment from "./IconComment";
+import styled from "styled-components";
 
 function Post({ postId, url, description, name, userId, picture }) {
   const { userData } = useContext(LoginContext);
@@ -26,7 +28,10 @@ function Post({ postId, url, description, name, userId, picture }) {
           }}
           alt="user"
         />
-        <IconLike postId={postId} />
+        <Icons>
+          <IconLike postId={postId} />
+          <IconComment />
+        </Icons>
       </div>
       <div>
         <span>
@@ -73,3 +78,10 @@ const tagStyle = {
   margin: "0px 2px",
   cursor: "pointer",
 };
+
+const Icons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`
