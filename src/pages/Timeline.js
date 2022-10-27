@@ -53,12 +53,9 @@ function Timeline() {
                   name={p.name}
                   userId={p.userId}
                   picture={p.picture}
-<<<<<<< HEAD
-=======
                   shareId={p.shareId}
                   shareUserId={p.shareUserId}
-                  shareUserName={p.shareUserName}            
->>>>>>> main
+                  shareUserName={p.shareUserName}
                 />
               ))
             ) : (
