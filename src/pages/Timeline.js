@@ -10,6 +10,7 @@ import { Feed, Wrapper } from "../styles/posts/Feed";
 import CreatePost from "../components/post/CreatePost";
 import Trending from "../components/trending/Trending";
 import Post from "../components/post/Posts";
+import Comments from "../components/comments/Comments";
 
 function Timeline() {
   const { config,refresh} = useContext(LoginContext);
@@ -43,19 +44,26 @@ function Timeline() {
             <CreatePost/>
             {posts.length ? (
               posts.map((p, index) => (
-                <Post
-                  key={index}
-                  postId={p.postId}
-                  url={p.url}
-                  description={p.description}
-                  name={p.name}
-                  userId={p.userId}
-                  picture={p.picture}                  
-                />
+                <>
+                  <Post
+                    postId={p.postId}
+                    url={p.url}
+                    description={p.description}
+                    name={p.name}
+                    userId={p.userId}
+                    picture={p.picture}
+                    shareId={p.shareId}
+                    shareUserId={p.shareUserId}
+                    shareUserName={p.shareUserName}            
+                  />
+                  <Comments 
+                    postId={p.postId}
+                  />
+                </>
               ))
             ) : (
               <p>{message}</p>
-            )}
+            )} 
           </Feed>
           <Trending />
         </Wrapper>
@@ -65,3 +73,4 @@ function Timeline() {
 }
 
 export default Timeline;
+

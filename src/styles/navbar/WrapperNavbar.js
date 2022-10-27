@@ -11,7 +11,7 @@ export const WrapperNavbar = styled.div`
   left: 0px;
   background-color: #151515;
   padding: 0px 20px 0px 20px;
-  z-index: 1;
+  z-index: 2;
   cursor: pointer;
 
   @media (max-width: 937px) {

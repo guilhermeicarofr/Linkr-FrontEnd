@@ -12,11 +12,10 @@ export default function FollowButton ({ followedId }){
     useEffect(() => {
         isFollowing({config, followedId})
             .then((res) => {
-                console.log(following);
                 setFollowing(res.data.isFollowing);
             })
             .catch((error) => {
-                console.log(error);
+                alert("Server Error, please refresh or try again later");
             })
 
     }, [config, followedId, setFollowing, following]);

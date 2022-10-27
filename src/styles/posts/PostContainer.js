@@ -8,7 +8,8 @@ export const PostContainer = styled.div`
   margin-bottom: 16px;
   display: flex;
   padding: 18px;
-  > div:first-child {
+  z-index: 1;
+  > div:first-of-type {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +21,7 @@ export const PostContainer = styled.div`
       object-fit: cover;
     }
   }
-  > div:last-child {
+  > div:last-of-type {
     margin-left: 18px;
     width: 90%;
     > span {

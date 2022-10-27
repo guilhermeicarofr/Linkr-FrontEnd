@@ -10,7 +10,7 @@ export const ResultSearch = styled.div`
   padding-top: 46px;
   margin-top: 55px;
   background-color: #e7e7e7;
-  z-index: 3;
+  z-index: 4;
   border-radius: 8px;
   display: ${(props) => (props.disabled ? "none" : "normal")};
 
