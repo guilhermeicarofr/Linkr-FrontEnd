@@ -50,6 +50,14 @@ function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
 
+function followUser({config, followedId }) {
+  return axios.post(`${API}/follow/${followedId}`, {}, config);
+}
+
+function isFollowing({config, followedId }) {
+  return axios.get(`${API}/following/${followedId}`, config)
+}
+
 export {
   signUp,
   publishPost,
@@ -62,5 +70,7 @@ export {
   getUserByName,
   getHashtagsPosts,
   updatePost,
-	deletePost
+	deletePost,
+  followUser,
+  isFollowing
 };

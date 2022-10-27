@@ -12,7 +12,7 @@ export const WrapperSearch = styled.span`
   background-color: #ffffff;
   border-radius: 8px;
   padding: 0px 17px;
-  z-index: 4;
+  z-index: 5;
 
   @media (max-width: 937px) {
     position: initial;

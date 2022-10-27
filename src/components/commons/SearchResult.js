@@ -6,7 +6,8 @@ export default function SearchResult({
   name,
   userId,
   setHiddenSearch,
-}) {
+  followedUserId
+}) { 
   return (
     <Link to={`/user/${userId}`}>
       <Container onClick={() => setHiddenSearch(true)}>
@@ -20,6 +21,7 @@ export default function SearchResult({
           }}
         />
         <h4>{name}</h4>
+        {followedUserId ? <h3>• following</h3>: ""}
       </Container>
     </Link>
   );
@@ -40,6 +42,12 @@ const Container = styled.div`
     width: 39px;
     border-radius: 304px;
     margin-right: 12px;
+  }
+
+  h3{
+    color: #C5C5C5;
+    font-size: 19px;
+    margin-left: 7px;
   }
 
   h4 {
