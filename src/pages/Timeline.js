@@ -50,7 +50,10 @@ function Timeline() {
                   description={p.description}
                   name={p.name}
                   userId={p.userId}
-                  picture={p.picture}                  
+                  picture={p.picture}
+                  shareId={p.shareId}
+                  shareUserId={p.shareUserId}
+                  shareUserName={p.shareUserName}            
                 />
               ))
             ) : (

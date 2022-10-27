@@ -1,20 +1,30 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { useContext, useState } from "react";
+import { BiRepost } from "react-icons/bi";
 import LoginContext from "../../contexts/LoginContext";
 import EditableInput from "./EditableInput";
 import IconDelete from "./Icon-delete";
 import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
-import { PostContainer } from "../../styles/posts/PostContainer";
+import { PostContainer } from "../../styles/posts/PostContainer.js";
+import { ShareHeader } from "../../styles/posts/ShareHeader.js";
 
-function Post({ postId, url, description, name, userId, picture }) {
+function Post({ postId, url, description, name, userId, picture, shareId, shareUserId, shareUserName }) {
+  
   const { userData } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   return (
+    <>
+    {(shareId)?
+      <ShareHeader>
+        <BiRepost size="20px"/>
+        Re-posted by {(shareUserId===userData?.userId)?"you":shareUserName}
+      </ShareHeader>
+    :""}
     <PostContainer>
       <div>
         <img
@@ -64,6 +74,7 @@ function Post({ postId, url, description, name, userId, picture }) {
         <Url url={url} />
       </div>
     </PostContainer>
+    </>
   );
 }
 export default Post;
