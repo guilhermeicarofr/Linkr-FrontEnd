@@ -6,7 +6,7 @@ export const ContainerSearch = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  z-index: 2;
+  z-index: 3;
   position: fixed;
   top: 0px;
   left: 0px;
