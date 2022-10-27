@@ -1,6 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LoginContext from "../../contexts/LoginContext";
-import { followUser } from "../../services/axios";
+import { followUser, isFollowing } from "../../services/axios";
 import {SmallButton} from "../../styles/commons/SmallButton"
 
 export default function FollowButton ({ followedId }){
@@ -9,16 +9,27 @@ export default function FollowButton ({ followedId }){
     const [following, setFollowing] = useState(false)
     const { config } = useContext(LoginContext);
 
+    useEffect(() => {
+        isFollowing({config, followedId})
+            .then((res) => {
+                console.log(following);
+                setFollowing(res.data.isFollowing);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }, [config, followedId, setFollowing, following]);
+
     function follow() {
         setDisableFollow(true);
 
         followUser({config, followedId})
-            .then((res) => {
+            .then(() => {
                 setFollowing(!following);
                 setDisableFollow(false);
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(() => {
                 alert("Unable to complete requisition, please try again");
                 setDisableFollow(false)
             });

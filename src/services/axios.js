@@ -52,7 +52,11 @@ function updatePost({ body, config, postId }) {
 
 function followUser({config, followedId }) {
   return axios.post(`${API}/follow/${followedId}`, {}, config);
-};
+}
+
+function isFollowing({config, followedId }) {
+  return axios.get(`${API}/following/${followedId}`, config)
+}
 
 export {
   signUp,
@@ -67,5 +71,6 @@ export {
   getHashtagsPosts,
   updatePost,
 	deletePost,
-  followUser
+  followUser,
+  isFollowing
 };
