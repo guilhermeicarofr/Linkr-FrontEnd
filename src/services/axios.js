@@ -78,6 +78,10 @@ function unsharePost({ config, shareId }) {
   return axios.delete(`${API}/shares/${shareId}`, config);
 }
 
+function countShares({ config, postId }) {
+  return axios.get(`${API}/shares/${postId}`, config);
+}
+
 function countProfilesFollowed( config ) {
   return axios.get(`${API}/following`, config);
 }
@@ -102,5 +106,6 @@ export {
   getCountComments,
   sharePost,
   unsharePost,
-  countProfilesFollowed
+  countProfilesFollowed,
+  countShares
 };
