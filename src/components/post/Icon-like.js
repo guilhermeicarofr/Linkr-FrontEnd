@@ -65,7 +65,7 @@ export default function IconLike(postId) {
 			.catch((error) => {
 				alert(error);
 			});
-	}, [postId, config, userData, isLiked]);
+	}, [postId, config, userData, isLiked, refresh, setRefresh]);
 
 	function likeClick() {
 		toggleLike(postId.postId, config)
