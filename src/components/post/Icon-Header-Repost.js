@@ -20,7 +20,7 @@ function IconRepost({ postId }) {
   }, [refresh, config, postId]);
 
   function handleShare() {
-    if (window.confirm("repostar?")) {
+    if (window.confirm("Do you want to re-post this link?")) {
       sharePost({ config, postId }).then((res) => {
         setRefresh(!refresh);
       })
@@ -45,7 +45,7 @@ function ShareHeader({ shareId, shareUserId, shareUserName }) {
 
   function handleUnshare() {
     if (shareUserId === userData.userId && shareId !== null) {
-      if (window.confirm("Excluir seu re-post?")) {
+      if (window.confirm("Do you want to delete your re-post?")) {
         unsharePost({ config, shareId }).then((res) => {
           setRefresh(!refresh);
         })
