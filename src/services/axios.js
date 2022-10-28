@@ -50,11 +50,11 @@ function updatePost({ body, config, postId }) {
   return axios.put(`${API}/post/update/${postId}`, body, config);
 }
 
-function followUser({config, followedId }) {
+function followUser({ config, followedId }) {
   return axios.post(`${API}/follow/${followedId}`, {}, config);
 }
 
-function isFollowing({config, followedId }) {
+function isFollowing({ config, followedId }) {
   return axios.get(`${API}/following/${followedId}`, config)
 }
 
@@ -68,6 +68,18 @@ function createComment({body, config, postId}) {
 
 function getCountComments({config, postId}) {
   return axios.get(`${API}/comments/count/${postId}`, config);
+}
+
+function sharePost({ config, postId }) {
+  return axios.post(`${API}/shares/${postId}`, {}, config);
+}
+
+function unsharePost({ config, shareId }) {
+  return axios.delete(`${API}/shares/${shareId}`, config);
+}
+
+function countProfilesFollowed( config ) {
+  return axios.get(`${API}/following`, config);
 }
 
 export {
@@ -87,5 +99,8 @@ export {
   isFollowing,
   getPostComments,
   createComment,
-  getCountComments
+  getCountComments,
+  sharePost,
+  unsharePost,
+  countProfilesFollowed
 };

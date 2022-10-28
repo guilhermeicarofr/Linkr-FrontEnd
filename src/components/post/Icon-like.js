@@ -7,7 +7,7 @@ import { getLikes, toggleLike } from "../../services/axios";
 import { useContext, useEffect, useState } from "react";
 
 export default function IconLike(postId) {
-	const { userData, config } = useContext(LoginContext);
+	const { userData, config, setRefresh, refresh } = useContext(LoginContext);
 	const [likes, setLikes] = useState("");
 	const [isLiked, setIsLiked] = useState(false);
 	const [likesNumber, setLikesNumber] = useState(0);
@@ -60,11 +60,12 @@ export default function IconLike(postId) {
 								" people"
 						);
 				}
+				setRefresh(!refresh);
 			})
 			.catch((error) => {
 				alert(error);
 			});
-	}, [postId, config, userData, isLiked]);
+	}, [postId, config, userData, isLiked, refresh, setRefresh]);
 
 	function likeClick() {
 		toggleLike(postId.postId, config)
