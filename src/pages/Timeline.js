@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import Navbar from "../components/commons/Navbar";
 
 import LoginContext from "../contexts/LoginContext";
-import { getTimeline } from "../services/axios";
+import { countProfilesFollowed, getTimeline } from "../services/axios";
 import { Page } from "../styles/commons/Page";
 import { Title } from "../styles/commons/Title";
 import { Feed, Wrapper } from "../styles/posts/Feed";
@@ -22,7 +22,13 @@ function Timeline() {
       .then((res) => {
         setPosts(res.data);
         if (!res.data.length) {
-          setMessage("There are no posts yet");
+          countProfilesFollowed(config).then((res) => {
+            if(res.data?.count < 1) {
+              setMessage("You don't follow anyone yet. Search for new friends!");
+            } else {
+              setMessage("No posts found from your friends");
+            }
+          })        
         }
       })
       .catch((error) => {
