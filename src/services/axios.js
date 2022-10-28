@@ -58,6 +58,10 @@ function isFollowing({config, followedId }) {
   return axios.get(`${API}/following/${followedId}`, config)
 }
 
+function getPostComments({config, postId}) {
+  return axios.get(`${API}/comments/${postId}`, config);
+}
+
 export {
   signUp,
   publishPost,
@@ -72,5 +76,6 @@ export {
   updatePost,
 	deletePost,
   followUser,
-  isFollowing
+  isFollowing,
+  getPostComments
 };

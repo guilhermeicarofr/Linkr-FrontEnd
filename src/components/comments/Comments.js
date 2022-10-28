@@ -1,21 +1,54 @@
 import styled from "styled-components";
 import { TbSend } from "react-icons/tb"
+import { useContext, useEffect, useState } from "react";
+import { getPostComments } from "../../services/axios";
+import LoginContext from "../../contexts/LoginContext";
+import Comment from "./Comment";
 
 
-export default function Comments({postId}) {
+export default function Comments({picture, postId}) {
+    const { config, userData } = useContext(LoginContext);
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        getPostComments({config, postId})
+            .then((res) => {
+                setComments(res.data);
+            })
+            .catch((error) => {
+                if(error.response.status === 404) {
+                    alert("Post Not Found")
+                }
+                if(error.response.status === 401) {
+                    alert("Unauthorized")   
+                }
+                if(error.response.status === 500) {
+                    alert("Error")
+                }
+            })
+    }, [config, postId]);
+
+
     return(
         <ContainerPostComments>
             <CommentsWrapper>
-                <Comment>
-                    <img src="https://i.pinimg.com/originals/76/b9/3d/76b93d3a1a0ba058f998b14c1f5547e0.jpg" alt="img"/>
-                    <Texts>
-                        <h1>djiodijajdojdoaj <span>• following</span></h1>
-                        <h2>Adorei esse post, ajuda muito a usar Material UI com React!</h2>
-                    </Texts>
-                </Comment>
+                {comments.length > 0 ? comments.map((value, index) => (
+                    <Comment 
+                        key={index}
+                        comment={value.comment}
+                        picture={value.picture}
+                        isFollowing={value.isFollowing}
+                        name={value.name}
+                        postId={value.postId}
+                        userId={value.userId}
+                    />
+                )) 
+                : 
+                    <></>
+                }
             </CommentsWrapper>
             <InputComment>
-                <img src="https://i.pinimg.com/originals/76/b9/3d/76b93d3a1a0ba058f998b14c1f5547e0.jpg" alt="img"/>
+                <img src={userData.picture} alt="img"/>
                 <CommentForm>
                    <input
                         placeholder="write a comment..."
@@ -49,41 +82,6 @@ const CommentsWrapper = styled.div`
     height: auto;
     width: 100%;
     overflow-y: scroll;
-`
-const Comment = styled.div`
-    height: 65px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #353535;
-
-    span {
-        color: #565656;
-    }
-
-    img {
-        height: 39px;
-        width: 39px;
-        border-radius: 50px;
-        object-fit: cover;
-        margin-right: 25px;
-    }
-`
-const Texts = styled.div`
-    h1 {
-        font-family: Lato;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 17px;
-        color: #F3F3F3;
-        margin-bottom: 6px;
-    }
-    h2 {
-        font-family: Lato;
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 17px;
-        color: #ACACAC;
-    }
 `
 const InputComment = styled.div`
     display: flex;

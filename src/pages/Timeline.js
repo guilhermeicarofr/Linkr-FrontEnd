@@ -11,10 +11,11 @@ import CreatePost from "../components/post/CreatePost";
 import Trending from "../components/trending/Trending";
 import Post from "../components/post/Posts";
 import Comments from "../components/comments/Comments";
+import LoadingMorePosts from "../components/post/Loading-more-posts";
 
 function Timeline() {
-  const { config,refresh} = useContext(LoginContext);
-  const [posts, setPosts] = useState([]);  
+  const { config, refresh } = useContext(LoginContext);
+  const [posts, setPosts] = useState([]);
   const [message, setMessage] = useState("Loading ...");
 
   useEffect(() => {
@@ -41,7 +42,8 @@ function Timeline() {
             <Title>
               <h2>timeline</h2>
             </Title>
-            <CreatePost/>
+            <CreatePost />
+            <LoadingMorePosts posts={posts} setPosts={setPosts} />
             {posts.length ? (
               posts.map((p, index) => (
                 <>

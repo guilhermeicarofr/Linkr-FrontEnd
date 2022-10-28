@@ -24,8 +24,11 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (search.length < 3) {
+      return setHiddenSearch(true)
+    }
     getUserByName({ config, search })
-      .then((res) => {
+      .then((res) => {        
         setUsersSearch(res.data);
         setHiddenSearch(false);
       })
@@ -111,6 +114,7 @@ export default function Navbar() {
             picture={value.picture}
             name={value.name}
             userId={value.id}
+            followedBy={value.followedBy}
           />
         ))}
       </ResultSearch>
