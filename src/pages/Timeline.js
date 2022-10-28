@@ -10,7 +10,6 @@ import { Feed, Wrapper } from "../styles/posts/Feed";
 import CreatePost from "../components/post/CreatePost";
 import Trending from "../components/trending/Trending";
 import Post from "../components/post/Posts";
-import Comments from "../components/comments/Comments";
 import LoadingMorePosts from "../components/post/Loading-more-posts";
 
 function Timeline() {
@@ -58,9 +57,9 @@ function Timeline() {
                     shareUserId={p.shareUserId}
                     shareUserName={p.shareUserName}            
                   />
-                  <Comments 
+                  {/* <Comments 
                     postId={p.postId}
-                  />
+                  /> */}
                 </>
               ))
             ) : (

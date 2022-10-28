@@ -12,11 +12,13 @@ import { PostContainer } from "../../styles/posts/PostContainer";
 import IconComment from "./IconComment";
 import { ShareHeader } from "../../styles/posts/ShareHeader.js";
 import styled from "styled-components";
+import Comments from "../comments/Comments";
 
 function Post({ postId, url, description, name, userId, picture, shareId, shareUserId, shareUserName }) {
   
   const { userData } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [disableComments, setDisableComments] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -40,7 +42,10 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
         />
         <Icons>
           <IconLike postId={postId} />
-          <IconComment />
+          <IconComment 
+            setDisableComments={setDisableComments}
+            disableComments={disableComments}
+          />
         </Icons>
       </div>
       <div>
@@ -79,6 +84,10 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
         <Url url={url} />
       </div>
     </PostContainer>
+    <Comments 
+      disableComments={disableComments}
+      postId={postId}
+    />
     </>
   );
 }

@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { TbSend } from "react-icons/tb"
 import { useContext, useEffect, useState } from "react";
-import { getPostComments } from "../../services/axios";
+import { createComment, getPostComments } from "../../services/axios";
 import LoginContext from "../../contexts/LoginContext";
 import Comment from "./Comment";
 
 
-export default function Comments({picture, postId}) {
-    const { config, userData } = useContext(LoginContext);
+export default function Comments({postId, disableComments}) {
+    const { config, userData, setRefresh, refresh } = useContext(LoginContext);
     const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState("")
 
     useEffect(() => {
         getPostComments({config, postId})
@@ -26,11 +27,28 @@ export default function Comments({picture, postId}) {
                     alert("Error")
                 }
             })
-    }, [config, postId]);
+    }, [config, refresh, postId]);
+
+    function sendComment(e) {
+        e.preventDefault()
+
+        const body = {
+            comment
+        }
+
+        createComment({body, config, postId})
+            .then((res) => {
+                setRefresh(!refresh);
+                setComment("");
+            })
+            .catch((error) => {
+                console.log(error.status);
+            })
+    }
 
 
     return(
-        <ContainerPostComments>
+        <ContainerPostComments disabled={disableComments}>
             <CommentsWrapper>
                 {comments.length > 0 ? comments.map((value, index) => (
                     <Comment 
@@ -49,9 +67,16 @@ export default function Comments({picture, postId}) {
             </CommentsWrapper>
             <InputComment>
                 <img src={userData.picture} alt="img"/>
-                <CommentForm>
+                <CommentForm onSubmit={sendComment}>
                    <input
                         placeholder="write a comment..."
+                        name="comment"
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        disabled={false}
+                        type="textl"
+                        maxLength="250"
+                        required
                    />
                     <button>
                     <TbSend
@@ -75,7 +100,8 @@ const ContainerPostComments = styled.div`
     width: 611px;
     border-radius: 16px;
     margin-top: -45px;
-    margin-bottom: 16px;  
+    margin-bottom: 16px;
+    display: ${(props) => props.disabled ? "normal" : "none"};
 `
 const CommentsWrapper = styled.div`
     max-height: 195px;

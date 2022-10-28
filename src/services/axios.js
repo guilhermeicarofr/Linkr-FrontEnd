@@ -62,6 +62,10 @@ function getPostComments({config, postId}) {
   return axios.get(`${API}/comments/${postId}`, config);
 }
 
+function createComment({body, config, postId}) {
+  return axios.post(`${API}/comments/${postId}`, body, config )
+}
+
 export {
   signUp,
   publishPost,
@@ -77,5 +81,7 @@ export {
 	deletePost,
   followUser,
   isFollowing,
-  getPostComments
+  getPostComments,
+  createComment
+
 };

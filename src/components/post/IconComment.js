@@ -3,18 +3,22 @@ import { AiOutlineComment } from "react-icons/ai";
 import styled from "styled-components";
 
 
-export default function IconComment() {
+export default function IconComment({disableComments, setDisableComments}) {
     const [commentNumber, setCommentNumber] = useState(0);
 
     return (
         <CommnetStyle>
-            <AiOutlineComment />
-            <p>{commentNumber} likes</p>
+            <AiOutlineComment onClick={() => setDisableComments(!disableComments) }/>
+            <p>{commentNumber}</p>
+			<p>comments</p>
         </CommnetStyle>
     );
 };
 
 const CommnetStyle = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
     font-size: 20px;
 	color: #ffffff;
 	display: flex;
