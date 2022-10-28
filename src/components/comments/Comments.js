@@ -1,9 +1,12 @@
-import styled from "styled-components";
 import { TbSend } from "react-icons/tb"
 import { useContext, useEffect, useState } from "react";
 import { createComment, getPostComments } from "../../services/axios";
 import LoginContext from "../../contexts/LoginContext";
 import Comment from "./Comment";
+import { CommentsWrapper } from "../../styles/comments/CommentsWrapper";
+import { InputComment } from "../../styles/comments/InputComment";
+import { CommentForm } from "../../styles/comments/CommentForm";
+import { ContainerPostComments } from "../../styles/comments/ContainerPostComments";
 
 
 export default function Comments({postId, disableComments, userId}) {
@@ -18,19 +21,19 @@ export default function Comments({postId, disableComments, userId}) {
                 setComments(res.data);
             })
             .catch((error) => {
+                if(error.response.status === 500) {
+                    return;
+                }
                 if(error.response.status === 404) {
                     alert("Post Not Found")
                 }
                 if(error.response.status === 401) {
                     alert("Unauthorized")   
                 }
-                if(error.response.status === 500) {
-                    alert("Error")
-                }
             })
     }, [config, refresh, postId]);
 
-    function sendComment(e) {
+    async function sendComment(e) {
         e.preventDefault()
 
         setDisableSend(true)
@@ -39,16 +42,15 @@ export default function Comments({postId, disableComments, userId}) {
             comment
         }
 
-        createComment({body, config, postId})
-            .then((res) => {
-                setRefresh(!refresh);
+        try {
+            await createComment({body, config, postId})
                 setComment("");
-                setDisableSend(false)
-            })
-            .catch((error) => {
-                console.log(error.status);
                 setDisableSend(false);
-            })
+                setRefresh(!refresh);
+        } catch (error) {
+                setDisableSend(false);
+        }
+                
     }
 
 
@@ -97,74 +99,4 @@ export default function Comments({postId, disableComments, userId}) {
     );
 } 
 
-const ContainerPostComments = styled.div`
-    min-height: 110px;
-    padding: 30px 20px 0px 20px;
-    background-color: #1E1E1E;
-    width: 611px;
-    border-radius: 16px;
-    margin-top: -45px;
-    margin-bottom: 16px;
-    display: ${(props) => props.disabled ? "normal" : "none"};
 
-    @media (max-width: 937px) {
-        width: 100%;
-        border-radius: 0;
-
-    }
-`
-const CommentsWrapper = styled.div`
-    max-height: 195px;
-    height: auto;
-    width: 100%;
-    overflow-y: scroll;
-`
-const InputComment = styled.div`
-    display: flex;
-    align-items: center;
-    height: 78px;
-
-    img {
-        height: 39px;
-        width: 39px;
-        border-radius: 50px;
-        object-fit: cover;
-        margin-right: 25px;
-    }
-`
-const CommentForm = styled.form`
-    display: flex;
-    width: 100%;
-    background-color: #252525;
-    border-radius: 8px;
-
-    input {
-        height: 39px;
-        width: 90%;
-        background-color: #252525;
-        padding-left: 18px;
-        color: #ACACAC;
-    }
-
-    input::placeholder {
-       color: #575757;
-       font-family: Lato;
-        font-size: 14px;
-        font-style: italic;
-        font-weight: 400;
-        line-height: 17px;
-        letter-spacing: 0.05em;
-    }
-
-    button {
-        background-color: #252525;
-        border: none;
-        outline: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 10%;
-        border-radius: 8px;
-        cursor: "pointer";
-    }
- `
