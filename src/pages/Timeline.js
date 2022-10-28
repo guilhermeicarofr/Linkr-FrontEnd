@@ -3,7 +3,7 @@ import InfiniteScroll from 'react-infinite-scroller';
 import Navbar from "../components/commons/Navbar";
 
 import LoginContext from "../contexts/LoginContext";
-import { getTimeline } from "../services/axios";
+import { countProfilesFollowed, getTimeline } from "../services/axios";
 import { Page } from "../styles/commons/Page";
 import { Title } from "../styles/commons/Title";
 import { Feed, Wrapper } from "../styles/posts/Feed";
@@ -20,50 +20,28 @@ function Timeline() {
   const [morePosts, setMorePosts] = useState(true);
   const [count, setCount] = useState(0);
 
-  // useEffect(() => {
-  //   getTimeline(config)
-  //     .then((res) => {
-  //       setPosts(res.data);
-  //       if (!res.data.length) {
-  //         countProfilesFollowed(config).then((res) => {
-  //           if(res.data?.count < 1) {
-  //             setMessage("You don't follow anyone yet. Search for new friends!");
-  //           } else {
-  //             setMessage("No posts found from your friends");
-  //           }
-  //         })        
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       setMessage(
-  //         "An error occured while trying to fetch the posts, please refresh the page"
-  //       );
-  //     });
-  // }, [refresh, config]);
-  
   useEffect(() => {
-
-    const fetchData = async () => {
-      try {
-
-    const timeline = await getTimeline(config, {count:0})
-      
-        setPosts(timeline.data);
-        if (!timeline.data.length) {
-          setMessage("There are no posts yet");
+    getTimeline(config)
+      .then((res) => {
+        setPosts(res.data);
+        if (!res.data.length) {
+          countProfilesFollowed(config).then((res) => {
+            if(res.data?.count < 1) {
+              setMessage("You don't follow anyone yet. Search for new friends!");
+            } else {
+              setMessage("No posts found from your friends");
+            }
+          })        
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         setMessage(
           "An error occured while trying to fetch the posts, please refresh the page"
         );
-      };
-    }
-
-      fetchData()
+      });
   }, [refresh, config]);
-
-
-
+  
+  
   async function newPosts() {
   
     try {
