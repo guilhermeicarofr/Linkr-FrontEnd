@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import LoginContext from "../../contexts/LoginContext";
 
 export default function SearchResult({
   picture,
   name,
   userId,
   setHiddenSearch,
-  followedUserId
+  followedBy
 }) { 
+  const {userData} = useContext(LoginContext);
+
   return (
     <Link to={`/user/${userId}`}>
       <Container onClick={() => setHiddenSearch(true)}>
@@ -21,7 +25,7 @@ export default function SearchResult({
           }}
         />
         <h4>{name}</h4>
-        {followedUserId ? <h3>• following</h3>: ""}
+        {followedBy === userData.userId? <h3>• following</h3>: ""}
       </Container>
     </Link>
   );
@@ -32,7 +36,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 39px;
-
   margin: 13px 0px 16px 0px;
   padding-left: 17px;
   cursor: pointer;

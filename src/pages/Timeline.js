@@ -51,22 +51,22 @@ function Timeline() {
             <LoadingMorePosts posts={posts} setPosts={setPosts} />
             {posts.length ? (
               posts.map((p, index) => (
-                <Post
-                  key={index}
-                  postId={p.postId}
-                  url={p.url}
-                  description={p.description}
-                  name={p.name}
-                  userId={p.userId}
-                  picture={p.picture}
-                  shareId={p.shareId}
-                  shareUserId={p.shareUserId}
-                  shareUserName={p.shareUserName}
-                />
+                  <Post
+                    key={index}
+                    postId={p.postId}
+                    url={p.url}
+                    description={p.description}
+                    name={p.name}
+                    userId={p.userId}
+                    picture={p.picture}
+                    shareId={p.shareId}
+                    shareUserId={p.shareUserId}
+                    shareUserName={p.shareUserName}            
+                  />
               ))
             ) : (
               <p>{message}</p>
-            )}
+            )} 
           </Feed>
           <Trending />
         </Wrapper>
@@ -76,3 +76,4 @@ function Timeline() {
 }
 
 export default Timeline;
+

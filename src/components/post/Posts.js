@@ -8,14 +8,18 @@ import IconDelete from "./Icon-delete";
 import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
-import { PostContainer } from "../../styles/posts/PostContainer.js";
+import { PostContainer } from "../../styles/posts/PostContainer";
+import IconComment from "./IconComment";
 import { ShareHeader } from "../../styles/posts/ShareHeader.js";
+import styled from "styled-components";
+import Comments from "../comments/Comments";
 import { sharePost, unsharePost } from "../../services/axios.js";
 
 function Post({ postId, url, description, name, userId, picture, shareId, shareUserId, shareUserName }) {
   
   const { userData, config, refresh, setRefresh } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [disableComments, setDisableComments] = useState(false);
   const navigate = useNavigate();
 
   function handleShare() {
@@ -61,7 +65,14 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
           }}
           alt="user"
         />
-        <IconLike postId={postId} />
+        <Icons>
+          <IconLike postId={postId} />
+          <IconComment 
+            setDisableComments={setDisableComments}
+            disableComments={disableComments}
+            postId={postId}
+          />
+        </Icons>
       </div>
       <div>
         <span>
@@ -99,6 +110,11 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
         <Url url={url} />
       </div>
     </PostContainer>
+    <Comments 
+      disableComments={disableComments}
+      postId={postId}
+      userId={userId}
+    />
     </>
   );
 }
@@ -109,3 +125,10 @@ const tagStyle = {
   margin: "0px 2px",
   cursor: "pointer",
 };
+
+const Icons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`
