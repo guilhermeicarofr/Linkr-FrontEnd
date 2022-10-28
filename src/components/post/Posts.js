@@ -45,6 +45,7 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
           <IconComment 
             setDisableComments={setDisableComments}
             disableComments={disableComments}
+            postId={postId}
           />
         </Icons>
       </div>
@@ -87,6 +88,7 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
     <Comments 
       disableComments={disableComments}
       postId={postId}
+      userId={userId}
     />
     </>
   );

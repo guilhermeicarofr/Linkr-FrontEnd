@@ -36,7 +36,6 @@ const Container = styled.div`
   align-items: center;
   width: 100%;
   height: 39px;
-
   margin: 13px 0px 16px 0px;
   padding-left: 17px;
   cursor: pointer;

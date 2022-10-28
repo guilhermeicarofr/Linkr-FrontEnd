@@ -1,10 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AiOutlineComment } from "react-icons/ai";
 import styled from "styled-components";
+import LoginContext from "../../contexts/LoginContext";
+import { getCountComments } from "../../services/axios";
 
 
-export default function IconComment({disableComments, setDisableComments}) {
+export default function IconComment({disableComments, setDisableComments, postId}) {
     const [commentNumber, setCommentNumber] = useState(0);
+	const { config, refresh } = useContext(LoginContext);
+
+	useEffect(() => {
+		getCountComments({config, postId})
+			.then((res) => {
+				setCommentNumber(res.data.commentCount)
+			})
+			.catch(() => {
+				alert("Error getting comment count")
+			})
+	}, [config, setCommentNumber, postId, refresh]);
 
     return (
         <CommnetStyle>

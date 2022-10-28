@@ -1,17 +1,20 @@
-import { useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
-import LoginContext from "../../contexts/LoginContext"
 
-export default function Comment({comment, isFollowing, name, picture, postId, userId}) {
-    const { userData } = useContext(LoginContext);
+export default function Comment({comment, isFollowing, name, picture, userId, authorId}) {
+    const navigate = useNavigate();
+
+    function navigateUser(userId) {
+        navigate(`/user/${userId}`)
+    }
 
     return (
         <CommentWrapper>
-            <img src={picture} alt="img"/>
+            <img src={picture} alt="img" onClick={() => navigateUser(userId)}/>
             <Texts>
-                <h1>{name}
+                <h1 onClick={() => navigateUser(userId)}>{name}
                     <span>
-                        {userId === userData.userId ? 
+                        {userId === authorId ? 
                             `    •  post's author` 
                             : 
                             isFollowing ? "    •  following" : ""
@@ -33,6 +36,7 @@ const CommentWrapper = styled.div`
 
     span {
         color: #565656;
+        cursor: default;
     }
 
     img {
@@ -41,6 +45,7 @@ const CommentWrapper = styled.div`
         border-radius: 50px;
         object-fit: cover;
         margin-right: 25px;
+        cursor: pointer;
     }
 `
 
@@ -52,6 +57,7 @@ const Texts = styled.div`
         line-height: 17px;
         color: #F3F3F3;
         margin-bottom: 6px;
+        cursor: pointer;
     }
     h2 {
         font-family: Lato;

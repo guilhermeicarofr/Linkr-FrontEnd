@@ -45,8 +45,8 @@ function Timeline() {
             <LoadingMorePosts posts={posts} setPosts={setPosts} />
             {posts.length ? (
               posts.map((p, index) => (
-                <>
                   <Post
+                    key={index}
                     postId={p.postId}
                     url={p.url}
                     description={p.description}
@@ -57,10 +57,6 @@ function Timeline() {
                     shareUserId={p.shareUserId}
                     shareUserName={p.shareUserName}            
                   />
-                  {/* <Comments 
-                    postId={p.postId}
-                  /> */}
-                </>
               ))
             ) : (
               <p>{message}</p>

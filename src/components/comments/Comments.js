@@ -6,10 +6,11 @@ import LoginContext from "../../contexts/LoginContext";
 import Comment from "./Comment";
 
 
-export default function Comments({postId, disableComments}) {
+export default function Comments({postId, disableComments, userId}) {
     const { config, userData, setRefresh, refresh } = useContext(LoginContext);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("")
+    const [disableSend, setDisableSend] = useState(false);
 
     useEffect(() => {
         getPostComments({config, postId})
@@ -32,6 +33,8 @@ export default function Comments({postId, disableComments}) {
     function sendComment(e) {
         e.preventDefault()
 
+        setDisableSend(true)
+
         const body = {
             comment
         }
@@ -40,9 +43,11 @@ export default function Comments({postId, disableComments}) {
             .then((res) => {
                 setRefresh(!refresh);
                 setComment("");
+                setDisableSend(false)
             })
             .catch((error) => {
                 console.log(error.status);
+                setDisableSend(false);
             })
     }
 
@@ -57,8 +62,8 @@ export default function Comments({postId, disableComments}) {
                         picture={value.picture}
                         isFollowing={value.isFollowing}
                         name={value.name}
-                        postId={value.postId}
                         userId={value.userId}
+                        authorId={userId}
                     />
                 )) 
                 : 
@@ -73,16 +78,15 @@ export default function Comments({postId, disableComments}) {
                         name="comment"
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
-                        disabled={false}
+                        disabled={disableSend}
                         type="textl"
                         maxLength="250"
                         required
                    />
-                    <button>
+                    <button disabled={disableSend}>
                     <TbSend
                         style={{
                             color: "#F3F3F3",
-                            cursor: "pointer",
                           }}
                         size={15}
                     />
@@ -102,6 +106,12 @@ const ContainerPostComments = styled.div`
     margin-top: -45px;
     margin-bottom: 16px;
     display: ${(props) => props.disabled ? "normal" : "none"};
+
+    @media (max-width: 937px) {
+        width: 100%;
+        border-radius: 0;
+
+    }
 `
 const CommentsWrapper = styled.div`
     max-height: 195px;
@@ -155,5 +165,6 @@ const CommentForm = styled.form`
         align-items: center;
         width: 10%;
         border-radius: 8px;
+        cursor: "pointer";
     }
  `
