@@ -13,25 +13,50 @@ import IconComment from "./IconComment";
 import { ShareHeader } from "../../styles/posts/ShareHeader.js";
 import styled from "styled-components";
 import Comments from "../comments/Comments";
+import { sharePost, unsharePost } from "../../services/axios.js";
 
 function Post({ postId, url, description, name, userId, picture, shareId, shareUserId, shareUserName }) {
   
-  const { userData } = useContext(LoginContext);
+  const { userData, config, refresh, setRefresh } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
   const [disableComments, setDisableComments] = useState(false);
   const navigate = useNavigate();
 
+  function handleShare() {
+    if(window.confirm("repostar?")) {
+      sharePost({config, postId}).then((res) => {
+        setRefresh(!refresh);
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    }
+  }
+
+  function handleUnshare() {
+    if(shareUserId===userData.userId && shareId!==null) {
+      if(window.confirm("Excluir seu re-post?")) {
+        unsharePost({config, shareId}).then((res) => {
+          setRefresh(!refresh);
+        })
+        .catch((error) => {
+          alert(error);
+        });
+      }
+    }
+  }
+
   return (
     <>
     {(shareId)?
-      <ShareHeader>
+      <ShareHeader onClick={handleUnshare}>
         <BiRepost size="20px"/>
         Re-posted by {(shareUserId===userData?.userId)?"you":shareUserName}
       </ShareHeader>
     :""}
     <PostContainer>
       <div>
-        <img
+        <img onClick={handleShare}
           src={picture}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
