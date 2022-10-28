@@ -19,8 +19,6 @@ export default function App() {
   const PrivateHashtag =  <PrivatePage> <Hashtag /> </PrivatePage>
   const PrivateUserPosts = <PrivatePage>  <UserTimeline /> </PrivatePage>
 
-  console.log(refresh)
-
   return (
     <BrowserRouter>
       <GlobalStyle />
