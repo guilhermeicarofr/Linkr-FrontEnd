@@ -15,7 +15,7 @@ function signInApi(body) {
 }
 
 function getTimeline(config, count) {
-  return axios.get(`${API}/timeline?cut=${count}`, config);
+  return axios.get(`${API}/timeline?count=${count}`, config);
 }
 
 function listTrending(config) {

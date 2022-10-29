@@ -16,12 +16,12 @@ import styled from "styled-components";
 function Timeline() {
   const { config, refresh } = useContext(LoginContext);
   const [posts, setPosts] = useState([]);
-  const [message, setMessage] = useState("Loading ...");
+  const [message, setMessage] = useState("");
   const [morePosts, setMorePosts] = useState(true);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    getTimeline(config)
+    getTimeline(config, 0)
       .then((res) => {
         setPosts(res.data);
         if (!res.data.length) {
@@ -52,7 +52,7 @@ function Timeline() {
         if (recentPosts.length === 0) {
           setMorePosts(false);
       }
-      setCount(count + 2);
+      setCount(count + recentPosts.length);
     } catch (error) {
      
       alert(
@@ -113,4 +113,5 @@ export default Timeline;
 
 
 const Loading = styled.div `
-color: red`
+margin:20px 0;
+color: #b7b7b7`

@@ -14,9 +14,6 @@ function IconRepost({ postId }) {
     countShares({config, postId}).then((res) => {
       setShares(res.data.shareCount);
     })
-    .catch((error) => {
-      alert(error);
-    });
   }, [refresh, config, postId]);
 
   function handleShare() {
@@ -24,9 +21,6 @@ function IconRepost({ postId }) {
       sharePost({ config, postId }).then((res) => {
         setRefresh(!refresh);
       })
-      .catch((error) => {
-        alert(error);
-      });
     }
   }
 

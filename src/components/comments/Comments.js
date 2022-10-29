@@ -24,12 +24,6 @@ export default function Comments({postId, disableComments, userId}) {
                 if(error.response.status === 500) {
                     return;
                 }
-                if(error.response.status === 404) {
-                    alert("Post Not Found")
-                }
-                if(error.response.status === 401) {
-                    alert("Unauthorized")   
-                }
             })
     }, [config, refresh, postId]);
 
