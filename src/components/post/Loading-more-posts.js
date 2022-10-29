@@ -26,14 +26,14 @@ export default function LoadingMorePosts({ posts, setPosts }) {
   const [showButton, setShowButton] = useState(false);
   const [newPosts, setNewPosts] = useState([]);
   useInterval(() => {
-    getTimeline(config)
+    getTimeline(config, 0)
       .then((res) => {
         if (differentPosts(posts, res.data).length !== 0) {
           setNewPosts(differentPosts(posts, res.data));
           setShowButton(true);
         }
       })
-      .catch((error) => alert("It's not possible loading more posts"));
+      .catch((error) => console.log("It's not possible loading more posts"));
   }, 15000);
   return (
     <ButtonMorePosts
