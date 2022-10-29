@@ -18,7 +18,7 @@ export default function App() {
   const PrivateTimeLine = <PrivatePage> <Timeline/> </PrivatePage>
   const PrivateHashtag =  <PrivatePage> <Hashtag /> </PrivatePage>
   const PrivateUserPosts = <PrivatePage>  <UserTimeline /> </PrivatePage>
-
+  
   return (
     <BrowserRouter>
       <GlobalStyle />

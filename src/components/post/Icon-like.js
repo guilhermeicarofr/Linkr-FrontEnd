@@ -60,17 +60,17 @@ export default function IconLike(postId) {
 								" people"
 						);
 				}
-				setRefresh(!refresh);
 			})
 			.catch((error) => {
 				alert(error);
 			});
-	}, [postId, config, userData, isLiked, refresh, setRefresh]);
+	}, [postId, config, userData, isLiked, refresh]);
 
 	function likeClick() {
 		toggleLike(postId.postId, config)
 			.then((res) => {
 				setIsLiked(!isLiked);
+				setRefresh(!refresh);
 			})
 			.catch((error) => {
 				alert(error);

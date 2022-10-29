@@ -1,58 +1,33 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ReactTagify } from "react-tagify";
 import { useContext, useState } from "react";
-import { BiRepost } from "react-icons/bi";
 import LoginContext from "../../contexts/LoginContext";
 import EditableInput from "./EditableInput";
 import IconDelete from "./Icon-delete";
 import IconLike from "./Icon-like";
 import IconUpdate from "./Icon-update";
 import Url from "./Url";
-import { PostContainer } from "../../styles/posts/PostContainer.js";
-import { ShareHeader } from "../../styles/posts/ShareHeader.js";
-import { sharePost, unsharePost } from "../../services/axios.js";
+import { PostContainer } from "../../styles/posts/PostContainer";
+import IconComment from "./IconComment";
+import styled from "styled-components";
+import Comments from "../comments/Comments";
+import { IconRepost, ShareHeader } from "./Icon-Header-Repost";
 
 function Post({ postId, url, description, name, userId, picture, shareId, shareUserId, shareUserName }) {
   
-  const { userData, config, refresh, setRefresh } = useContext(LoginContext);
+  const { userData } = useContext(LoginContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [disableComments, setDisableComments] = useState(false);
   const navigate = useNavigate();
-
-  function handleShare() {
-    if(window.confirm("repostar?")) {
-      sharePost({config, postId}).then((res) => {
-        setRefresh(!refresh);
-      })
-      .catch((error) => {
-        alert(error);
-      });
-    }
-  }
-
-  function handleUnshare() {
-    if(shareUserId===userData.userId && shareId!==null) {
-      if(window.confirm("Excluir seu re-post?")) {
-        unsharePost({config, shareId}).then((res) => {
-          setRefresh(!refresh);
-        })
-        .catch((error) => {
-          alert(error);
-        });
-      }
-    }
-  }
 
   return (
     <>
     {(shareId)?
-      <ShareHeader onClick={handleUnshare}>
-        <BiRepost size="20px"/>
-        Re-posted by {(shareUserId===userData?.userId)?"you":shareUserName}
-      </ShareHeader>
+      <ShareHeader shareId={shareId} shareUserId={shareUserId} shareUserName={shareUserName} />
     :""}
     <PostContainer>
       <div>
-        <img onClick={handleShare}
+        <img
           src={picture}
           onError={({ currentTarget }) => {
             currentTarget.onerror = null;
@@ -61,7 +36,15 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
           }}
           alt="user"
         />
-        <IconLike postId={postId} />
+        <Icons>
+          <IconLike postId={postId} />
+          <IconComment 
+            setDisableComments={setDisableComments}
+            disableComments={disableComments}
+            postId={postId}
+          />
+          <IconRepost postId={postId} />
+        </Icons>
       </div>
       <div>
         <span>
@@ -99,6 +82,11 @@ function Post({ postId, url, description, name, userId, picture, shareId, shareU
         <Url url={url} />
       </div>
     </PostContainer>
+    <Comments 
+      disableComments={disableComments}
+      postId={postId}
+      userId={userId}
+    />
     </>
   );
 }
@@ -109,3 +97,10 @@ const tagStyle = {
   margin: "0px 2px",
   cursor: "pointer",
 };
+
+const Icons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+`
