@@ -14,9 +14,6 @@ export default function IconComment({disableComments, setDisableComments, postId
 			.then((res) => {
 				setCommentNumber(res.data.commentCount)
 			})
-			.catch(() => {
-				alert("Error getting comment count")
-			})
 	}, [config, setCommentNumber, postId, refresh]);
 
     return (

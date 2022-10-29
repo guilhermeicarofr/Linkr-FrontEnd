@@ -4,7 +4,7 @@ import { getUserPosts } from "../services/axios.js";
 import { useNavigate, useParams } from "react-router-dom";
 import LoginContext from "../contexts/LoginContext.js";
 import { Page } from "../styles/commons/Page.js";
-import { Title } from "../styles/commons/Title.js";
+import { Title, UserInfo } from "../styles/commons/Title.js";
 import Trending from "../components/trending/Trending.js";
 import { Feed, Wrapper } from "../styles/posts/Feed.js";
 import Navbar from "../components/commons/Navbar.js";
@@ -41,8 +41,8 @@ export default function UserTimeline() {
       <Wrapper>
         <Feed>
           <Title>
-            <div className="userInfo">
-            {userPosts ? (
+            <UserInfo>
+            {userPosts.posts.length ? (
               <>
                 <img
                   src={userPosts.picture}
@@ -55,13 +55,11 @@ export default function UserTimeline() {
                 />
                 <h2>{userPosts.name}'s Posts</h2>
               </>
-            ) : (
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCoS1h0huK1B606Qb4j_hHmwGH8wPmvKLSKQ&usqp=CAU"
-                alt="pic"
-              />
-            )}
-            </div>
+            ) : (<img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCoS1h0huK1B606Qb4j_hHmwGH8wPmvKLSKQ&usqp=CAU"
+              alt="pic"
+            />)}
+            </UserInfo>
            <div>
            {Number(id) !== userData.userId ? (
               <FollowButton 
