@@ -73,7 +73,14 @@ export default function Comments({postId, disableComments, userId}) {
                 }
             </CommentsWrapper>
             <InputComment>
-                <img src={userData.picture} alt="img"/>
+                <img 
+                    src={userData.picture} 
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src =
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCoS1h0huK1B606Qb4j_hHmwGH8wPmvKLSKQ&usqp=CAU";
+                      }}
+                    alt="img"/>
                 <CommentForm onSubmit={sendComment}>
                    <input
                         placeholder="write a comment..."
