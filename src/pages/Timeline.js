@@ -100,7 +100,6 @@ function Timeline() {
               <p>{message}</p>
             )}
 </InfiniteScroll>
-            
           </Feed>
           <Trending />
         </Wrapper>
@@ -115,3 +114,4 @@ export default Timeline;
 const Loading = styled.div `
 margin:20px 0;
 color: #b7b7b7`
+
