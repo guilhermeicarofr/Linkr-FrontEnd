@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerPostComments = styled.div`
+    position: relative;
     min-height: 110px;
     padding: 30px 20px 0px 20px;
     background-color: #1E1E1E;
@@ -9,6 +10,7 @@ export const ContainerPostComments = styled.div`
     margin-top: -45px;
     margin-bottom: 16px;
     display: ${(props) => props.disabled ? "normal" : "none"};
+    z-index: 0;
 
     @media (max-width: 937px) {
         width: 100%;
