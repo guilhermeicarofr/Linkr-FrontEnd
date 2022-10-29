@@ -12,7 +12,6 @@ import {
 } from "../../styles/posts/DeletePost";
 import LoginContext from "../../contexts/LoginContext";
 
-
 const IconDeleteStyle = styled(IoTrash)`
   color: white;
   font-size: 19px;
@@ -20,29 +19,38 @@ const IconDeleteStyle = styled(IoTrash)`
   cursor: pointer;
 `;
 
-export default function IconDelete( {postId} ) {
+export default function IconDelete({ postId }) {
   const [showDeleteScreen, setShowDeleteScreen] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
 
-  const { config,refresh, setRefresh } = useContext(LoginContext);
+  const { config, refresh, setRefresh } = useContext(LoginContext);
 
   function handleDelete() {
     setShowLoading(true);
-    deletePost(postId,config).then((res)=>{
-      setShowLoading(false);
-      setShowDeleteScreen(false);
-      setRefresh(!refresh);
-    })
-    .catch((error) => {
-      alert('Failed to delete post');
-      setShowLoading(false);
-      setShowDeleteScreen(false);
-    });
+    deletePost(postId, config)
+      .then((res) => {
+        setShowLoading(false);
+        setShowDeleteScreen(false);
+        setRefresh(!refresh);
+      })
+      .catch((error) => {
+        alert("Failed to delete post");
+        setShowLoading(false);
+        setShowDeleteScreen(false);
+      });
   }
 
   return (
     <>
-      <IconDeleteStyle onClick={() => setShowDeleteScreen(true)} />
+      <IconDeleteStyle
+        onClick={() => {
+          setShowDeleteScreen(true);
+          window.scrollTo(0, 0);
+          window.onscroll = function () {
+            window.scrollTo(0, 0);
+          };
+        }}
+      />
       <DeleteScreenStyle showScreen={showDeleteScreen}>
         <div>
           <h1>Are you sure want to delete this post?</h1>
@@ -53,13 +61,19 @@ export default function IconDelete( {postId} ) {
               <>
                 <ButtonDeleteStyle
                   isBlue={false}
-                  onClick={() => setShowDeleteScreen(false)}
+                  onClick={() => {
+                    setShowDeleteScreen(false);
+                    window.onscroll = null;
+                  }}
                 >
                   No, go back
                 </ButtonDeleteStyle>
                 <ButtonDeleteStyle
                   isBlue={true}
-                  onClick={handleDelete}
+                  onClick={() => {
+                    handleDelete();
+                    window.onscroll = null;
+                  }}
                 >
                   Yes, delete it
                 </ButtonDeleteStyle>
