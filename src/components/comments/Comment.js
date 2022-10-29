@@ -11,7 +11,15 @@ export default function Comment({comment, isFollowing, name, picture, userId, au
 
     return (
         <CommentWrapper>
-            <img src={picture} alt="img" onClick={() => navigateUser(userId)}/>
+            <img 
+                onClick={() => navigateUser(userId)}
+                src={picture} 
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src =
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCoS1h0huK1B606Qb4j_hHmwGH8wPmvKLSKQ&usqp=CAU";
+                  }}
+                alt="img" />
             <Texts>
                 <h1 onClick={() => navigateUser(userId)}>{name}
                     <span>

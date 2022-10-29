@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const PostContainer = styled.div`
+  position: relative;
   width: 611px;
   min-height: 276px;
   background-color: #171717;
